@@ -1,0 +1,104 @@
+/* ── Font Faces ── */
+@font-face {
+  font-family: 'Season';
+  src: url('./assets/fonts/SeasonMix-TRIAL-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Macan';
+  src: url('./assets/fonts/Macan/Macan-Trial-Book.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Macan';
+  src: url('./assets/fonts/Macan/Macan-Trial-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Macan';
+  src: url('./assets/fonts/Macan/Macan-Trial-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Macan';
+  src: url('./assets/fonts/Macan/Macan-Trial-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+:root {
+  --yellow: #FFD667;
+  --yellow-hover: #F7CB53;
+  --white: #FFFFFF;
+  --gray-dark: #222222;
+  --gray-light: #4C4C4C;
+  --blue: #80ACED;
+  --gray-hover: rgba(34, 34, 34, 0.05);
+  --cream: #F0EBE0;
+  --font-body: 'Macan', -apple-system, sans-serif;
+  --font-serif: 'Season', Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--gray-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+svg *[stroke] {
+  vector-effect: non-scaling-stroke;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ── Universal Text Link ── */
+.text-link {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gray-dark);
+  text-decoration: underline dotted;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: opacity 0.15s;
+}
+
+.text-link:hover {
+  opacity: 0.6;
+}

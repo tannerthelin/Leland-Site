@@ -1,0 +1,1023 @@
+/* ── Become an Expert Hero ── */
+.bae-hero {
+  position: relative;
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 12px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.bae-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.bae-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.3) 45%,
+    transparent 70%
+  );
+}
+
+.bae-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 64px 56px;
+  max-width: 700px;
+}
+
+.bae-hero-title {
+  font-family: var(--font-serif);
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--white);
+  margin: 0 0 24px;
+
+}
+
+.bae-hero-proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.bae-hero-avatars {
+  display: flex;
+}
+
+.bae-hero-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  object-fit: cover;
+}
+
+.bae-hero-avatar + .bae-hero-avatar {
+  margin-left: -10px;
+}
+
+.bae-hero-proof-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.bae-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--yellow);
+  color: var(--gray-dark);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.bae-hero-cta:hover {
+  background: var(--yellow-hover);
+}
+
+/* ── 0 · Experts hero heading size override ── */
+.bae-experts-hero .experts-heading {
+  font-size: 64px;
+  line-height: 70px;
+}
+
+.bae-experts-hero .experts-sub {
+  font-weight: 500;
+}
+
+/* ── 1 · Social Proof Logos ── */
+.bae-logos {
+  padding: 32px 48px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.bae-logos .section-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+.bae-logos-label {
+  font-size: 16px;
+  color: var(--gray-light);
+  white-space: nowrap;
+}
+
+.bae-logos-items {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.bae-company-logo {
+  height: 28px;
+  width: auto;
+  filter: grayscale(1) opacity(0.5);
+  transition: filter 0.2s;
+}
+
+.bae-company-logo:hover {
+  filter: grayscale(0) opacity(1);
+}
+
+.bae-company-logo-sm {
+  height: 22px;
+}
+
+/* ── 3 · Who Belongs Here ── */
+.bae-who {
+  padding: 80px 48px;
+  background: var(--white);
+}
+
+.bae-who .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.bae-who-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #34A853;
+  margin-bottom: 16px;
+}
+
+.bae-who-heading {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  max-width: 560px;
+}
+
+.bae-who-sub {
+  font-size: 16px;
+  color: var(--gray-light);
+  line-height: 1.6;
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.bae-who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.bae-who-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.bae-who-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.bae-who-emoji {
+  width: 48px;
+  height: 48px;
+  background: #F0F7F1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.bae-who-card-title {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray-dark);
+}
+
+.bae-who-card-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.55;
+}
+
+.bae-who-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #34A853;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.bae-who-card-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.bae-who-card-link:hover {
+  opacity: 0.8;
+}
+
+/* ── 4 · Categories ── */
+.bae-categories {
+  padding: 72px 48px;
+  background: var(--white);
+}
+
+.bae-categories .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.bae-categories-heading {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.bae-categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.bae-category-chip {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  background: var(--white);
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bae-category-chip:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Shared section title ── */
+.bae-section-title {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+/* ── 5 · Features ── */
+.bae-features {
+  padding: 72px 48px;
+  background: #F3F1E6;
+}
+
+.bae-features .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.bae-features-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.bae-features-wrap {
+  position: relative;
+}
+
+.bae-features-wrap:not(.bae-features-expanded) .bae-features-grid:first-child {
+  position: relative;
+  max-height: 480px;
+  overflow: hidden;
+}
+
+.bae-features-wrap:not(.bae-features-expanded) .bae-features-grid:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #F3F1E6);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bae-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.bae-features-grid + .bae-features-grid {
+  margin-top: 16px;
+}
+
+.bae-feature-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bae-feature-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 8px;
+}
+
+.bae-feature-card-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-dark);
+}
+
+.bae-feature-card-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.bae-features-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, #F3F1E6);
+  pointer-events: none;
+}
+
+.bae-features-toggle {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.bae-features-show-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-dark);
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bae-features-show-more:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.bae-features-chevron {
+  transition: transform 0.3s;
+}
+
+.bae-features-chevron-up {
+  transform: rotate(180deg);
+}
+
+/* ── 6 · Testimonials ── */
+.bae-testimonials {
+  padding: 72px 48px;
+  background: #F9F9F9;
+}
+
+.bae-testimonials .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.bae-testi-row {
+  display: flex;
+  gap: 16px;
+}
+
+.bae-testi-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* 4 cards + 3 gaps of 16px = 48px total gap.
+     Inactive cards share remaining space equally.
+     Active card = inactive + quote panel width (340px). */
+  flex: 1 1 0%;
+  min-width: 0;
+  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bae-testi-card-active {
+  /* Grow ~2.8x wider than inactive cards */
+  flex: 2.8 1 0%;
+}
+
+.bae-testi-card-inner {
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 420px;
+}
+
+.bae-testi-photo-wrap {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.bae-testi-photo-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bae-testi-photo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.bae-testi-quote-panel {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.bae-testi-card-active .bae-testi-quote-panel {
+  width: 340px;
+}
+
+.bae-testi-quote-content {
+  background: var(--gray-dark);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 36px;
+  width: 340px;
+}
+
+.bae-testi-quote {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.bae-testi-attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bae-testi-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.bae-testi-role {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bae-testi-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 4px;
+}
+
+.bae-testi-label-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-dark);
+}
+
+.bae-testi-label-role {
+  font-size: 14px;
+  color: var(--gray-light);
+}
+
+.bae-testi-card:not(.bae-testi-card-active):hover .bae-testi-photo {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+
+.bae-testi-card:not(.bae-testi-card-active) .bae-testi-photo {
+  transition: transform 0.3s ease;
+}
+
+/* ── 6b · Social Proof Ticker ── */
+.bae-social-proof {
+  padding: 72px 0 72px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.bae-social-proof .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.bae-social-proof-heading {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  margin-bottom: 40px;
+}
+
+.bae-social-proof-ticker {
+  width: 100%;
+}
+
+.bae-social-proof-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: bae-sp-scroll 60s linear infinite;
+}
+
+@keyframes bae-sp-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Column containers ── */
+.bae-sp-col {
+  flex-shrink: 0;
+  height: 480px;
+}
+
+.bae-sp-wide { width: 460px; }
+.bae-sp-thin { width: 300px; }
+.bae-sp-split {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Shared background image ── */
+.bae-sp-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ── Wide card (image bg + quote + logo) ── */
+.bae-sp-wide-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.bae-sp-wide-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.bae-sp-wide-bottom {
+  position: relative;
+  z-index: 1;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bae-sp-wide-quote {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--white);
+}
+
+.bae-sp-wide-logo {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--white);
+  opacity: 0.7;
+}
+
+/* ── Thin card (full-height image-style card) ── */
+.bae-sp-thin-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.bae-sp-thin-card-has-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.bae-sp-thin-card:not(.bae-sp-thin-card-has-img) .bae-sp-thin-label {
+  color: var(--gray-dark);
+}
+
+.bae-sp-thin-card:not(.bae-sp-thin-card-has-img) .bae-sp-thin-sublabel {
+  color: var(--gray-light);
+}
+
+.bae-sp-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.bae-sp-thin-bottom {
+  position: relative;
+  z-index: 1;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bae-sp-thin-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.bae-sp-thin-sublabel {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Split column (two stacked cards) ── */
+.bae-sp-split-card {
+  flex: 1;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  gap: 6px;
+}
+
+.bae-sp-split-stat {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.bae-sp-split-suffix {
+  font-size: 24px;
+  margin-left: 2px;
+}
+
+.bae-sp-split-label {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+/* ── Image split card ── */
+.bae-sp-split-img {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* ── Press quote in split card ── */
+.bae-sp-split-press {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.bae-sp-press-quote {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--gray-dark);
+}
+
+.bae-sp-press-logo {
+  height: 16px;
+  width: auto;
+}
+
+/* ── 7 · How It Works ── */
+.bae-hiw {
+  padding: 80px 48px;
+  background: var(--white);
+}
+
+.bae-hiw .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.bae-hiw-title {
+  font-size: 48px;
+  color: var(--gray-dark);
+  margin-bottom: 24px;
+}
+
+.bae-hiw-cta {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.bae-hiw-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.bae-hiw-step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bae-hiw-mockup-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.bae-hiw-step-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.bae-hiw-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: var(--yellow);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-dark);
+  margin-top: 1px;
+}
+
+.bae-hiw-step-desc {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.bae-hiw-step-bold {
+  font-weight: 600;
+  color: var(--gray-dark);
+}
+
+.bae-hiw-step-rest {
+  font-weight: 400;
+  color: var(--gray-light);
+}
+
+/* ── 8 · FAQ ── */
+.bae-faq {
+  padding: 72px 48px;
+  background: #F9F9F9;
+}
+
+.bae-faq .section-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bae-faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.bae-faq-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bae-faq-question {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gray-dark);
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bae-faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.bae-faq-question::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gray-light);
+  flex-shrink: 0;
+  margin-left: 16px;
+  transition: transform 0.2s;
+}
+
+.bae-faq-item[open] .bae-faq-question::after {
+  content: '−';
+}
+
+.bae-faq-answer {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.6;
+  padding: 0 0 20px;
+}
+
+/* ── 9 · Final CTA (hero reused at bottom) ── */
+.bae-hero-bottom {
+  margin: 0 auto 0;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bae-hero {
+    min-height: 420px;
+    margin: 12px 16px 0;
+  }
+
+  .bae-hero-content {
+    padding: 40px 28px;
+  }
+
+  .bae-hero-title {
+    font-size: 36px;
+  }
+
+  .bae-logos .section-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bae-logos-items {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .bae-who,
+  .bae-categories,
+  .bae-features,
+  .bae-testimonials,
+  .bae-hiw,
+  .bae-faq {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .bae-who-heading {
+    font-size: 28px;
+  }
+
+  .bae-who-grid,
+  .bae-hiw-steps,
+  .bae-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bae-testi-row {
+    flex-direction: column;
+  }
+
+  .bae-testi-card-inner {
+    height: auto;
+  }
+
+  .bae-testi-card-inner {
+    flex-direction: column;
+  }
+
+  .bae-testi-photo-wrap {
+    min-width: unset;
+    height: 280px;
+  }
+
+  .bae-testi-card-active .bae-testi-photo-wrap {
+    min-width: unset;
+  }
+
+  .bae-testi-quote-content {
+    min-width: unset;
+  }
+
+  .bae-section-title,
+  .bae-categories-heading {
+    font-size: 28px;
+  }
+
+}

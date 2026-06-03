@@ -1,0 +1,394 @@
+/* ── Nav background ── */
+.careers-page .nav-sticky {
+  background: #F3F1E6;
+  transition: background 0.2s;
+}
+
+.careers-page .nav-scrolled .nav-sticky {
+  background: var(--white);
+}
+
+/* ── Careers Hero ── */
+.careers-hero {
+  padding: 120px 48px 200px;
+  background: #F3F1E6;
+  text-align: center;
+}
+
+.careers-hero .section-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.careers-hero-heading {
+  font-family: var(--font-serif);
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--gray-dark);
+  margin-bottom: 20px;
+}
+
+.careers-hero-sub {
+  font-size: 18px;
+  color: var(--gray-light);
+  line-height: 1.5;
+  margin-bottom: 36px;
+}
+
+.careers-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--yellow);
+  color: var(--gray-dark);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.careers-hero-cta:hover {
+  background: var(--yellow-hover);
+}
+
+/* ── Why Leland ── */
+.careers-why {
+  padding: 80px 48px;
+  background: var(--white);
+}
+
+.careers-why .section-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.careers-section-heading {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--gray-dark);
+  margin-bottom: 32px;
+}
+
+.careers-section-heading-center {
+  text-align: center;
+}
+
+.careers-why-heading {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.careers-why-subheading {
+  font-family: var(--font-body);
+  font-size: 28px;
+  color: var(--gray-dark);
+  line-height: 1.3;
+  margin-bottom: 32px;
+}
+
+.careers-why-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.careers-why-body p {
+  font-size: 17px;
+  color: var(--gray-light);
+  line-height: 1.65;
+}
+
+.careers-why-note {
+  font-weight: 600;
+  color: var(--gray-dark) !important;
+}
+
+/* ── Life at Leland ── */
+.careers-life {
+  padding: 80px 48px;
+  background: #F3F1E6;
+}
+
+.careers-life .section-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.careers-life-body {
+  font-size: 17px;
+  color: var(--gray-light);
+  line-height: 1.65;
+}
+
+/* ── Values ── */
+.careers-values {
+  padding: 80px 48px;
+  background: var(--white);
+}
+
+.careers-values .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.careers-values-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.careers-value-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.careers-value-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-dark);
+}
+
+.careers-value-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+/* ── Polaroids ── */
+.careers-polaroids {
+  padding: 80px 48px;
+  overflow: hidden;
+  margin-top: -200px;
+  position: relative;
+  z-index: 1;
+}
+
+.careers-polaroids-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.careers-polaroid {
+  background: var(--white);
+  padding: 12px 12px 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  width: 280px;
+  cursor: pointer;
+}
+
+.careers-polaroid-1 {
+  z-index: 1;
+  margin-right: -20px;
+}
+
+.careers-polaroid-2 {
+  z-index: 2;
+  margin-right: -16px;
+}
+
+.careers-polaroid-3 {
+  z-index: 3;
+  margin-right: -20px;
+}
+
+.careers-polaroid-4 {
+  z-index: 2;
+}
+
+.careers-polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #eee;
+}
+
+.careers-polaroid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.careers-polaroid-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 2px 4px;
+}
+
+.careers-polaroid-caption,
+.careers-polaroid-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ── Polaroid Lightbox ── */
+.careers-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.careers-lightbox-polaroid {
+  background: var(--white);
+  padding: 16px 16px 10px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  max-width: 90vw;
+}
+
+/* ── Perks (reuses bae-feature-* classes from BecomeAnExpert) ── */
+.careers-perks {
+  padding: 72px 48px;
+  background: #F3F1E6;
+}
+
+.careers-perks .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.careers-perks .bae-features-wrap:not(.bae-features-expanded) .bae-features-grid:first-child::after {
+  background: linear-gradient(to bottom, transparent, #F3F1E6);
+}
+
+/* ── Open Roles ── */
+.careers-roles {
+  padding: 80px 48px;
+  background: var(--white);
+}
+
+.careers-roles .section-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.careers-roles-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.careers-role-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.careers-role-row:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.careers-role-row:hover {
+  opacity: 0.6;
+}
+
+.careers-role-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.careers-role-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-dark);
+}
+
+.careers-role-dept {
+  font-size: 14px;
+  color: var(--gray-light);
+}
+
+.careers-role-arrow {
+  color: var(--gray-light);
+  flex-shrink: 0;
+}
+
+/* ── Bottom CTA ── */
+.careers-bottom-cta {
+  padding: 80px 48px;
+  background: #F3F1E6;
+  text-align: center;
+}
+
+.careers-bottom-cta .section-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.careers-bottom-sub {
+  font-size: 17px;
+  color: var(--gray-light);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .careers-hero {
+    padding: 100px 20px 60px;
+  }
+
+  .careers-hero-heading {
+    font-size: 36px;
+  }
+
+  .careers-why,
+  .careers-life,
+  .careers-values,
+  .careers-perks,
+  .careers-roles,
+  .careers-bottom-cta {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .careers-section-heading {
+    font-size: 28px;
+  }
+
+  .careers-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-perks .bae-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-polaroids {
+    padding: 48px 20px;
+  }
+
+  .careers-polaroid {
+    width: 200px;
+  }
+}

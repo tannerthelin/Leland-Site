@@ -1,0 +1,193 @@
+/* ── Transparent nav override ── */
+.login-wrapper .nav-sticky-wrapper {
+  background: transparent;
+  box-shadow: none;
+}
+
+.login-wrapper .nav-sticky {
+  background: transparent;
+}
+
+.login-wrapper .nav-scrolled {
+  box-shadow: none;
+}
+
+.login-wrapper .nav-links {
+  display: none;
+}
+
+.login-wrapper {
+  background: #F3F1E6;
+}
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 52px);
+  padding: 40px 24px;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.login-form {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Heading / subtitle ── */
+.login-heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 32px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ── Social buttons ── */
+.login-social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.login-social-btn:hover {
+  background: #f8f8f8;
+  border-color: #bbb;
+}
+
+.login-social-btn svg {
+  flex-shrink: 0;
+}
+
+/* ── Divider ── */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.login-divider span {
+  font-size: 13px;
+  color: #999;
+  text-transform: lowercase;
+}
+
+/* ── Email input ── */
+.login-email-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #111;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.login-email-input::placeholder {
+  color: #aaa;
+}
+
+.login-email-input:focus {
+  border-color: var(--yellow);
+}
+
+/* ── Continue button ── */
+.login-continue-btn {
+  width: 100%;
+  padding: 16px 32px;
+  margin-top: 16px;
+  background: var(--yellow);
+  color: var(--gray-dark);
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.login-continue-btn:hover {
+  background: var(--yellow-hover);
+}
+
+/* ── Footer links ── */
+.login-footer-text {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+}
+
+.login-footer-text a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.login-footer-text a:hover {
+  color: #666;
+}
+
+.login-footer-dot {
+  margin: 0 6px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 40px 16px;
+  }
+
+  .login-card {
+    padding: 36px 24px;
+  }
+}

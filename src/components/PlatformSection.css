@@ -1,0 +1,197 @@
+/* ── Platform Section ── */
+.platform-section {
+  padding: 80px 48px 96px;
+  background: var(--white);
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+}
+
+/* ── Left panels ── */
+.platform-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+.platform-panel {
+  border-radius: 16px;
+  min-height: 180px;
+}
+
+.platform-panel--photo {
+  overflow: hidden;
+}
+
+.platform-panel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+
+/* ── Blue rating card ── */
+.platform-panel--blue {
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.platform-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--white);
+  text-align: center;
+}
+
+.platform-rating-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.platform-rating-score {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.platform-rating-label {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.platform-rating-count {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* ── Cream ticker card ── */
+.platform-panel--cream {
+  grid-column: 1 / -1;
+  background: var(--cream);
+  padding: 24px 0;
+}
+
+.platform-ticker-content {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.platform-ticker-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gray-light);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.platform-ticker {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.platform-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: ticker-scroll 20s linear infinite;
+}
+
+.platform-ticker-logo {
+  height: 22px;
+  width: auto;
+  flex-shrink: 0;
+  filter: brightness(0);
+  opacity: 0.5;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Info side ── */
+.platform-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.platform-description {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--gray-dark);
+  margin-bottom: 32px;
+}
+
+/* ── CTA ── */
+.platform-cta {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  transition: background 0.15s;
+  width: fit-content;
+}
+
+.platform-cta:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .platform-section {
+    padding: 48px 20px 56px;
+  }
+
+  .platform-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .platform-info {
+    order: -1;
+  }
+
+  .platform-panel {
+    min-height: 140px;
+  }
+
+  .platform-rating-score {
+    font-size: 32px;
+  }
+
+  .platform-description {
+    font-size: 28px;
+  }
+}
