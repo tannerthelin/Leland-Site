@@ -14,19 +14,25 @@
 .footer-left {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
   min-width: 200px;
 }
 
 .footer-logo {
-  height: 28px;
+  height: 42px;
   width: auto;
-  margin-bottom: auto;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .footer-social {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
 }
 
 .footer-social-link {

@@ -1,62 +1,215 @@
-import imgRecruiter from '../assets/img/how-it-works/3e0a0090e0bff6853078b807136188552aed1194-550x440.svg'
-import imgLandscape from '../assets/img/how-it-works/2f8b882dd8af720f1cabce9d125ca543b0ab4725-1228x1334.webp'
-import imgLivestreams from '../assets/img/placeholder-images/Hims_Homepage_Better_Sex_Default_240-3.webp'
-import imgLibrary from '../assets/img/placeholder-images/Hims_Homepage_Regrow_Hair_Default_480-2.webp'
-import imgAI from '../assets/img/placeholder-images/Hims_Homepage_Labs_Default_480.webp'
+import { useRef, useState, useEffect } from 'react'
+import imgFolder from '../assets/img/folder.png'
+import expertVideo from '../assets/img/expert-video.mp4'
 
-const ChevronRight = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m9 18 6-6-6-6" />
-  </svg>
-)
+import pic01 from '../assets/img/profile-photos/pic-01.png'
+import pic02 from '../assets/img/profile-photos/pic-02.png'
+import pic03 from '../assets/img/profile-photos/pic-03.png'
+import pic04 from '../assets/img/profile-photos/pic-04.png'
+import pic05 from '../assets/img/profile-photos/pic-05.png'
+import pic06 from '../assets/img/profile-photos/pic-06.png'
+import pic07 from '../assets/img/profile-photos/pic-07.png'
+import pic08 from '../assets/img/profile-photos/pic-08.png'
+
+const COACHES = [
+  { img: pic01, name: 'Matthew McConaughey', desc: 'Founder of Lyrics of Livin newsletter' },
+  { img: pic02, name: 'Nicole Walters', desc: 'NYT bestselling author and CEO' },
+  { img: pic03, name: 'Ali Abdaal', desc: 'Productivity Expert, YouTuber, and author' },
+  { img: pic06, name: 'James Clear', desc: 'Author of Atomic Habits' },
+  { img: pic04, name: 'Susan Cain', desc: '#1 NYT bestselling author and speaker' },
+  { img: pic05, name: 'Pat Flynn', desc: 'Entrepreneur, YouTuber, and podcast host' },
+  { img: pic07, name: 'Andrew Huberman', desc: 'Neuroscientist and podcast host' },
+  { img: pic08, name: 'Lisa Nichols', desc: 'Motivational speaker and author' },
+]
+
+const PARTICIPANTS = [
+  { img: pic03 },
+  { img: pic02 },
+  { img: pic04 },
+  { img: pic05 },
+  { img: pic06 },
+  { img: pic07 },
+]
+
+const STEPS = [
+  {
+    title: 'Work 1-on-1 with an expert',
+    desc: "Get matched with a world-class coach who's already done what you're trying to do.",
+    cta: 'Find an expert',
+    visual: 'coaches',
+  },
+  {
+    title: 'Work together in a group',
+    desc: 'Join programs and bootcamps led by industry experts alongside a cohort of peers.',
+    ctas: ['Browse upcoming Livestreams', 'Browse Programs'],
+    visual: 'group-call',
+  },
+  {
+    title: 'Learn on your own',
+    desc: 'Access free livestreams, a content library, and AI-powered tools to level up at your own pace.',
+    cta: 'Explore resources',
+    img: imgFolder,
+  },
+]
+
+function GroupCallMockup() {
+  return (
+    <div className="hiw-gcall">
+      <div className="hiw-gcall-main">
+        <video
+          src={expertVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hiw-gcall-video"
+        />
+      </div>
+      <div className="hiw-gcall-strip">
+        {PARTICIPANTS.map((p, i) => (
+          <div key={i} className="hiw-gcall-thumb">
+            <img src={p.img} alt="" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function HowItWorksSection() {
+  const sectionRef = useRef(null)
+  const trackRef = useRef(null)
+  const jcCardRef = useRef(null)
+  const coachesContainerRef = useRef(null)
+  const [activeStep, setActiveStep] = useState(0)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [jcOffset, setJcOffset] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current
+      if (!section) return
+
+      const rect = section.getBoundingClientRect()
+      const sectionHeight = section.offsetHeight
+      const viewportHeight = window.innerHeight
+      const scrolled = -rect.top
+      const scrollable = sectionHeight - viewportHeight
+
+      if (scrolled <= 0) {
+        setActiveStep(0)
+        setScrollProgress(0)
+      } else if (scrolled >= scrollable) {
+        setActiveStep(2)
+        setScrollProgress(1)
+      } else {
+        const progress = scrolled / scrollable
+        const step = Math.min(2, Math.floor(progress * 3))
+        setActiveStep(step)
+        setScrollProgress(progress)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const measure = () => {
+      const card = jcCardRef.current
+      const container = coachesContainerRef.current
+      if (!card || !container) return
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2
+      const containerWidth = container.offsetWidth
+      setJcOffset(cardCenter - containerWidth / 2)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  // coachOffset: 0–1 within step 1
+  const coachOffset = Math.min(1, Math.max(0, scrollProgress * 3))
+  // Phase 1 (first 60%): horizontal scroll to center James Clear
+  const scrollPhase = Math.min(1, coachOffset / 0.6)
+  // Phase 2 (last 40%): show "Matched" tag
+  const jcMatched = coachOffset >= 0.6
+
+  const visualClass = (i) =>
+    i === activeStep ? 'hiw-visual-active' : i < activeStep ? 'hiw-visual-exited' : ''
+
   return (
-    <section className="hiw-section">
-      <div className="section-container">
-        <div className="hiw-grid">
-          {/* Top row — two large cards */}
-          <a href="#" className="hiw-card hiw-card-lg" style={{ background: 'var(--cream)' }}>
-            <div className="hiw-card-lg-content">
-              <h3 className="hiw-card-lg-title">Work 1&#8209;on&#8209;1 with an expert</h3>
-              <div className="hiw-card-lg-footer">
-                <span className="hiw-card-lg-sub">Find your perfect coach</span>
-                <ChevronRight />
+    <section className="hiw-section" ref={sectionRef}>
+      <div className="hiw-sticky">
+        <div className="hiw-left">
+          <div className="hiw-progress">
+            {[0, 1, 2].map((i) => {
+              const segStart = i / 3
+              const segEnd = (i + 1) / 3
+              const fill = Math.min(1, Math.max(0, (scrollProgress - segStart) / (segEnd - segStart)))
+              return (
+                <div key={i} className="hiw-progress-seg">
+                  <div className="hiw-progress-fill" style={{ width: `${fill * 100}%` }} />
+                </div>
+              )
+            })}
+          </div>
+          <h2 className="hiw-heading">Get expert help, your way</h2>
+          <div className="hiw-steps">
+            {STEPS.map((step, i) => (
+              <div
+                key={i}
+                className={`hiw-step ${visualClass(i)}`}
+              >
+                <h3 className="hiw-step-title">{step.title}</h3>
+                <p className="hiw-step-desc">{step.desc}</p>
+                <div className="hiw-step-ctas">
+                  {(step.ctas || [step.cta]).map((label, j) => (
+                    <a key={j} href="#" className="hiw-step-cta">
+                      {label}
+                    </a>
+                  ))}
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+        <div className="hiw-right">
+          {/* Step 1: scrolling coach cards */}
+          <div ref={coachesContainerRef} className={`hiw-visual hiw-visual-coaches ${visualClass(0)}`}>
+            <div
+              ref={trackRef}
+              className="hiw-coaches-track"
+              style={{ transform: `translateX(${-scrollPhase * jcOffset}px)` }}
+            >
+              {COACHES.map((coach, i) => (
+                <div key={i} className={`hiw-coach-card ${jcMatched && i !== 3 ? 'hiw-coach-card-dimmed' : ''}`} ref={i === 3 ? jcCardRef : undefined}>
+                  <img src={coach.img} alt={coach.name} className="hiw-coach-photo" />
+                  <h3 className="hiw-coach-name">{coach.name}</h3>
+                  <p className="hiw-coach-desc">{coach.desc}</p>
+                  {i === 3 && (
+                    <div className={`hiw-coach-matched ${jcMatched ? 'hiw-coach-matched-visible' : ''}`}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 6 9 17l-5-5" />
+                      </svg>
+                      Matched
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-            <div className="hiw-card-lg-img">
-              <img src={imgRecruiter} alt="" />
-            </div>
-          </a>
+          </div>
 
-          <a href="#" className="hiw-card hiw-card-lg hiw-card-lg-dark" style={{ backgroundImage: `url(${imgLandscape})` }}>
-            <div className="hiw-card-lg-content">
-              <h3 className="hiw-card-lg-title">Work together in a group setting</h3>
-              <div className="hiw-card-lg-footer">
-                <span className="hiw-card-lg-sub">Browse programs &amp; bootcamps</span>
-                <ChevronRight />
-              </div>
-            </div>
-          </a>
+          {/* Step 2: group call mockup */}
+          <div className={`hiw-visual ${visualClass(1)}`}>
+            <GroupCallMockup />
+          </div>
 
-          {/* Bottom row — three compact cards */}
-          <a href="#" className="hiw-card hiw-card-sm">
-            <span className="hiw-card-sm-label">Free livestreams</span>
-            <img src={imgLivestreams} alt="" className="hiw-card-sm-img" />
-            <ChevronRight />
-          </a>
-
-          <a href="#" className="hiw-card hiw-card-sm">
-            <span className="hiw-card-sm-label">Content Library</span>
-            <img src={imgLibrary} alt="" className="hiw-card-sm-img" />
-            <ChevronRight />
-          </a>
-
-          <a href="#" className="hiw-card hiw-card-sm">
-            <span className="hiw-card-sm-label">Level up with AI</span>
-            <img src={imgAI} alt="" className="hiw-card-sm-img" />
-            <ChevronRight />
-          </a>
+          {/* Step 3: static image */}
+          <div className={`hiw-visual hiw-visual-folder ${visualClass(2)}`}>
+            <img src={STEPS[2].img} alt={STEPS[2].title} />
+          </div>
         </div>
       </div>
     </section>

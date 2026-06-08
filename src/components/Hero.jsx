@@ -1,5 +1,7 @@
 import { motion } from 'motion/react'
 import SoftBlurText from './SoftBlurText'
+import HeroBottomStrip from './HeroBottomStrip'
+import HeroBottomV3 from './HeroBottomV3'
 import cloudsVideo from '../assets/img/clouds-2.mp4'
 import aiIcon from '../assets/icons/ai.svg'
 import careerIcon from '../assets/icons/arrow-up-chart.svg'
@@ -8,6 +10,10 @@ import pic01 from '../assets/img/profile-photos/pic-01.png'
 import pic02 from '../assets/img/profile-photos/pic-02.png'
 import pic03 from '../assets/img/profile-photos/pic-03.png'
 import pic04 from '../assets/img/profile-photos/pic-04.png'
+import forbesLogo from '../assets/logos/press-logos/Forbes.svg'
+import techcrunchLogo from '../assets/logos/press-logos/TechCrunch.svg'
+import businessInsiderLogo from '../assets/logos/press-logos/Business-Insider.svg'
+import wreathRight from '../assets/img/wreath-right.svg'
 
 const AVATARS = [pic01, pic02, pic03, pic04]
 
@@ -26,9 +32,11 @@ function Star() {
   )
 }
 
-export default function Hero() {
+export default function Hero({ heroVersion }) {
+  const versionClass = heroVersion === 'v2' ? ' hero-v2' : heroVersion === 'v3' ? ' hero-v3' : ''
+
   return (
-    <section className="hero">
+    <section className={`hero${versionClass}`}>
       <div className="hero-bg">
         <video src={cloudsVideo} autoPlay loop muted playsInline />
       </div>
@@ -72,23 +80,33 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="trust-row">
-          <div className="trust-avatars">
-            {AVATARS.map((src, i) => (
-              <img className="avatar" key={i} src={src} alt="" />
-            ))}
-          </div>
-          <div className="trust-info">
-            <div className="trust-stars">
-              <div className="stars">
-                {[...Array(5)].map((_, i) => <Star key={i} />)}
-              </div>
-              <span className="trust-rating">4.99 <span>(28k+)</span></span>
+        {heroVersion === 'v1' && (
+          <div className="trust-row">
+            <div className="trust-avatars">
+              {AVATARS.map((src, i) => (
+                <img className="avatar" key={i} src={src} alt="" />
+              ))}
             </div>
-            <span className="trust-text">Trusted by millions of people</span>
+            <div className="trust-info">
+              <div className="trust-stars">
+                <div className="stars">
+                  {[...Array(5)].map((_, i) => <Star key={i} />)}
+                </div>
+                <span className="trust-rating">4.99</span>
+                <span className="trust-divider" />
+                <span className="trust-count">28,000+ reviews</span>
+              </div>
+              <span className="trust-activity">
+                <span className="activity-dot" />
+                2,025 submitted last month
+              </span>
+            </div>
           </div>
-        </div>
+        )}
       </motion.div>
+
+      {heroVersion === 'v2' && <HeroBottomStrip />}
+      {heroVersion === 'v3' && <HeroBottomV3 />}
     </section>
   )
 }

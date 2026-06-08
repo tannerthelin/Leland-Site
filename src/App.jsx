@@ -12,11 +12,13 @@ import TestimonialsSection from './components/TestimonialsSection'
 import AdminPanel from './components/AdminPanel'
 import PlatformSection from './components/PlatformSection'
 import B2BBanner from './components/B2BBanner'
+import PreFooterCTA from './components/PreFooterCTA'
 import Footer from './components/Footer'
 import BecomeAnExpert from './pages/BecomeAnExpert'
 import Reviews from './pages/Reviews'
 import Careers from './pages/Careers'
 import Login from './pages/Login'
+import AIBuilderProgram from './pages/AIBuilderProgram'
 import './App.css'
 
 function Placeholder({ title }) {
@@ -38,19 +40,24 @@ function HomePage() {
   const bannerRef = useRef(null)
   const [bannerHeight, setBannerHeight] = useState(0)
   const [featureFlags, setFeatureFlags] = useState({
-    experts: true,
+    experts: false,
     banner: true,
     loggedIn: false,
+    heroVersion: 'v2',
   })
 
-  const handleToggle = (key) => {
-    setFeatureFlags((prev) => ({ ...prev, [key]: !prev[key] }))
+  const handleToggle = (key, value) => {
+    setFeatureFlags((prev) => ({
+      ...prev,
+      [key]: value !== undefined ? value : !prev[key],
+    }))
   }
 
   const adminFlags = [
     { key: 'banner', label: 'Announcement Banner', enabled: featureFlags.banner },
     { key: 'experts', label: 'Popular Experts', enabled: featureFlags.experts },
-    { key: 'loggedIn', label: 'Logged In Navbar', enabled: featureFlags.loggedIn },
+    { key: 'loggedIn', label: 'Logged In', enabled: featureFlags.loggedIn },
+    { key: 'heroVersion', label: 'Hero Version', type: 'tabs', options: ['V1', 'V2', 'V3'], value: featureFlags.heroVersion },
   ]
 
   useEffect(() => {
@@ -69,10 +76,9 @@ function HomePage() {
         </div>
       )}
       <Navbar variant="sticky-transparent" showSubNav subNavOnScroll loggedIn={featureFlags.loggedIn} />
-      <Hero />
-      <LogosBar />
+      <Hero heroVersion={featureFlags.heroVersion} />
+      <LogosBar heroVersion={featureFlags.heroVersion} />
       <GoalsSection />
-      <PlatformSection />
       <AnimatePresence>
         {featureFlags.experts && (
           <motion.div
@@ -88,8 +94,9 @@ function HomePage() {
         )}
       </AnimatePresence>
       <HowItWorksSection />
-      <TestimonialsSection />
       <B2BBanner />
+      <TestimonialsSection />
+      {!featureFlags.loggedIn && <PreFooterCTA />}
       <Footer />
       <AdminPanel flags={adminFlags} onToggle={handleToggle} />
     </>
@@ -119,6 +126,7 @@ function App() {
       <Route path="/reviews" element={<Reviews />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/ai-builder-program" element={<AIBuilderProgram />} />
     </Routes>
     </>
   )
