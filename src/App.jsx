@@ -7,7 +7,9 @@ import Hero from './components/Hero'
 import LogosBar from './components/LogosBar'
 import GoalsSection from './components/GoalsSection'
 import ExpertsSection from './components/ExpertsSection'
+import ImageRevealSection from './components/ImageRevealSection'
 import HowItWorksSection from './components/HowItWorksSection'
+import HowItWorksTabs from './components/HowItWorksTabs'
 import TestimonialsSection from './components/TestimonialsSection'
 import AdminPanel from './components/AdminPanel'
 import PlatformSection from './components/PlatformSection'
@@ -44,6 +46,7 @@ function HomePage() {
     banner: true,
     loggedIn: false,
     heroVersion: 'v2',
+    hiwVersion: 'tabs',
   })
 
   const handleToggle = (key, value) => {
@@ -58,6 +61,7 @@ function HomePage() {
     { key: 'experts', label: 'Popular Experts', enabled: featureFlags.experts },
     { key: 'loggedIn', label: 'Logged In', enabled: featureFlags.loggedIn },
     { key: 'heroVersion', label: 'Hero Version', type: 'tabs', options: ['V1', 'V2', 'V3'], value: featureFlags.heroVersion },
+    { key: 'hiwVersion', label: 'How It Works', type: 'tabs', options: ['Scroll', 'Tabs'], value: featureFlags.hiwVersion },
   ]
 
   useEffect(() => {
@@ -93,9 +97,10 @@ function HomePage() {
           </motion.div>
         )}
       </AnimatePresence>
-      <HowItWorksSection />
-      <B2BBanner />
+      <ImageRevealSection />
+      {featureFlags.hiwVersion === 'scroll' ? <HowItWorksSection /> : <HowItWorksTabs />}
       <TestimonialsSection />
+      <B2BBanner />
       {!featureFlags.loggedIn && <PreFooterCTA />}
       <Footer />
       <AdminPanel flags={adminFlags} onToggle={handleToggle} />

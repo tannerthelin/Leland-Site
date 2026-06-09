@@ -72,6 +72,38 @@ const REVIEWS = [
     text: "Prepped for MBB interviews with a former Bain consultant. The case practice was incredibly realistic and the behavioral coaching gave me confidence I didn't have before. Received two offers.",
     avatar: pic08,
   },
+  {
+    name: 'Emily T.',
+    subtitle: 'Product Management',
+    date: 'January 2026',
+    stars: 5,
+    text: "Transitioned from engineering to PM with the help of my Leland coach. She helped me reframe my experience, nail the product sense interviews, and ultimately land an offer at Stripe.",
+    avatar: pic01,
+  },
+  {
+    name: 'Kevin H.',
+    subtitle: 'MBA Admissions',
+    date: 'December 2025',
+    stars: 5,
+    text: "Applied to 6 programs and got into 4, including Wharton. My coach was a former admissions director and knew exactly what the committees were looking for. Money well spent.",
+    avatar: pic04,
+  },
+  {
+    name: 'Anika P.',
+    subtitle: 'Career Coaching',
+    date: 'December 2025',
+    stars: 5,
+    text: "I was completely lost on what to do after leaving my startup. My coach helped me figure out what I actually wanted and build a plan to get there. Landed a role I love within 2 months.",
+    avatar: pic03,
+  },
+  {
+    name: 'Tom B.',
+    subtitle: 'GRE Prep',
+    date: 'November 2025',
+    stars: 5,
+    text: "Went from a 310 to a 332 in 5 weeks. My coach identified exactly where I was losing points and gave me a focused study plan. Couldn't have done it on my own.",
+    avatar: pic06,
+  },
 ]
 
 export default REVIEWS

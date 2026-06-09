@@ -104,12 +104,11 @@ export default function GoalsSection() {
       <div className="section-container">
         {/* ── Intro ── */}
         <div className="goals-intro">
-          <h2 className="goals-intro-heading">The world is changing fast.<br />Leland helps you change with it.</h2>
+          <h2 className="goals-intro-heading">Reach your most ambitious goals.</h2>
           <div className="goals-intro-right">
             <p className="goals-intro-body">
               Leland connects you with world-class coaches and experts who have already done what you're trying to do.
             </p>
-            <a href="#" className="goals-intro-cta">Find an expert</a>
           </div>
         </div>
 
