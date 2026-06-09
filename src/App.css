@@ -40,7 +40,7 @@
   position: relative;
   height: 75vh;
   min-height: 430px;
-  max-height: 700px;
+  max-height: 800px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -715,7 +715,7 @@
 .hbs-logos-track {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 52px;
   width: max-content;
   animation: hbs-logos-scroll 60s linear infinite;
 }
@@ -2256,7 +2256,7 @@
 
 /* ── How It Works – Tabs Version (Accordion) ── */
 .hwt-section {
-  padding: 80px 48px;
+  padding: 120px 48px;
   background: var(--white);
 }
 

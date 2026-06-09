@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom'
 
 const PATHWAYS = [
   {
-    title: 'AI',
+    title: 'Learn AI',
     color: '#D4E5F7',
     description: 'Build real AI skills — from prompt engineering to full-stack AI products — with expert-led programs and hands-on projects.',
     to: '/ai-builder-program',
   },
   {
-    title: 'Career',
+    title: 'Build your career',
     color: '#F3F1E6',
     description: 'Level up with 1-on-1 coaching, interview prep, and leadership development from professionals who\'ve been there.',
     to: '#',
   },
   {
-    title: 'Education',
+    title: 'Get into a top school',
     color: '#E8D5F5',
     description: 'Get into your dream school with expert guidance on applications, test prep, and admissions strategy.',
     to: '#',

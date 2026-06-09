@@ -89,24 +89,28 @@ const CATEGORIES = [
 
 const FAQ_ITEMS = [
   {
-    q: 'Who can become a coach on Leland?',
-    a: 'Anyone with relevant professional experience and expertise. We look for coaches who have a track record of success in their field and a passion for helping others.',
-  },
-  {
-    q: 'How much can I earn?',
-    a: 'Earnings vary based on your expertise, pricing, and availability. Top coaches on the platform earn significant supplemental income through a combination of 1-on-1 sessions, group classes, and digital products.',
-  },
-  {
-    q: 'What does Leland provide?',
-    a: 'Leland provides the platform, tools, and client acquisition to help you build your coaching business. This includes scheduling, payments, video calls, a profile page, and marketing support.',
+    q: 'Who can become an expert on Leland?',
+    a: 'Anyone with relevant professional experience and expertise. We look for experts who have a track record of success in their field and a passion for helping others.',
   },
   {
     q: 'How long does it take to get started?',
-    a: 'Most coaches are onboarded and ready to accept clients within a few days of being approved. The application process itself is straightforward and takes about 10 minutes.',
+    a: 'Profile creation takes about 10-15 minutes, and most experts are approved and onboarded within a few days. After approval, you walk through a quick async module with training videos.',
+  },
+  {
+    q: 'How much can I earn on Leland?',
+    a: 'You set your own rates and earn through 1-on-1 sessions, livestreams, and individual content. What you earn scales with your offerings and availability.',
   },
   {
     q: 'Is there a cost to join?',
-    a: 'There is no upfront cost to join Leland as a coach. Leland takes a platform fee from each transaction to cover the tools, support, and client acquisition we provide.',
+    a: "No. There's no upfront cost to become an expert. Leland takes a platform fee from each transaction to cover the tools, support, and client acquisition we provide.",
+  },
+  {
+    q: "What's the time commitment?",
+    a: "There's no minimum commitment required — many of our experts work alongside a full-time career. You set your own schedule, and sessions book around the slots you open. Take on as many or as few clients as you want, starting with just a few hours a week.",
+  },
+  {
+    q: 'Does Leland give me materials and resources?',
+    a: 'You decide your own style, materials, and how you engage with clients. Leland provides the platform, an onboarding module, a resource library of best practices, and AI tools to help you grow.',
   },
 ]
 

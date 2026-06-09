@@ -17,21 +17,21 @@ import uberLogo from '../assets/logos/org-logos/uber.svg'
 import yahooLogo from '../assets/logos/org-logos/yahoo.svg'
 
 const COMPANY_LOGOS = [
-  { src: accentureLogo, alt: 'Accenture' },
-  { src: atlassianLogo, alt: 'Atlassian' },
-  { src: bainLogo, alt: 'Bain' },
+  { src: accentureLogo, alt: 'Accenture', h: 20 },
+  { src: atlassianLogo, alt: 'Atlassian', h: 15 },
+  { src: bainLogo, alt: 'Bain', h: 16 },
   { src: bcgLogo, alt: 'BCG' },
-  { src: capitalOneLogo, alt: 'Capital One' },
+  { src: capitalOneLogo, alt: 'Capital One', h: 24 },
   { src: coinbaseLogo, alt: 'Coinbase' },
   { src: deloitteLogo, alt: 'Deloitte' },
-  { src: eyLogo, alt: 'EY' },
-  { src: googleLogo, alt: 'Google' },
-  { src: kearneyLogo, alt: 'Kearney' },
+  { src: eyLogo, alt: 'EY', h: 24 },
+  { src: googleLogo, alt: 'Google', h: 20 },
+  { src: kearneyLogo, alt: 'Kearney', h: 14 },
   { src: lekLogo, alt: 'LEK' },
   { src: linkedinLogo, alt: 'LinkedIn' },
-  { src: mckinseyLogo, alt: 'McKinsey' },
+  { src: mckinseyLogo, alt: 'McKinsey', h: 17 },
   { src: metaLogo, alt: 'Meta' },
-  { src: salesforceLogo, alt: 'Salesforce' },
+  { src: salesforceLogo, alt: 'Salesforce', h: 26 },
   { src: uberLogo, alt: 'Uber' },
   { src: yahooLogo, alt: 'Yahoo' },
 ]
@@ -50,7 +50,7 @@ export default function LogosBar({ heroVersion }) {
         <div className="hbs-logos-ticker">
           <div className="hbs-logos-track">
             {doubled.map((logo, i) => (
-              <img key={i} src={logo.src} alt={logo.alt} className="hbs-logo" />
+              <img key={i} src={logo.src} alt={logo.alt} className="hbs-logo" style={logo.h ? { height: logo.h } : undefined} />
             ))}
           </div>
         </div>
