@@ -327,7 +327,7 @@ export default function HowItWorksTabs() {
     <section className="hwt-section">
       <div className="hwt-inner">
         <div className="hwt-left">
-          <h2 className="hwt-heading">Get expert help, your way</h2>
+          <h2 className="hwt-heading">Expert help that actually gets you there</h2>
           <div className="hwt-accordion">
             {STEPS.map((step, i) => {
               const isActive = i === activeTab

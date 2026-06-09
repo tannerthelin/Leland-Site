@@ -92,9 +92,9 @@ export default function Hero({ heroVersion }) {
                 <div className="stars">
                   {[...Array(5)].map((_, i) => <Star key={i} />)}
                 </div>
-                <span className="trust-rating">4.99</span>
+                <span className="trust-count">22,264 reviews</span>
                 <span className="trust-divider" />
-                <span className="trust-count">28,000+ reviews</span>
+                <span className="trust-rating">4.99 average</span>
               </div>
               <span className="trust-activity">
                 <span className="activity-dot" />

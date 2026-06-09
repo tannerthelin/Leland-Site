@@ -45,7 +45,7 @@ function HomePage() {
     experts: false,
     banner: true,
     loggedIn: false,
-    heroVersion: 'v2',
+    heroVersion: 'v1',
     hiwVersion: 'tabs',
   })
 
