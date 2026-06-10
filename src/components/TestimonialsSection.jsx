@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import REVIEWS from '../data/reviews'
+import kelloggLogo from '../assets/logos/kellogg.avif'
 import thumb1 from '../assets/img/video-thumbnails/image 1276.png'
 import thumb2 from '../assets/img/video-thumbnails/image 1277.png'
 import thumb3 from '../assets/img/video-thumbnails/image 1278.png'
@@ -22,7 +23,7 @@ const CARDS = [
 
   // Column 2
   { type: 'review', reviewIndex: 2 },
-  { type: 'case-study', org: 'Kellogg Business School', stat: '94%', statLabel: 'of students rated coaching as "highly valuable"', desc: 'Kellogg partnered with Leland to provide career coaching for MBA candidates across consulting, tech, and finance tracks.' },
+  { type: 'case-study', logo: kelloggLogo, stat: '+74%', statLabel: 'increase in IB offers', desc: 'Kellogg partnered with Leland to provide career coaching for MBA candidates across consulting, tech, and finance tracks.' },
   { type: 'review', reviewIndex: 4 },
   { type: 'review', reviewIndex: 9 },
 
@@ -67,7 +68,7 @@ function StarRow({ count }) {
   return (
     <div className="review-card-stars">
       {[...Array(count)].map((_, i) => (
-        <svg key={i} width="12" height="12" viewBox="0 0 20 20" fill="var(--gray-dark)">
+        <svg key={i} width="14" height="14" viewBox="0 0 20 20" fill="var(--gray-dark)">
           <path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.49L10 14.27 5.06 16.7 6 11.21l-4-3.9 5.53-.8L10 1.5z" />
         </svg>
       ))}
@@ -99,8 +100,11 @@ function ReviewCard({ card }) {
 function CaseStudyCard({ card }) {
   return (
     <div className="tcard tcard-case-study">
-      <div className="tcard-cs-badge">Case Study</div>
-      <span className="tcard-cs-org">{card.org}</span>
+      {card.logo && (
+        <div className="tcard-cs-logo-wrap">
+          <img src={card.logo} alt="" className="tcard-cs-logo" />
+        </div>
+      )}
       <div className="tcard-cs-stat-row">
         <span className="tcard-cs-stat">{card.stat}</span>
         <span className="tcard-cs-stat-label">{card.statLabel}</span>

@@ -1,40 +1,63 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import imgLearnAI from '../assets/img/homepage-cards/learn-ai.png'
+import imgCareer from '../assets/img/homepage-cards/build-career.png'
+import imgSchool from '../assets/img/homepage-cards/get-into-school.png'
 
 const PATHWAYS = [
   {
     title: 'Learn AI',
-    color: '#D4E5F7',
-    description: 'Build real AI skills — from prompt engineering to full-stack AI products — with expert-led programs and hands-on projects.',
+    color: '#5E6E79',
+    description: "Leland's AI Builder Program helps you build tools that transform how you work.",
     to: '/ai-builder-program',
+    img: imgLearnAI,
+    light: true,
   },
   {
     title: 'Build your career',
     color: '#F3F1E6',
-    description: 'Level up with 1-on-1 coaching, interview prep, and leadership development from professionals who\'ve been there.',
+    description: 'Level up with 1-on-1 coaching, interview prep, and leadership development.',
     to: '#',
+    img: imgCareer,
   },
   {
     title: 'Get into a top school',
-    color: '#E8D5F5',
-    description: 'Get into your dream school with expert guidance on applications, test prep, and admissions strategy.',
+    color: '#EBD4B5',
+    description: 'Get into your dream school with expert guidance on applications, test prep, and more.',
     to: '#',
+    img: imgSchool,
   },
 ]
 
 const CATEGORIES = [
-  { name: 'MBA Admissions', icon: 'school' },
-  { name: 'Career Coaching', icon: 'briefcase' },
-  { name: 'AI & Machine Learning', icon: 'cpu' },
-  { name: 'Interview Prep', icon: 'mic' },
-  { name: 'GMAT / GRE Prep', icon: 'pencil' },
-  { name: 'Executive Coaching', icon: 'crown' },
-  { name: 'Law School', icon: 'scale' },
-  { name: 'Medical School', icon: 'heart' },
-  { name: 'Resume & LinkedIn', icon: 'file' },
+  { name: 'AI Automation & Agents', icon: 'cpu' },
+  { name: 'MBA', icon: 'school' },
   { name: 'Product Management', icon: 'grid' },
-  { name: 'Consulting', icon: 'users' },
+  { name: 'Private Equity', icon: 'chart' },
+  { name: 'Investment Banking', icon: 'crown' },
+  { name: 'College', icon: 'briefcase' },
+  { name: 'Law School', icon: 'scale' },
+  { name: 'Break Into AI Careers', icon: 'users' },
+  { name: 'Management Consulting', icon: 'briefcase' },
+  { name: 'GRE', icon: 'pencil' },
+  { name: 'Career Coaching', icon: 'mic' },
+  { name: "Master's Programs", icon: 'school' },
+  { name: 'GMAT', icon: 'pencil' },
+  { name: 'LSAT', icon: 'scale' },
+  { name: 'Hedge Fund', icon: 'chart' },
+  { name: 'Venture Capital', icon: 'crown' },
+  { name: 'Equity Research', icon: 'file' },
+  { name: 'Business Operations & Strategy', icon: 'grid' },
+  { name: 'Software Engineering', icon: 'cpu' },
   { name: 'Data Science', icon: 'chart' },
+  { name: 'Academia', icon: 'school' },
+  { name: 'Medical School', icon: 'heart' },
+  { name: 'Executive Coaching', icon: 'crown' },
+  { name: 'Dental School', icon: 'heart' },
+  { name: 'PhD Programs', icon: 'school' },
+  { name: 'Product Marketing', icon: 'mic' },
+  { name: 'SAT', icon: 'pencil' },
+  { name: 'Accounting', icon: 'grid' },
 ]
 
 function CategoryIcon({ type }) {
@@ -96,7 +119,7 @@ export default function GoalsSection() {
 
   const scroll = (dir) => {
     const el = scrollRef.current
-    if (el) el.scrollBy({ left: dir * 300, behavior: 'smooth' })
+    if (el) el.scrollBy({ left: dir * 600, behavior: 'smooth' })
   }
 
   return (
@@ -115,13 +138,16 @@ export default function GoalsSection() {
         {/* ── Pathways ── */}
         <div className="pathways-grid">
           {PATHWAYS.map((p) => (
-            <div className="pathway-card" key={p.title}>
-              <div className="pathway-visual" style={{ background: p.color }} />
-              <div className="pathway-body">
+            <div className={`pathway-card${p.light ? ' pathway-card-light' : ''}`} key={p.title}>
+              <div className="pathway-visual" style={{ background: p.color }}>
+                <img src={p.img} alt="" className="pathway-img" />
+                <div className="pathway-visual-fade" style={{ background: `linear-gradient(to bottom, transparent, ${p.color})` }} />
+              </div>
+              <div className="pathway-body" style={{ background: p.color }}>
                 <h3 className="pathway-name">{p.title}</h3>
                 <p className="pathway-desc">{p.description}</p>
                 <Link to={p.to} className="pathway-cta">
-                  Get started <ChevronRight />
+                  Get started
                 </Link>
               </div>
             </div>
@@ -130,7 +156,7 @@ export default function GoalsSection() {
 
         {/* ── Popular categories ── */}
         <div className="categories-header">
-          <h3 className="goals-title">Popular categories</h3>
+          <h3 className="goals-title">Trending now</h3>
           <div className="categories-arrows">
             <button className="categories-arrow" disabled={!canScrollLeft} onClick={() => scroll(-1)} aria-label="Scroll left">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>

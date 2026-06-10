@@ -23,11 +23,11 @@ export default function B2BBanner() {
             </div>
           </a>
 
-          <a href="#" className="b2b-card b2b-card-lg" style={{ background: 'var(--gray-dark)', color: 'var(--white)' }}>
+          <a href="#" className="b2b-card b2b-card-lg" style={{ background: 'var(--cream)' }}>
             <div className="b2b-card-lg-content">
-              <h3 className="b2b-card-lg-title" style={{ color: 'var(--white)' }}>Deploy AI in your company</h3>
+              <h3 className="b2b-card-lg-title">Deploy AI in your company</h3>
               <div className="b2b-card-lg-footer">
-                <span className="b2b-card-lg-sub" style={{ color: 'rgba(255,255,255,0.6)' }}>Learn more</span>
+                <span className="b2b-card-lg-sub">Learn more</span>
                 <ChevronRight />
               </div>
             </div>

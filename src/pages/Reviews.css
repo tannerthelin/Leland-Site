@@ -114,7 +114,7 @@
 
 .reviews-star-row {
   display: flex;
-  gap: 1px;
+  gap: 0;
 }
 
 .review-card-sep {

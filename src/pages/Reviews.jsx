@@ -24,7 +24,7 @@ function StarRow({ count }) {
   return (
     <div className="reviews-star-row">
       {[...Array(count)].map((_, i) => (
-        <svg key={i} width="12" height="12" viewBox="0 0 20 20" fill="var(--gray-dark)">
+        <svg key={i} width="14" height="14" viewBox="0 0 20 20" fill="var(--gray-dark)">
           <path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.49L10 14.27 5.06 16.7 6 11.21l-4-3.9 5.53-.8L10 1.5z" />
         </svg>
       ))}
