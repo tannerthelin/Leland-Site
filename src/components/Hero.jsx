@@ -94,7 +94,7 @@ export default function Hero({ heroVersion }) {
                 </div>
                 <span className="trust-count">22,264 reviews</span>
                 <span className="trust-divider" />
-                <span className="trust-rating">4.99 average</span>
+                <span className="trust-rating">Avg. 4.99</span>
               </div>
               <span className="trust-activity">
                 <span className="activity-dot" />

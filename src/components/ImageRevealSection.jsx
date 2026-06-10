@@ -47,7 +47,7 @@ export default function ImageRevealSection() {
         <div className="img-reveal-content">
           <h2 className="img-reveal-heading">Ambition lives here.</h2>
           <p className="img-reveal-desc">
-            We exist to honor ambition and help more people realize it. With the right experts and the right community, opportunity stops being a privilege and starts becoming a plan.
+            Leland exists to honor ambition and help more people realize it. With the right experts and the right community, opportunity stops being a privilege and starts becoming a plan.
           </p>
         </div>
       </div>

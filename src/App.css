@@ -527,9 +527,9 @@
 }
 
 .trust-rating {
-  font-size: 15px;
+  font-size: 16px;
   color: rgba(255,255,255,0.6);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .trust-divider {
@@ -540,7 +540,7 @@
 }
 
 .trust-count {
-  font-size: 15px;
+  font-size: 16px;
   color: rgba(255,255,255,0.9);
   font-weight: 600;
 }
@@ -549,9 +549,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(255,255,255,0.6);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .activity-dot {
@@ -661,11 +661,26 @@
   gap: 8px;
 }
 
+.hbs-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .hbs-star {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--yellow);
   flex-shrink: 0;
+}
+
+.hbs-dot {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hbs-avg {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
 }
 
 .hbs-sub {
@@ -673,8 +688,8 @@
   align-items: center;
   gap: 6px;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.45);
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
 }
 
 /* Logos row: label + ticker side-by-side */

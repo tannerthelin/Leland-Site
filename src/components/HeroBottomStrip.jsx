@@ -43,13 +43,20 @@ export default function HeroBottomStrip() {
     <div className="hero-bottom-strip">
       <div className="hbs-header">
         <span className="hbs-headline">
-          <svg className="hbs-star" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-          29,524 reviews and counting
+          <span className="hbs-stars">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} className="hbs-star" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            ))}
+          </span>
+          29,524 reviews
+          <span className="hbs-dot">&middot;</span>
+          <span className="hbs-avg">Avg. 4.99</span>
         </span>
         <span className="hbs-sub">
-          Average 4.99 · 509 last month
+          <span className="activity-dot" />
+          2,025 submitted last month
         </span>
       </div>
 
