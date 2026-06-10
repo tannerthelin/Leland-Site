@@ -52,7 +52,7 @@ function ReviewCard({ review }) {
         <img src={review.avatar} alt={review.name} className="review-card-avatar" />
         <div className="review-card-info">
           <span className="review-card-name">{review.name}</span>
-          <span className="review-card-subtitle">{review.category} &middot; worked with {review.coach}</span>
+          <span className="review-card-subtitle">{review.category} &middot; worked with <span className="review-card-coach">{review.coach}</span></span>
         </div>
       </div>
       <div className="review-card-meta">
