@@ -21,6 +21,7 @@ import Reviews from './pages/Reviews'
 import Careers from './pages/Careers'
 import Login from './pages/Login'
 import AIBuilderProgram from './pages/AIBuilderProgram'
+import AI from './pages/AI'
 import './App.css'
 
 function Placeholder({ title }) {
@@ -132,6 +133,7 @@ function App() {
       <Route path="/careers" element={<Careers />} />
       <Route path="/login" element={<Login />} />
       <Route path="/ai-builder-program" element={<AIBuilderProgram />} />
+      <Route path="/ai" element={<AI />} />
     </Routes>
     </>
   )
