@@ -24,29 +24,102 @@ const ChevronDown = () => (
   </svg>
 )
 
-const NavLinks = ({ loggedIn }) => (
-  <div className="nav-links">
-    {loggedIn && <Link to="/" className="nav-link">Home</Link>}
-    <a href="#" className="nav-link">
-      Browse <ChevronDown />
-    </a>
-    {loggedIn ? (
-      <>
-        <a href="#" className="nav-link">Livestreams</a>
-        <a href="#" className="nav-link">Programs</a>
-        <a href="#" className="nav-link">Leland+</a>
-      </>
-    ) : (
-      <>
-        <Link to="/reviews" className="nav-link">Reviews</Link>
-        <Link to="/become-an-expert" className="nav-link">Become an expert</Link>
-        <a href="#" className="nav-link">
-          For organizations <ChevronDown />
-        </a>
-      </>
-    )}
-  </div>
+const ChevronRight = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 18l6-6-6-6"/>
+  </svg>
 )
+
+const UniversityIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <path d="M9.17916 3.3265L3.68495 4.45591C2.87401 4.62035 2.34992 5.41104 2.51436 6.22198C2.5705 6.49885 2.70378 6.7542 2.89881 6.95857L6.76035 11.0268C7.65389 11.9656 8.96773 12.3783 10.2376 12.1191L15.7318 10.9896C16.5427 10.8252 17.0668 10.0345 16.9024 9.22358C16.8462 8.94672 16.713 8.69136 16.5179 8.48699L12.6564 4.41876C11.7628 3.48 10.449 3.0673 9.17916 3.3265Z" vectorEffect="non-scaling-stroke"/>
+    <path d="M16.8549 9.96496C16.8549 9.96496 16.0961 11.397 16.2034 12.4977C16.3107 13.5983 16.6867 14.02 16.6867 14.02" vectorEffect="non-scaling-stroke"/>
+    <path d="M4.44287 8.57617L3.46939 11.6753C3.24358 12.3929 3.39207 13.1759 3.86494 13.7611L4.8269 14.9527C5.96493 16.3613 7.83714 16.9494 9.57624 16.4445L11.0468 16.017C11.7697 15.8078 12.3398 15.2505 12.5653 14.5325L13.5383 11.4346" vectorEffect="non-scaling-stroke"/>
+    <path d="M15.9425 13.9471L16.9719 13.2202L19.1346 15.1908L17.0757 16.6445L15.9425 13.9471Z" vectorEffect="non-scaling-stroke"/>
+  </svg>
+)
+
+const TeamsIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <path d="M15.8333 17.0833H4.16667C3.24583 17.0833 2.5 16.3375 2.5 15.4167V7.91667C2.5 6.99583 3.24583 6.25 4.16667 6.25H15.8333C16.7542 6.25 17.5 6.99583 17.5 7.91667V15.4167C17.5 16.3375 16.7542 17.0833 15.8333 17.0833Z" vectorEffect="non-scaling-stroke"/>
+    <path d="M13.4783 6.24935V4.58268C13.4783 3.66185 12.7325 2.91602 11.8117 2.91602H8.18833C7.2675 2.91602 6.52167 3.66185 6.52167 4.58268V6.24935" vectorEffect="non-scaling-stroke"/>
+    <path d="M2.5 7.91602L7.7925 11.4085C8.065 11.5885 8.38417 11.6843 8.71083 11.6843H11.2892C11.6158 11.6843 11.935 11.5885 12.2075 11.4085L17.5 7.91602" vectorEffect="non-scaling-stroke"/>
+  </svg>
+)
+
+const ORG_NAV_ITEMS = [
+  { label: 'For universities', to: '/career-centers', icon: <UniversityIcon /> },
+  { label: 'For teams',        to: '/organizations',  icon: <TeamsIcon /> },
+]
+
+function NavLinks({ loggedIn }) {
+  const [orgOpen, setOrgOpen] = useState(false)
+  const wrapperRef = useRef(null)
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOrgOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  return (
+    <div className="nav-links">
+      {loggedIn && <Link to="/" className="nav-link">Home</Link>}
+      <a href="#" className="nav-link">
+        Browse <ChevronDown />
+      </a>
+      {loggedIn ? (
+        <>
+          <a href="#" className="nav-link">Livestreams</a>
+          <a href="#" className="nav-link">Programs</a>
+          <a href="#" className="nav-link">Leland+</a>
+        </>
+      ) : (
+        <>
+          <Link to="/reviews" className="nav-link">Reviews</Link>
+          <Link to="/become-an-expert" className="nav-link">Become an expert</Link>
+          <div className="nav-dropdown-wrapper" ref={wrapperRef}>
+            <button className={`nav-link${orgOpen ? ' nav-link-active' : ''}`} onClick={() => setOrgOpen(o => !o)}>
+              For organizations <ChevronDown />
+            </button>
+            <AnimatePresence>
+              {orgOpen && (
+                <motion.div
+                  className="nav-dropdown"
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15, ease: 'easeOut' }}
+                >
+                  {ORG_NAV_ITEMS.map(item => (
+                    <Link
+                      key={item.label}
+                      to={item.to}
+                      className="nav-dropdown-item"
+                      onClick={() => setOrgOpen(false)}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  ))}
+                  <div className="nav-dropdown-divider" />
+                  <a href="#" className="nav-dropdown-cta" onClick={() => setOrgOpen(false)}>
+                    Talk to a team member
+                    <ChevronRight />
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
 
 const SUB_NAV_ITEMS = [
   'Popular', 'General', 'AI', 'School Admissions', 'Test Prep',

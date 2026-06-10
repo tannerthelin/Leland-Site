@@ -22,6 +22,8 @@ import Careers from './pages/Careers'
 import Login from './pages/Login'
 import AIBuilderProgram from './pages/AIBuilderProgram'
 import AI from './pages/AI'
+import CareerCenters from './pages/CareerCenters'
+import Organizations from './pages/Organizations'
 import './App.css'
 
 function Placeholder({ title }) {
@@ -134,6 +136,8 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/ai-builder-program" element={<AIBuilderProgram />} />
       <Route path="/ai" element={<AI />} />
+      <Route path="/career-centers" element={<CareerCenters />} />
+      <Route path="/organizations" element={<Organizations />} />
     </Routes>
     </>
   )
