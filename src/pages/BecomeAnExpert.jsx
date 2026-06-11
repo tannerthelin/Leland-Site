@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import Navbar from '../components/Navbar'
 import ExpertsSection from '../components/ExpertsSection'
 import heroBg from '../assets/img/become-an-expert-bg.png'
+import coachImg from '../assets/img/become-an-expert-coach.png'
 import pic05 from '../assets/img/profile-photos/pic-05.png'
 import pic08 from '../assets/img/profile-photos/pic-08.png'
 import pic09 from '../assets/img/profile-photos/pic-09.png'
@@ -16,6 +17,12 @@ import bcgLogo from '../assets/logos/bcg.svg'
 import linkedinLogo from '../assets/logos/linkedin.svg'
 import mckinseyLogo from '../assets/logos/mckinsey.svg'
 import forbesLogo from '../assets/logos/Forbes_logo.svg'
+import stanfordLogo from '../assets/logos/stanford-wordmark.svg'
+import goldmanLogo from '../assets/logos/goldman-sachs.svg'
+import bainLogo from '../assets/logos/org-logos/bain.svg'
+import spotifyLogo from '../assets/logos/spotify.svg'
+import nikeLogo from '../assets/logos/nike.svg'
+import openaiLogo from '../assets/logos/openai.svg'
 import iconScheduling from '../assets/icons/product-illustrations/scheduling.svg'
 import iconPayments from '../assets/icons/product-illustrations/payments.svg'
 import iconVideoCalls from '../assets/icons/product-illustrations/video-calls.svg'
@@ -51,12 +58,12 @@ const WHO_BELONGS = [
   {
     emoji: '🎓',
     title: 'Former Admissions Officers',
-    desc: "You've reviewed thousands of applications. Help candidates stand out from the inside.",
+    desc: "You've reviewed thousands of applications. You know exactly what makes one unforgettable.",
   },
   {
     emoji: '🏢',
     title: 'Executives & Consultants',
-    desc: "You've built careers at McKinsey, Google, Goldman. Your network and insights are invaluable.",
+    desc: "You've built a career at the kind of place others spend years trying to break into.",
   },
   {
     emoji: '🚀',
@@ -71,7 +78,7 @@ const WHO_BELONGS = [
   {
     emoji: '📝',
     title: 'Tutors & Test Prep Experts',
-    desc: "GMAT, GRE, LSAT, MCAT. If you've cracked the code, there's someone who needs your strategy.",
+    desc: "GMAT, GRE, LSAT, MCAT. If you've cracked the code, share your test prep strategy.",
   },
   {
     emoji: '💼',
@@ -373,6 +380,7 @@ function SocialProofTicker() {
 
 export default function BecomeAnExpert() {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
+  const [openWho, setOpenWho] = useState(null)
 
   return (
     <>
@@ -386,45 +394,69 @@ export default function BecomeAnExpert() {
         cta={<a href="#" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
       />
 
-      {/* 1 · Social Proof Logos */}
-      <div className="bae-logos">
-        <div className="section-container">
-          <span className="bae-logos-label">Our coaches have worked at</span>
-          <div className="bae-logos-items">
-            <img src={googleLogo} alt="Google" className="bae-company-logo" />
-            <img src={bcgLogo} alt="BCG" className="bae-company-logo bae-company-logo-sm" />
-            <img src={linkedinLogo} alt="LinkedIn" className="bae-company-logo" />
-            <img src={mckinseyLogo} alt="McKinsey" className="bae-company-logo" />
-          </div>
-        </div>
-      </div>
-
       {/* 2 · Who Belongs Here */}
       <section className="bae-who">
         <div className="section-container">
-          <p className="bae-who-label">WHO BELONGS HERE</p>
-          <h2 className="bae-who-heading">
-            Built for people who&rsquo;ve already done the hard part.
-          </h2>
-          <p className="bae-who-sub">
-            Whether you call yourself a coach, tutor, consultant, advisor, or expert, if you&rsquo;ve
-            navigated a path that others want to follow, Leland is where you share that knowledge
-            and build your business.
-          </p>
-          <div className="bae-who-grid">
-            {WHO_BELONGS.map((item) => (
-              <div className="bae-who-card" key={item.title}>
-                <span className="bae-who-emoji">{item.emoji}</span>
-                <h3 className="bae-who-card-title">{item.title}</h3>
-                <p className="bae-who-card-desc">{item.desc}</p>
-                <a href="#" className="bae-who-card-link">
-                  See an example <ArrowRight />
-                </a>
-              </div>
-            ))}
+          <div className="bae-who-top">
+            <div className="bae-who-text">
+              <h2 className="bae-who-heading">
+                Built for people who&rsquo;ve already done the hard part.
+              </h2>
+              <p className="bae-who-sub">
+                Whether you call yourself a coach, tutor, consultant, advisor, or expert, if you&rsquo;ve
+                navigated a path that others want to follow, Leland is where you share that knowledge
+                and build your business.
+              </p>
+            </div>
+            <div className="bae-who-logos" aria-hidden="true">
+              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 25,  left: 222, opacity: 0.36, filter: 'invert(1)' }} alt="" />
+              <img src={goldmanLogo}  className="bae-who-logo" style={{ width: 64,  top: 120, left: 232, opacity: 0.26, filter: 'grayscale(1)' }} alt="" />
+              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 58,  top: 12,  left: 132, opacity: 0.22, filter: 'invert(1)' }} alt="" />
+              <img src={openaiLogo}   className="bae-who-logo" style={{ width: 58,  top: 14,  left: 352, opacity: 0.22, filter: 'grayscale(1)' }} alt="" />
+              <img src={bcgLogo}      className="bae-who-logo" style={{ width: 50,  top: 118, left: 114, opacity: 0.20, filter: 'invert(1)' }} alt="" />
+              <img src={spotifyLogo}  className="bae-who-logo" style={{ width: 58,  top: 114, left: 366, opacity: 0.18, filter: 'grayscale(1)' }} alt="" />
+              <img src={stanfordLogo} className="bae-who-logo" style={{ width: 64,  top: 68,  left: 44,  opacity: 0.28, filter: 'grayscale(1)' }} alt="" />
+              <img src={nikeLogo}     className="bae-who-logo" style={{ width: 48,  top: 72,  left: 448, opacity: 0.14, filter: 'grayscale(1)' }} alt="" />
+              <img src={bainLogo}     className="bae-who-logo" style={{ width: 40,  top: 152, left: 22,  opacity: 0.12, filter: 'invert(1)' }} alt="" />
+            </div>
+          </div>
+          <div className="bae-who-bottom">
+            <div className="bae-faq-list bae-who-faq">
+              {WHO_BELONGS.map((item, i) => {
+                const isOpen = openWho === i
+                return (
+                  <div className="bae-faq-item" key={item.title}>
+                    <button
+                      className="bae-faq-question"
+                      onClick={() => setOpenWho(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                    >
+                      {item.title}
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: 'easeInOut' }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <p className="bae-faq-answer">{item.desc}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="bae-who-img-wrap">
+              <img src={coachImg} alt="" className="bae-who-img" />
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* 4 · Categories */}
       <section className="bae-categories">
@@ -496,6 +528,9 @@ export default function BecomeAnExpert() {
       </section>
 
       {/* 6b · Social Proof Ticker */}
+      <SocialProofTicker />
+
+      {/* 6c · Social Proof Ticker (video testimonials — WIP) */}
       <SocialProofTicker />
 
       {/* 7 · How It Works */}

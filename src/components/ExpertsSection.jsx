@@ -15,7 +15,6 @@ import expertClaire from '../assets/img/expert-headshots/claire-rafson.png'
 const experts = [
   { img: expertKelsey, name: 'Kelsey K.', desc: 'Former Columbia Business School admissions officer' },
   { img: expertAndrew, name: 'Andrew Q.', desc: 'Former OpenAI staffer and Spotify Head of AI' },
-  { img: expertAsha, name: 'Asha T.', desc: 'Harvard MBA and former Apax Partners PE investor' },
   { img: expertConnorO, name: 'Connor O.', desc: 'Former Google, YouTube, and Meta PM' },
   { img: expertKerry, name: 'Kerry P.', desc: 'Former Harvard admissions officer' },
   { img: expertKenny, name: 'Kenny J.', desc: 'Private equity investor at KKR, ex-Blackstone' },
@@ -26,6 +25,7 @@ const experts = [
   { img: expertArthur, name: 'Arthur B.', desc: 'Google AI marketing lead and MIT Sloan MBA' },
   { img: expertAlison, name: 'Alison L.', desc: 'Former Bain and McKinsey hiring manager' },
   { img: expertMatt, name: 'Matt K.', desc: 'SpaceX engineer, former BCG project lead, and MIT Sloan MBA' },
+  { img: expertAsha, name: 'Asha T.', desc: 'Harvard MBA and former Apax Partners PE investor' },
 ]
 
 export default function ExpertsSection({ heading, subtitle, className, cta }) {
