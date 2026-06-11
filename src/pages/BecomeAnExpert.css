@@ -653,6 +653,7 @@
 
 .bae-video-modal-video {
   width: 100%;
+  max-height: 700px;
   border-radius: 12px;
   display: block;
 }
@@ -687,6 +688,7 @@
 
 .bae-sp-wide { width: 460px; }
 .bae-sp-thin { width: 300px; }
+.bae-sp-quote-long { width: 560px; }
 .bae-sp-split {
   width: 370px;
   display: flex;
@@ -751,6 +753,35 @@
   font-weight: 500;
   color: var(--white);
   opacity: 0.7;
+}
+
+/* ── Long quote card ── */
+.bae-sp-quote-long-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  padding: 32px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bae-sp-quote-long-mark {
+  font-family: var(--font-serif);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--gray-dark);
+  opacity: 0.2;
+}
+
+.bae-sp-quote-long-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--gray-dark);
+  flex: 1;
 }
 
 /* ── Thin card (full-height image-style card) ── */
@@ -885,10 +916,10 @@
 
 .bae-sp-press-name {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--gray-light);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ── 7 · How It Works ── */
@@ -1031,7 +1062,7 @@
 
 /* ── 9 · Final CTA (hero reused at bottom) ── */
 .bae-hero-bottom {
-  margin: 0 auto 0;
+  margin: 0 auto 48px;
 }
 
 
@@ -1043,7 +1074,7 @@
   }
 
   .bae-hero-bottom {
-    margin: 0 16px 0;
+    margin: 0 16px 48px;
   }
 
   .bae-hero-content {

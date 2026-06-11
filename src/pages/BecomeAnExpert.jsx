@@ -185,11 +185,10 @@ const SOCIAL_PROOF_ITEMS = [
     bottom: { bg: 'rgba(34, 34, 34, 0.05)', stat: '$4.2M+', label: 'Earned by coaches' },
   },
   {
-    type: 'wide',
+    type: 'quote-long',
     bg: '#D5E8D4',
-    quote: "What I got was a second income stream more significant than I could have imagined.",
-    logo: 'Krysta F.',
-    img: coach5,
+    quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash using the expertise I'd gained from my decade in higher education. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
+    name: 'Krysta F.',
   },
   {
     type: 'video',
@@ -205,7 +204,7 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#FFD6E0',
-    quote: "It encourages experts to focus on delivering results rather than marketing themselves.",
+    quote: "Leland encourages experts to focus on delivering results rather than marketing themselves.",
     logo: 'Saad A.',
     img: coach8,
   },
@@ -227,7 +226,7 @@ const SOCIAL_PROOF_ITEMS = [
   },
   {
     type: 'video',
-    src: 'https://design.joinleland.com/video/testimonials/Eric%20Z%20-%20Management%20Consulting%20Coach.mov',
+    src: 'https://design.joinleland.com/video/testimonials/Eric%20Z%20-%20Management%20Consulting%20Coach.mp4',
     name: 'Eric Z.',
     role: 'Management Consulting Expert',
   },
@@ -301,11 +300,6 @@ function SocialProofTicker() {
 
   return (
     <section className="bae-social-proof">
-      <div className="section-container">
-        <h2 className="bae-social-proof-heading">
-          Used by experts just like you.
-        </h2>
-      </div>
       <div className="bae-social-proof-ticker">
         <div className={`bae-social-proof-track${activeVideo ? ' bae-sp-paused' : ''}`}>
           {items.map((item, i) => {
@@ -318,6 +312,17 @@ function SocialProofTicker() {
                       <p className="bae-sp-wide-quote">&ldquo;{item.quote}&rdquo;</p>
                       <span className="bae-sp-wide-logo">{item.logo}</span>
                     </div>
+                  </div>
+                </div>
+              )
+            }
+            if (item.type === 'quote-long') {
+              return (
+                <div className="bae-sp-col bae-sp-quote-long" key={i}>
+                  <div className="bae-sp-quote-long-card" style={{ background: item.bg }}>
+                    <span className="bae-sp-quote-long-mark">&ldquo;</span>
+                    <p className="bae-sp-quote-long-text">{item.quote}</p>
+                    <span className="bae-sp-press-name">{item.name}</span>
                   </div>
                 </div>
               )
@@ -580,9 +585,6 @@ export default function BecomeAnExpert() {
       </section>
 
       {/* 6b · Social Proof Ticker */}
-      <SocialProofTicker />
-
-      {/* 6c · Social Proof Ticker (video testimonials — WIP) */}
       <SocialProofTicker />
 
       {/* 7 · How It Works */}
