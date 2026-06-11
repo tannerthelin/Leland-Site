@@ -69,7 +69,11 @@ body {
   color: var(--gray-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) — hidden makes body a scroll container, which
+     silently breaks every position:sticky descendant (e.g. the narrative
+     section's pinned scroll). clip prevents horizontal overflow the same
+     way without that side effect. */
+  overflow-x: clip;
 }
 
 #root {
