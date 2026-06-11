@@ -28,6 +28,8 @@ import Login from './pages/Login'
 import AIBuilderProgram from './pages/AIBuilderProgram'
 import AI from './pages/AI'
 import PressRelease from './pages/PressRelease'
+import CareerCenters from './pages/CareerCenters'
+import Organizations from './pages/Organizations'
 import './App.css'
 
 function Placeholder({ title }) {
@@ -158,6 +160,8 @@ function App() {
       <Route path="/ai-builder-program" element={<AIBuilderProgram />} />
       <Route path="/ai" element={<AI />} />
       <Route path="/blog/leland-relaunch" element={<PressRelease />} />
+      <Route path="/career-centers" element={<CareerCenters />} />
+      <Route path="/organizations" element={<Organizations />} />
     </Routes>
     </>
   )

@@ -158,13 +158,28 @@
   margin: 0 auto;
 }
 
-.bae-who-label {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #34A853;
-  margin-bottom: 16px;
+.bae-who-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.bae-who-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.bae-who-logos {
+  flex: 1;
+  position: relative;
+  height: 200px;
+}
+
+.bae-who-logo {
+  position: absolute;
+  height: auto;
 }
 
 .bae-who-heading {
@@ -182,13 +197,38 @@
   color: var(--gray-light);
   line-height: 1.6;
   max-width: 640px;
-  margin-bottom: 48px;
+  margin-bottom: 0;
 }
 
-.bae-who-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.bae-who-bottom {
+  display: flex;
+  align-items: stretch;
+  gap: 48px;
+}
+
+.bae-who-faq {
+  flex: 1;
+  min-width: 0;
+  align-self: flex-start;
+}
+
+.bae-who .bae-faq-item:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bae-who-img-wrap {
+  flex-shrink: 0;
+  width: 340px;
+  align-self: stretch;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.bae-who-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .bae-who-card {
@@ -589,7 +629,50 @@
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: bae-sp-scroll 60s linear infinite;
+  animation: bae-sp-scroll 75s linear infinite;
+}
+
+.bae-sp-paused {
+  animation-play-state: paused;
+}
+
+.bae-video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bae-video-modal-inner {
+  position: relative;
+  width: min(900px, 90vw);
+}
+
+.bae-video-modal-video {
+  width: 100%;
+  max-height: 700px;
+  border-radius: 12px;
+  display: block;
+}
+
+.bae-video-modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.bae-video-modal-close:hover {
+  opacity: 1;
 }
 
 @keyframes bae-sp-scroll {
@@ -605,6 +688,7 @@
 
 .bae-sp-wide { width: 460px; }
 .bae-sp-thin { width: 300px; }
+.bae-sp-quote-long { width: 420px; }
 .bae-sp-split {
   width: 370px;
   display: flex;
@@ -669,6 +753,35 @@
   font-weight: 500;
   color: var(--white);
   opacity: 0.7;
+}
+
+/* ── Long quote card ── */
+.bae-sp-quote-long-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  padding: 32px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bae-sp-quote-long-mark {
+  font-family: var(--font-serif);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--gray-dark);
+  opacity: 0.2;
+}
+
+.bae-sp-quote-long-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--gray-dark);
+  flex: 1;
 }
 
 /* ── Thin card (full-height image-style card) ── */
@@ -801,6 +914,14 @@
   width: auto;
 }
 
+.bae-sp-press-name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-light);
+  opacity: 0.6;
+}
+
 /* ── 7 · How It Works ── */
 .bae-hiw {
   padding: 80px 48px;
@@ -911,10 +1032,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.bae-faq-question::-webkit-details-marker {
-  display: none;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
 }
 
 .bae-faq-question::after {
@@ -927,7 +1049,7 @@
   transition: transform 0.2s;
 }
 
-.bae-faq-item[open] .bae-faq-question::after {
+.bae-faq-question[aria-expanded="true"]::after {
   content: '−';
 }
 
@@ -940,7 +1062,7 @@
 
 /* ── 9 · Final CTA (hero reused at bottom) ── */
 .bae-hero-bottom {
-  margin: 0 auto 0;
+  margin: 0 auto 48px;
 }
 
 
@@ -951,12 +1073,26 @@
     margin: 12px 16px 0;
   }
 
+  .bae-hero-bottom {
+    margin: 0 16px 48px;
+  }
+
   .bae-hero-content {
     padding: 40px 28px;
   }
 
   .bae-hero-title {
     font-size: 36px;
+  }
+
+  .bae-who {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bae-social-proof .section-container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .bae-logos .section-container {
@@ -971,13 +1107,23 @@
   }
 
   .bae-who,
-  .bae-categories,
-  .bae-features,
-  .bae-testimonials,
-  .bae-hiw,
-  .bae-faq {
-    padding-left: 20px;
-    padding-right: 20px;
+
+  .bae-who-top {
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  .bae-who-logos {
+    display: none;
+  }
+
+  .bae-who-bottom {
+    flex-direction: column;
+  }
+
+  .bae-who-img-wrap {
+    width: 100%;
+    height: 280px;
   }
 
   .bae-who-heading {

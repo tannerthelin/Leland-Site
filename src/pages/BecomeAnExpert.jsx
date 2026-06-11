@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Navbar from '../components/Navbar'
 import ExpertsSection from '../components/ExpertsSection'
 import heroBg from '../assets/img/become-an-expert-bg.png'
+import coachImg from '../assets/img/become-an-expert-coach.png'
 import pic05 from '../assets/img/profile-photos/pic-05.png'
 import pic08 from '../assets/img/profile-photos/pic-08.png'
 import pic09 from '../assets/img/profile-photos/pic-09.png'
@@ -15,7 +16,11 @@ import googleLogo from '../assets/logos/google.svg'
 import bcgLogo from '../assets/logos/bcg.svg'
 import linkedinLogo from '../assets/logos/linkedin.svg'
 import mckinseyLogo from '../assets/logos/mckinsey.svg'
-import forbesLogo from '../assets/logos/Forbes_logo.svg'
+import stanfordLogo from '../assets/logos/stanford-wordmark.svg'
+import goldmanLogo from '../assets/logos/goldman-sachs.svg'
+import spotifyLogo from '../assets/logos/spotify.svg'
+import nikeLogo from '../assets/logos/nike.svg'
+import openaiLogo from '../assets/logos/openai.svg'
 import iconScheduling from '../assets/icons/product-illustrations/scheduling.svg'
 import iconPayments from '../assets/icons/product-illustrations/payments.svg'
 import iconVideoCalls from '../assets/icons/product-illustrations/video-calls.svg'
@@ -51,12 +56,12 @@ const WHO_BELONGS = [
   {
     emoji: '🎓',
     title: 'Former Admissions Officers',
-    desc: "You've reviewed thousands of applications. Help candidates stand out from the inside.",
+    desc: "You've reviewed thousands of applications. You know exactly what makes one unforgettable.",
   },
   {
     emoji: '🏢',
     title: 'Executives & Consultants',
-    desc: "You've built careers at McKinsey, Google, Goldman. Your network and insights are invaluable.",
+    desc: "You've built a career at the kind of place others spend years trying to break into.",
   },
   {
     emoji: '🚀',
@@ -71,7 +76,7 @@ const WHO_BELONGS = [
   {
     emoji: '📝',
     title: 'Tutors & Test Prep Experts',
-    desc: "GMAT, GRE, LSAT, MCAT. If you've cracked the code, there's someone who needs your strategy.",
+    desc: "GMAT, GRE, LSAT, MCAT. If you've cracked the code, share your test prep strategy.",
   },
   {
     emoji: '💼',
@@ -115,18 +120,18 @@ const FAQ_ITEMS = [
 ]
 
 const FEATURES = [
-  { icon: iconScheduling, title: 'Scheduling', desc: 'Let clients book time with you directly. No back-and-forth emails.', link: true },
-  { icon: iconPayments, title: 'Payments', desc: 'Get paid automatically after every session. We handle invoicing and payouts.', link: true },
-  { icon: iconVideoCalls, title: 'Video Calls', desc: 'Built-in video conferencing so you can coach from anywhere.' },
-  { icon: iconAnalytics, title: 'Analytics', desc: 'Track your earnings, session history, and client engagement over time.', link: true },
-  { icon: iconSessionNotes, title: 'Session Notes', desc: 'Keep notes for each client so you never lose context between sessions.' },
-  { icon: iconProfilePage, title: 'Profile Page', desc: 'A dedicated page that showcases your expertise and lets clients find you.', link: true },
-  { icon: iconClientAcquisition, title: 'Client Acquisition', desc: 'We drive clients to the platform so you can focus on coaching.' },
-  { icon: iconDigitalProducts, title: 'Digital Products', desc: 'Sell guides, templates, and resources alongside your coaching sessions.', link: true },
-  { icon: iconGroupSessions, title: 'Group Sessions', desc: 'Host group classes and workshops to scale your impact and income.' },
-  { icon: iconReviews, title: 'Reviews & Ratings', desc: 'Build social proof with verified reviews from your clients.' },
-  { icon: iconMessaging, title: 'Messaging', desc: 'Chat with clients between sessions to answer quick questions.' },
-  { icon: iconGoalTracking, title: 'Goal Tracking', desc: 'Help clients set and track goals to measure their progress.' },
+  { icon: iconClientAcquisition, title: 'Get leads', desc: 'Plug into a vibrant ecosystem of potential customers.' },
+  { icon: iconPayments, title: 'Payments', desc: 'Get paid automatically after every session. We handle invoicing and payouts.' },
+  { icon: iconScheduling, title: 'Scheduling', desc: 'Let customers book time with you directly. No back-and-forth emails.' },
+  { icon: iconMessaging, title: 'Messaging', desc: 'Chat with customers between sessions to answer quick questions.' },
+  { icon: iconAnalytics, title: 'Analytics', desc: 'Track your earnings, session history, and customer engagement over time.' },
+  { icon: iconProfilePage, title: 'Profile Page', desc: 'A dedicated page that showcases your expertise and helps customers find you.' },
+  { icon: iconReviews, title: 'Reviews', desc: 'Build social proof with verified reviews from your customers.' },
+  { icon: iconGoalTracking, title: 'Packages', desc: 'Package your expertise into the offerings that best monetize your business.' },
+  { icon: iconDigitalProducts, title: 'Content Library', desc: 'Sell guides, templates, and recorded content.' },
+  { icon: iconGroupSessions, title: 'Livestreams', desc: 'Run live events to demonstrate your expertise and attract new customers.' },
+  { icon: iconVideoCalls, title: 'Video Calls', desc: 'Built-in video conferencing so you can work from anywhere.' },
+  { icon: iconSessionNotes, title: 'Session Notes', desc: 'AI-generated summaries of sessions, so you never lose context between meetings.' },
 ]
 
 const TESTIMONIALS = [
@@ -164,16 +169,15 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#E8D5F5',
-    quote: "I replaced my consulting income in 6 months coaching part-time on Leland.",
-    logo: 'Forbes',
+    quote: "I've learned how to build a multi-six-figure business betting on myself.",
+    logo: 'Ben L.',
     img: coach1,
   },
   {
-    type: 'thin',
-    bg: '#D4E5F7',
-    label: '@jess.mba',
-    sublabel: '12.4k followers',
-    img: coach7,
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Andrew%20C%20-%20Career%20Coach%20on%20Leland.mp4',
+    name: 'Andrew C.',
+    role: 'Career Expert',
   },
   {
     type: 'split',
@@ -181,17 +185,16 @@ const SOCIAL_PROOF_ITEMS = [
     bottom: { bg: 'rgba(34, 34, 34, 0.05)', stat: '$4.2M+', label: 'Earned by coaches' },
   },
   {
-    type: 'wide',
-    bg: '#D5E8D4',
-    quote: "The scheduling and payment tools alone save me 5 hours a week. I just focus on coaching.",
-    logo: 'Yahoo!',
-    img: coach5,
+    type: 'quote-long',
+    bg: 'var(--cream)',
+    quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
+    name: 'Krysta F.',
   },
   {
-    type: 'thin',
-    bg: 'rgba(34, 34, 34, 0.05)',
-    img: phoneMockup,
-    imgOnly: true,
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Joy%20P%20-%20Admissions%20Coach.mp4',
+    name: 'Joy P.',
+    role: 'Admissions Expert',
   },
   {
     type: 'split',
@@ -201,17 +204,15 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#FFD6E0',
-    quote: "My clients find me through Leland. I don't spend a dollar on marketing anymore.",
-    logo: 'TechCrunch',
+    quote: "Leland encourages experts to focus on delivering results rather than marketing themselves.",
+    logo: 'Saad A.',
     img: coach8,
   },
   {
-    type: 'thin',
-    bg: '#E8D5F5',
-    label: '@admissions.pro',
-    sublabel: '22k followers',
-    video: true,
-    img: coach2,
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Machmud%20M%20-%20Law%20School%20Coach.mp4',
+    name: 'Machmud M.',
+    role: 'Law School Expert',
   },
   {
     type: 'split',
@@ -219,9 +220,21 @@ const SOCIAL_PROOF_ITEMS = [
     bottom: {
       type: 'press',
       bg: 'rgba(34, 34, 34, 0.05)',
-      quote: "Coaching isn\u2019t just about expertise. It\u2019s about the belief that a person can grow, change, and achieve\u2014especially when someone else sees that potential first.",
-      logo: forbesLogo,
+      quote: "Leland is one of the few platforms that has earned my complete trust.",
+      name: 'Saad A.',
     },
+  },
+  {
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Eric%20Z%20-%20Management%20Consulting%20Coach.mp4',
+    name: 'Eric Z.',
+    role: 'Management Consulting Expert',
+  },
+  {
+    type: 'thin',
+    bg: 'rgba(34, 34, 34, 0.05)',
+    img: phoneMockup,
+    imgOnly: true,
   },
 ]
 
@@ -276,16 +289,19 @@ function TestimonialCard({ testimonial, isActive, onClick }) {
 
 function SocialProofTicker() {
   const items = [...SOCIAL_PROOF_ITEMS, ...SOCIAL_PROOF_ITEMS]
+  const [activeVideo, setActiveVideo] = useState(null)
+
+  useEffect(() => {
+    if (!activeVideo) return
+    const handleKey = (e) => { if (e.key === 'Escape') setActiveVideo(null) }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [activeVideo])
 
   return (
     <section className="bae-social-proof">
-      <div className="section-container">
-        <h2 className="bae-social-proof-heading">
-          Used by experts just like you.
-        </h2>
-      </div>
       <div className="bae-social-proof-ticker">
-        <div className="bae-social-proof-track">
+        <div className={`bae-social-proof-track${activeVideo ? ' bae-sp-paused' : ''}`}>
           {items.map((item, i) => {
             if (item.type === 'wide') {
               return (
@@ -295,6 +311,43 @@ function SocialProofTicker() {
                     <div className="bae-sp-wide-bottom">
                       <p className="bae-sp-wide-quote">&ldquo;{item.quote}&rdquo;</p>
                       <span className="bae-sp-wide-logo">{item.logo}</span>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+            if (item.type === 'quote-long') {
+              return (
+                <div className="bae-sp-col bae-sp-quote-long" key={i}>
+                  <div className="bae-sp-quote-long-card" style={{ background: item.bg }}>
+                    <span className="bae-sp-quote-long-mark">&ldquo;</span>
+                    <p className="bae-sp-quote-long-text">{item.quote}</p>
+                    <span className="bae-sp-press-name">{item.name}</span>
+                  </div>
+                </div>
+              )
+            }
+            if (item.type === 'video') {
+              return (
+                <div className="bae-sp-col bae-sp-thin" key={i} onClick={() => setActiveVideo(item.src)} style={{ cursor: 'pointer' }}>
+                  <div className="bae-sp-thin-card bae-sp-thin-card-has-img" style={{ background: '#111' }}>
+                    <video
+                      src={item.src}
+                      className="bae-sp-bg-img"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{ pointerEvents: 'none' }}
+                    />
+                    <span className="bae-sp-play">
+                      <svg width="40" height="40" viewBox="0 0 20 20" fill="none">
+                        <path d="M6.5 4.5L15.5 10L6.5 15.5V4.5Z" fill="white" />
+                      </svg>
+                    </span>
+                    <div className="bae-sp-thin-bottom">
+                      <span className="bae-sp-thin-label">{item.name}</span>
+                      <span className="bae-sp-thin-sublabel">{item.role}</span>
                     </div>
                   </div>
                 </div>
@@ -351,7 +404,10 @@ function SocialProofTicker() {
                 {item.bottom.type === 'press' ? (
                   <div className="bae-sp-split-card bae-sp-split-press" style={{ background: item.bottom.bg }}>
                     <p className="bae-sp-press-quote">&ldquo;{item.bottom.quote}&rdquo;</p>
-                    <img src={item.bottom.logo} alt="" className="bae-sp-press-logo" />
+                    {item.bottom.name
+                      ? <span className="bae-sp-press-name">{item.bottom.name}</span>
+                      : <img src={item.bottom.logo} alt="" className="bae-sp-press-logo" />
+                    }
                   </div>
                 ) : (
                   <div
@@ -367,12 +423,22 @@ function SocialProofTicker() {
           })}
         </div>
       </div>
+
+      {activeVideo && (
+        <div className="bae-video-modal" onClick={() => setActiveVideo(null)}>
+          <div className="bae-video-modal-inner" onClick={(e) => e.stopPropagation()}>
+            <button className="bae-video-modal-close" onClick={() => setActiveVideo(null)}>&#x2715;</button>
+            <video src={activeVideo} controls autoPlay className="bae-video-modal-video" />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
 
 export default function BecomeAnExpert() {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
+  const [openWho, setOpenWho] = useState(null)
 
   return (
     <>
@@ -381,50 +447,73 @@ export default function BecomeAnExpert() {
       {/* 0 · Hero — Experts carousel */}
       <ExpertsSection
         heading="Turn your experience into your business"
-        subtitle="Join thousands of experts already coaching on Leland."
+        subtitle="Join thousands of experts already on Leland."
         className="bae-experts-hero"
         cta={<a href="#" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
       />
 
-      {/* 1 · Social Proof Logos */}
-      <div className="bae-logos">
-        <div className="section-container">
-          <span className="bae-logos-label">Our coaches have worked at</span>
-          <div className="bae-logos-items">
-            <img src={googleLogo} alt="Google" className="bae-company-logo" />
-            <img src={bcgLogo} alt="BCG" className="bae-company-logo bae-company-logo-sm" />
-            <img src={linkedinLogo} alt="LinkedIn" className="bae-company-logo" />
-            <img src={mckinseyLogo} alt="McKinsey" className="bae-company-logo" />
-          </div>
-        </div>
-      </div>
-
       {/* 2 · Who Belongs Here */}
       <section className="bae-who">
         <div className="section-container">
-          <p className="bae-who-label">WHO BELONGS HERE</p>
-          <h2 className="bae-who-heading">
-            Built for people who&rsquo;ve already done the hard part.
-          </h2>
-          <p className="bae-who-sub">
-            Whether you call yourself a coach, tutor, consultant, advisor, or expert, if you&rsquo;ve
-            navigated a path that others want to follow, Leland is where you share that knowledge
-            and build your business.
-          </p>
-          <div className="bae-who-grid">
-            {WHO_BELONGS.map((item) => (
-              <div className="bae-who-card" key={item.title}>
-                <span className="bae-who-emoji">{item.emoji}</span>
-                <h3 className="bae-who-card-title">{item.title}</h3>
-                <p className="bae-who-card-desc">{item.desc}</p>
-                <a href="#" className="bae-who-card-link">
-                  See an example <ArrowRight />
-                </a>
-              </div>
-            ))}
+          <div className="bae-who-top">
+            <div className="bae-who-text">
+              <h2 className="bae-who-heading">
+                Built for people who&rsquo;ve already done the hard part.
+              </h2>
+              <p className="bae-who-sub">
+                Whether you call yourself a coach, tutor, consultant, advisor, or expert, if you&rsquo;ve
+                navigated a path that others want to follow, Leland is where you share that knowledge
+                and build your business.
+              </p>
+            </div>
+            <div className="bae-who-logos" aria-hidden="true">
+              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 12,  left: 108, opacity: 0.44, filter: 'invert(1)' }} alt="" />
+              <img src={goldmanLogo}  className="bae-who-logo" style={{ width: 64,  top: 120, left: 215, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
+              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 88,  top: 42,  left: 195, opacity: 0.30, filter: 'invert(1)' }} alt="" />
+              <img src={openaiLogo}   className="bae-who-logo" style={{ width: 58,  top: 14,  left: 318, opacity: 0.30, filter: 'grayscale(1)' }} alt="" />
+              <img src={bcgLogo}      className="bae-who-logo" style={{ width: 50,  top: 118, left: 112, opacity: 0.28, filter: 'invert(1)' }} alt="" />
+              <img src={spotifyLogo}  className="bae-who-logo" style={{ width: 58,  top: 114, left: 330, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
+              <img src={stanfordLogo} className="bae-who-logo" style={{ width: 64,  top: 68,  left: 60,  opacity: 0.36, filter: 'grayscale(1)' }} alt="" />
+              <img src={nikeLogo}     className="bae-who-logo" style={{ width: 48,  top: 72,  left: 400, opacity: 0.22, filter: 'grayscale(1)' }} alt="" />
+            </div>
+          </div>
+          <div className="bae-who-bottom">
+            <div className="bae-faq-list bae-who-faq">
+              {WHO_BELONGS.map((item, i) => {
+                const isOpen = openWho === i
+                return (
+                  <div className="bae-faq-item" key={item.title}>
+                    <button
+                      className="bae-faq-question"
+                      onClick={() => setOpenWho(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                    >
+                      {item.title}
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: 'easeInOut' }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <p className="bae-faq-answer">{item.desc}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="bae-who-img-wrap">
+              <img src={coachImg} alt="" className="bae-who-img" />
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* 4 · Categories */}
       <section className="bae-categories">
@@ -444,7 +533,7 @@ export default function BecomeAnExpert() {
           <div className="bae-features-header">
             <p className="testimonials-label">
               <span className="testimonials-dot" />
-              Features
+              Tools for Experts
             </p>
             <h2 className="testimonials-heading">Your business in a box</h2>
           </div>
