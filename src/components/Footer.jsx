@@ -8,9 +8,9 @@ const FOOTER_COLUMNS = [
     links: [
       { label: 'Home', href: '#' },
       { label: 'Free Events', href: '#' },
-      { label: 'Bootcamps', href: '#' },
+      { label: 'Live Programs', href: '#' },
       { label: 'Leland+', href: '#' },
-      { label: 'Become a coach', to: '/become-an-expert' },
+      { label: 'Become an expert', to: '/become-an-expert' },
     ],
   },
   {

@@ -72,6 +72,55 @@ const NavActions = ({ scrolled }) => (
   </div>
 )
 
+const HamburgerButton = ({ open, light, onClick }) => (
+  <button
+    className={`nav-hamburger${light ? ' nav-hamburger-light' : ''}`}
+    onClick={onClick}
+    aria-label="Menu"
+    aria-expanded={open}
+  >
+    {open ? (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    ) : (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    )}
+  </button>
+)
+
+// Mobile dropdown with the links the narrow nav can't fit
+const MobileMenu = ({ loggedIn, onClose }) => (
+  <motion.div
+    className="mobile-menu"
+    initial={{ height: 0, opacity: 0 }}
+    animate={{ height: 'auto', opacity: 1 }}
+    exit={{ height: 0, opacity: 0 }}
+    transition={{ duration: 0.22, ease: 'easeOut' }}
+  >
+    <div className="mobile-menu-inner">
+      {loggedIn && <Link to="/" className="mobile-menu-link" onClick={onClose}>Home</Link>}
+      <a href="#" className="mobile-menu-link" onClick={onClose}>Browse</a>
+      {loggedIn ? (
+        <>
+          <a href="#" className="mobile-menu-link" onClick={onClose}>Livestreams</a>
+          <a href="#" className="mobile-menu-link" onClick={onClose}>Programs</a>
+          <a href="#" className="mobile-menu-link" onClick={onClose}>Leland+</a>
+        </>
+      ) : (
+        <>
+          <Link to="/reviews" className="mobile-menu-link" onClick={onClose}>Reviews</Link>
+          <Link to="/become-an-expert" className="mobile-menu-link" onClick={onClose}>Become an expert</Link>
+          <a href="#" className="mobile-menu-link" onClick={onClose}>For organizations</a>
+          <Link to="/login" className="mobile-menu-link" onClick={onClose}>Sign in</Link>
+        </>
+      )}
+    </div>
+  </motion.div>
+)
+
 const NavActionsLoggedIn = ({ scrolled }) => (
   <div className={`nav-actions nav-actions-logged-in${scrolled ? '' : ' nav-actions-light'}`}>
     <a href="#" className="nav-icon-btn" aria-label="Chat">
@@ -88,6 +137,7 @@ const NavActionsLoggedIn = ({ scrolled }) => (
 
 export default function Navbar({ bannerHeight = 0, variant = 'hero', showSubNav = false, subNavOnScroll = false, hideActions = false, loggedIn = false }) {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const threshold = variant === 'sticky' ? 10 : 200
@@ -115,8 +165,14 @@ export default function Navbar({ bannerHeight = 0, variant = 'hero', showSubNav 
             <img src={transparent ? logoWhite : logoBlack} alt="Leland" />
           </Link>
           <NavLinks loggedIn={loggedIn} />
-          {!hideActions && (loggedIn ? <NavActionsLoggedIn scrolled={!transparent} /> : <NavActions scrolled={!transparent} />)}
+          <div className="nav-right">
+            <HamburgerButton open={mobileOpen} light={transparent} onClick={() => setMobileOpen(!mobileOpen)} />
+            {!hideActions && (loggedIn ? <NavActionsLoggedIn scrolled={!transparent} /> : <NavActions scrolled={!transparent} />)}
+          </div>
         </nav>
+        <AnimatePresence>
+          {mobileOpen && <MobileMenu loggedIn={loggedIn} onClose={() => setMobileOpen(false)} />}
+        </AnimatePresence>
         {showSubNav && (!subNavOnScroll ? (
           <SubNav />
         ) : (

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { AnimatePresence, LayoutGroup, motion } from 'motion/react'
+import { AnimatePresence, LayoutGroup, motion, useInView } from 'motion/react'
 import imgFolder from '../assets/img/folder.png'
 import expertVideo from '../assets/img/expert-video.mp4'
 import listenerVideo from '../assets/img/how-it-works-images/listener-video.mp4'
@@ -39,21 +39,25 @@ const STEPS = [
     title: 'Work 1-on-1 with an expert',
     desc: "Get matched with a world-class coach who's already done what you're trying to do.",
     cta: 'Find an expert',
+    href: '#', // typeform later
   },
   {
     title: 'Join a free livestream',
     desc: 'Watch live sessions with industry experts, ask questions in real-time, and connect with peers.',
     cta: 'Browse upcoming livestreams',
+    href: 'https://www.joinleland.com/events',
   },
   {
     title: 'Enroll in a program',
     desc: 'Join structured bootcamps and programs led by experts alongside a cohort of peers.',
     cta: 'Browse programs',
+    href: 'https://www.joinleland.com/bootcamps',
   },
   {
     title: 'Explore a content library',
     desc: 'Access on-demand sessions, guides, and AI-powered tools to level up at your own pace.',
     cta: 'Explore resources',
+    href: 'https://www.joinleland.com/plus',
   },
 ]
 
@@ -306,6 +310,11 @@ export default function HowItWorksTabs() {
   const [activeTab, setActiveTab] = useState(0)
   const [timerKey, setTimerKey] = useState(0)
 
+  // The auto-advance sequence waits until the section is actually on screen,
+  // so visitors see it from the beginning instead of mid-cycle.
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { once: true, amount: 0.35 })
+
   const advance = useCallback(() => {
     setActiveTab((prev) => (prev + 1) % STEPS.length)
     setTimerKey((k) => k + 1)
@@ -316,18 +325,26 @@ export default function HowItWorksTabs() {
     setTimerKey((k) => k + 1)
   }, [])
 
+  // Restart the progress fill from zero the moment the section enters view
   useEffect(() => {
+    if (inView) setTimerKey((k) => k + 1)
+  }, [inView])
+
+  useEffect(() => {
+    if (!inView) return
     const id = setTimeout(advance, TAB_DURATION)
     return () => clearTimeout(id)
-  }, [activeTab, timerKey, advance])
+  }, [activeTab, timerKey, advance, inView])
 
   const PerTabVisual = PER_TAB_VISUALS[activeTab]
 
   return (
-    <section className="hwt-section">
+    <section className="hwt-section" ref={sectionRef}>
       <div className="hwt-inner">
+        {/* Mobile-only heading so the order can be heading → visual → accordion */}
+        <h2 className="hwt-heading hwt-heading-mobile">Expert help that actually gets you there</h2>
         <div className="hwt-left">
-          <h2 className="hwt-heading">Expert help that actually gets you there</h2>
+          <h2 className="hwt-heading hwt-heading-desktop">Expert help that actually gets you there</h2>
           <div className="hwt-accordion">
             {STEPS.map((step, i) => {
               const isActive = i === activeTab
@@ -352,12 +369,15 @@ export default function HowItWorksTabs() {
                         <div className="hwt-item-content">
                           <p className="hwt-item-desc">{step.desc}</p>
                           <div className="hwt-item-actions">
-                            <a href="#" className="hwt-item-cta">{step.cta}</a>
+                            <a href={step.href} className="hwt-item-cta">{step.cta}</a>
                             <div className="hwt-item-timer">
                               <div
                                 key={timerKey}
                                 className="hwt-item-timer-fill"
-                                style={{ animationDuration: `${TAB_DURATION}ms` }}
+                                style={{
+                                  animationDuration: `${TAB_DURATION}ms`,
+                                  animationPlayState: inView ? 'running' : 'paused',
+                                }}
                               />
                             </div>
                           </div>

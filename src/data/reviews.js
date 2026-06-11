@@ -134,6 +134,16 @@ const REVIEWS = [
     avatar: pic06,
     outcome: { type: 'test', text: 'Scored a 332 on the GRE', icon: checkmarkIcon },
   },
+  {
+    // DRAFT COPY — AI B2B review per CEO feedback (needs at least one great AI B2B + one consumer AI review)
+    name: 'Daniel R.',
+    category: 'AI Transformation',
+    coach: 'Priya S.',
+    date: 'May 2026',
+    stars: 5,
+    text: "We brought Leland in to make our 40-person operations team AI-native, and the impact was immediate. Their AI Builder Program took people who'd never touched an LLM and had them shipping internal automations within weeks. We've cut hours of manual work out of our weekly workflows, and the team is genuinely excited about AI instead of threatened by it. Leadership now points to this as one of the highest-ROI investments we made all year.",
+    avatar: pic08,
+  },
 ]
 
 export default REVIEWS

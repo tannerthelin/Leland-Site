@@ -1,11 +1,23 @@
+import { Link } from 'react-router-dom'
+
+// Whole banner navigates to the relaunch press release; the close button
+// opts out via stopPropagation/preventDefault.
 export default function Banner({ onClose }) {
   return (
-    <div className="banner">
-      <strong>Leland has a new look!</strong>{' '}
-      New brand, same mission: helping you reach your most ambitious goals.
-      <button className="banner-close" onClick={onClose} aria-label="Close">
+    <Link to="/blog/leland-relaunch" className="banner">
+      <strong>We&rsquo;re reintroducing Leland to the world.</strong>{' '}
+      <span className="banner-cta">Read the press release &rarr;</span>
+      <button
+        className="banner-close"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onClose()
+        }}
+        aria-label="Close"
+      >
         &times;
       </button>
-    </div>
+    </Link>
   )
 }

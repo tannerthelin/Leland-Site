@@ -1,4 +1,6 @@
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'motion/react'
 import REVIEWS from '../data/reviews'
 import kelloggLogo from '../assets/logos/kellogg.avif'
 import thumb1 from '../assets/img/video-thumbnails/image 1276.png'
@@ -13,6 +15,8 @@ const PlayIcon = () => (
   </svg>
 )
 
+// Video cards: add a `video` field (mp4/webm URL) when prod assets land.
+// Grid cards then autoplay muted on hover; the modal plays with sound.
 const CARDS = [
   // Column 1
   { type: 'video', thumb: thumb1, name: 'Sarah K.', role: 'Career Changer → Product Manager', tall: true },
@@ -23,9 +27,9 @@ const CARDS = [
 
   // Column 2
   { type: 'review', reviewIndex: 2 },
-  { type: 'case-study', logo: kelloggLogo, stat: '+74%', statLabel: 'increase in IB offers', desc: 'Kellogg partnered with Leland to provide career coaching for MBA candidates across consulting, tech, and finance tracks.' },
+  { type: 'case-study', logo: kelloggLogo, stat: '+74%', statLabel: 'increase in job offers', desc: 'Kellogg partnered with Leland to provide career coaching for MBA candidates across consulting, tech, and finance tracks.' },
   { type: 'review', reviewIndex: 4 },
-  { type: 'review', reviewIndex: 9 },
+  { type: 'review', reviewIndex: 12 }, // AI B2B review (Daniel R.) — pairs with the Kellogg B2B case study in this column
 
   // Column 3
   { type: 'video', thumb: thumb3, name: 'Priya M.', role: 'Consultant at McKinsey' },
@@ -48,10 +52,43 @@ const COLUMNS = [
   [CARDS[14], CARDS[15], CARDS[16], CARDS[17]],
 ]
 
-function VideoCard({ card }) {
+function VideoCard({ card, onClick }) {
+  const videoRef = useRef(null)
+
+  // Hover preview: muted autoplay, reset on leave. No-op until `card.video` exists.
+  const handleEnter = () => videoRef.current?.play().catch(() => {})
+  const handleLeave = () => {
+    const v = videoRef.current
+    if (v) {
+      v.pause()
+      v.currentTime = 0
+    }
+  }
+
   return (
-    <div className={`tcard tcard-video${card.tall ? ' tcard-tall' : ''}`}>
-      <img src={card.thumb} alt="" className="tcard-img" />
+    <div
+      className={`tcard tcard-video${card.tall ? ' tcard-tall' : ''}`}
+      onClick={onClick}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onClick()}
+    >
+      {card.video ? (
+        <video
+          ref={videoRef}
+          className="tcard-img"
+          src={card.video}
+          poster={card.thumb}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      ) : (
+        <img src={card.thumb} alt="" className="tcard-img" />
+      )}
       <div className="tcard-overlay" />
       <span className="tcard-play">
         <PlayIcon />
@@ -76,10 +113,16 @@ function StarRow({ count }) {
   )
 }
 
-function ReviewCard({ card }) {
+function ReviewCard({ card, onClick }) {
   const review = REVIEWS[card.reviewIndex]
   return (
-    <div className="tcard tcard-review">
+    <div
+      className="tcard tcard-review"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onClick()}
+    >
       <div className="review-card-header">
         <img src={review.avatar} alt={review.name} className="review-card-avatar" />
         <div className="review-card-info">
@@ -97,9 +140,15 @@ function ReviewCard({ card }) {
   )
 }
 
-function CaseStudyCard({ card }) {
+function CaseStudyCard({ card, onClick }) {
   return (
-    <div className="tcard tcard-case-study">
+    <div
+      className="tcard tcard-case-study"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onClick()}
+    >
       {card.logo && (
         <div className="tcard-cs-logo-wrap">
           <img src={card.logo} alt="" className="tcard-cs-logo" />
@@ -114,14 +163,117 @@ function CaseStudyCard({ card }) {
   )
 }
 
-function Card({ card }) {
-  if (card.type === 'video') return <VideoCard card={card} />
-  if (card.type === 'review') return <ReviewCard card={card} />
-  if (card.type === 'case-study') return <CaseStudyCard card={card} />
+function Card({ card, onSelect }) {
+  if (card.type === 'video') return <VideoCard card={card} onClick={() => onSelect(card)} />
+  if (card.type === 'review') return <ReviewCard card={card} onClick={() => onSelect(card)} />
+  if (card.type === 'case-study') return <CaseStudyCard card={card} onClick={() => onSelect(card)} />
   return null
 }
 
+function ReviewModal({ card, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  const review = card.type === 'review' ? REVIEWS[card.reviewIndex] : null
+
+  return (
+    <motion.div
+      className="tmodal-overlay"
+      onClick={onClose}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.18 }}
+    >
+      <motion.div
+        className={`tmodal${card.type === 'video' ? ' tmodal-video-layout' : ''}${card.type === 'case-study' ? ' tmodal-cs-layout' : ''}`}
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.96, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 12 }}
+        transition={{ duration: 0.22, ease: 'easeOut' }}
+        role="dialog"
+        aria-modal="true"
+      >
+        <button className="tmodal-close" onClick={onClose} aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+
+        {card.type === 'video' ? (
+          <>
+            <div className="tmodal-video-wrap">
+              {card.video ? (
+                // Sound on in the modal — user explicitly clicked in
+                <video src={card.video} poster={card.thumb} controls autoPlay playsInline />
+              ) : (
+                <div className="tmodal-video-placeholder">
+                  <img src={card.thumb} alt="" />
+                  <span className="tcard-play tmodal-play">
+                    <PlayIcon />
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="tmodal-video-meta">
+              <span className="tmodal-name">{card.name}</span>
+              <span className="tmodal-role">{card.role}</span>
+            </div>
+          </>
+        ) : card.type === 'case-study' ? (
+          <div className="tmodal-cs">
+            {card.logo && (
+              <div className="tmodal-cs-logo-wrap">
+                <img src={card.logo} alt="" />
+              </div>
+            )}
+            <div className="tmodal-cs-body">
+              <div className="tmodal-cs-stat-row">
+                <span className="tmodal-cs-stat">{card.stat}</span>
+                <span className="tmodal-cs-stat-label">{card.statLabel}</span>
+              </div>
+              <p className="tmodal-cs-desc">{card.desc}</p>
+            </div>
+          </div>
+        ) : (
+          <div className="tmodal-review">
+            <div className="review-card-header">
+              <img src={review.avatar} alt={review.name} className="tmodal-avatar" />
+              <div className="review-card-info">
+                <span className="tmodal-name">{review.name}</span>
+                <span className="tmodal-role">{review.subtitle || review.category}</span>
+              </div>
+            </div>
+            <div className="review-card-meta">
+              <StarRow count={review.stars} />
+              <span className="review-card-sep">&middot;</span>
+              <span className="review-card-date">{review.date}</span>
+            </div>
+            <p className="tmodal-text">{review.text}</p>
+            {review.outcome && (
+              <div className="tmodal-outcome">
+                {review.outcome.logo && <img src={review.outcome.logo} alt="" />}
+                <span>{review.outcome.text}</span>
+              </div>
+            )}
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function TestimonialsSection() {
+  const [selected, setSelected] = useState(null)
+
   return (
     <section className="testimonials-section">
       <div className="section-container">
@@ -138,7 +290,7 @@ export default function TestimonialsSection() {
             {COLUMNS.map((col, i) => (
               <div className="tboard-col" key={i}>
                 {col.map((card, j) => (
-                  <Card card={card} key={j} />
+                  <Card card={card} key={j} onSelect={setSelected} />
                 ))}
               </div>
             ))}
@@ -149,6 +301,10 @@ export default function TestimonialsSection() {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {selected && <ReviewModal card={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
     </section>
   )
 }
