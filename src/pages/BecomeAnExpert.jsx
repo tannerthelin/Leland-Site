@@ -186,8 +186,8 @@ const SOCIAL_PROOF_ITEMS = [
   },
   {
     type: 'quote-long',
-    bg: '#D5E8D4',
-    quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash using the expertise I'd gained from my decade in higher education. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
+    bg: 'var(--cream)',
+    quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
     name: 'Krysta F.',
   },
   {

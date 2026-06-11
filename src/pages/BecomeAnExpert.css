@@ -688,7 +688,7 @@
 
 .bae-sp-wide { width: 460px; }
 .bae-sp-thin { width: 300px; }
-.bae-sp-quote-long { width: 560px; }
+.bae-sp-quote-long { width: 420px; }
 .bae-sp-split {
   width: 370px;
   display: flex;
@@ -777,7 +777,7 @@
 
 .bae-sp-quote-long-text {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--gray-dark);
