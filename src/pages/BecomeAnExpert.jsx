@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import useTickerDrag from '../hooks/useTickerDrag'
 import { motion, AnimatePresence } from 'motion/react'
 import Navbar from '../components/Navbar'
 import ExpertsSection from '../components/ExpertsSection'
@@ -43,6 +44,7 @@ import phoneMockup from '../assets/img/coach-testimonials/phone-mockup.png'
 import bg1 from '../assets/img/background-textures/bg-1.png'
 import bg2 from '../assets/img/background-textures/bg-2.png'
 import Footer from '../components/Footer'
+import PreFooterCTA from '../components/PreFooterCTA'
 import './BecomeAnExpert.css'
 
 const ArrowRight = () => (
@@ -180,13 +182,8 @@ const SOCIAL_PROOF_ITEMS = [
     role: 'Career Expert',
   },
   {
-    type: 'split',
-    top: { bg: 'rgba(34, 34, 34, 0.05)', stat: '2,500+', label: 'Active coaches' },
-    bottom: { bg: 'rgba(34, 34, 34, 0.05)', stat: '$4.2M+', label: 'Earned by coaches' },
-  },
-  {
     type: 'quote-long',
-    bg: 'var(--cream)',
+    bg: 'rgba(34, 34, 34, 0.05)',
     quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
     name: 'Krysta F.',
   },
@@ -290,18 +287,29 @@ function TestimonialCard({ testimonial, isActive, onClick }) {
 function SocialProofTicker() {
   const items = [...SOCIAL_PROOF_ITEMS, ...SOCIAL_PROOF_ITEMS]
   const [activeVideo, setActiveVideo] = useState(null)
+  const { tickerRef, trackRef, drag, handlers, pause, resume, scrollBy } = useTickerDrag(75)
 
   useEffect(() => {
-    if (!activeVideo) return
-    const handleKey = (e) => { if (e.key === 'Escape') setActiveVideo(null) }
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
+    if (activeVideo) {
+      pause()
+      const handleKey = (e) => { if (e.key === 'Escape') setActiveVideo(null) }
+      window.addEventListener('keydown', handleKey)
+      return () => window.removeEventListener('keydown', handleKey)
+    } else {
+      resume()
+    }
   }, [activeVideo])
 
   return (
     <section className="bae-social-proof">
-      <div className="bae-social-proof-ticker">
-        <div className={`bae-social-proof-track${activeVideo ? ' bae-sp-paused' : ''}`}>
+      <div className="bae-social-proof-ticker" ref={tickerRef} {...handlers}>
+        <button className="bae-ticker-arrow bae-ticker-arrow-left" onClick={() => scrollBy(300)} aria-label="Scroll left">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button className="bae-ticker-arrow bae-ticker-arrow-right" onClick={() => scrollBy(-300)} aria-label="Scroll right">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div ref={trackRef} className="bae-social-proof-track">
           {items.map((item, i) => {
             if (item.type === 'wide') {
               return (
@@ -329,7 +337,7 @@ function SocialProofTicker() {
             }
             if (item.type === 'video') {
               return (
-                <div className="bae-sp-col bae-sp-thin" key={i} onClick={() => setActiveVideo(item.src)} style={{ cursor: 'pointer' }}>
+                <div className="bae-sp-col bae-sp-thin" key={i} onClick={(e) => { if (Math.abs(e.clientX - drag.current.startX) < 5) setActiveVideo(item.src) }} style={{ cursor: 'pointer' }}>
                   <div className="bae-sp-thin-card bae-sp-thin-card-has-img" style={{ background: '#111' }}>
                     <video
                       src={item.src}
@@ -627,27 +635,10 @@ export default function BecomeAnExpert() {
       </section>
 
       {/* 9 · Final CTA */}
-      <section className="bae-hero bae-hero-bottom">
-        <img src={heroBg} alt="" className="bae-hero-bg" />
-        <div className="bae-hero-overlay" />
-        <div className="bae-hero-content">
-          <h2 className="bae-hero-title">
-            Turn your experience into a side hustle.
-          </h2>
-          <div className="bae-hero-proof">
-            <div className="bae-hero-avatars">
-              <img src={pic05} alt="" className="bae-hero-avatar" />
-              <img src={pic13} alt="" className="bae-hero-avatar" />
-              <img src={pic08} alt="" className="bae-hero-avatar" />
-              <img src={pic14} alt="" className="bae-hero-avatar" />
-            </div>
-            <span className="bae-hero-proof-text">Join 2,500+ other experts</span>
-          </div>
-          <a href="#" className="bae-hero-cta">
-            Apply to be an expert
-          </a>
-        </div>
-      </section>
+      <PreFooterCTA
+        heading="Turn your experience into a side hustle."
+        ctaText="Apply to be an expert"
+      />
 
       <Footer />
     </>

@@ -623,17 +623,19 @@
 
 .bae-social-proof-ticker {
   width: 100%;
+  cursor: grab;
+  user-select: none;
+  position: relative;
+}
+
+.bae-social-proof-ticker:active {
+  cursor: grabbing;
 }
 
 .bae-social-proof-track {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: bae-sp-scroll 75s linear infinite;
-}
-
-.bae-sp-paused {
-  animation-play-state: paused;
 }
 
 .bae-video-modal {
@@ -673,11 +675,6 @@
 
 .bae-video-modal-close:hover {
   opacity: 1;
-}
-
-@keyframes bae-sp-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 /* ── Column containers ── */
@@ -1068,6 +1065,21 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  .bae-sp-col {
+    height: 360px;
+  }
+
+  .bae-sp-wide { width: 345px; }
+  .bae-sp-thin { width: 225px; }
+  .bae-sp-quote-long { width: 315px; }
+  .bae-sp-split { width: 275px; }
+
+  .bae-sp-wide-quote { font-size: 14px; }
+  .bae-sp-quote-long-text { font-size: 13px; }
+  .bae-sp-wide-bottom { padding: 20px 20px 18px; }
+  .bae-sp-quote-long-card { padding: 22px 22px 20px; }
+  .bae-sp-quote-long-mark { font-size: 44px; }
+
   .bae-hero {
     min-height: 420px;
     margin: 12px 16px 0;
@@ -1164,6 +1176,15 @@
   .bae-section-title,
   .bae-categories-heading {
     font-size: 28px;
+  }
+
+  .bae-categories,
+  .bae-features,
+  .bae-testimonials,
+  .bae-hiw,
+  .bae-faq {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 }

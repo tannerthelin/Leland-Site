@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import useTickerDrag from '../hooks/useTickerDrag'
 import expertKelsey from '../assets/img/expert-headshots/kelsey-kephart.png'
 import expertKerry from '../assets/img/expert-headshots/kerry-patriarca.png'
 import expertAndrew from '../assets/img/expert-headshots/andrew-quillen.png'
@@ -29,6 +31,8 @@ const experts = [
 ]
 
 export default function ExpertsSection({ heading, subtitle, className, cta }) {
+  const { tickerRef, trackRef, handlers, scrollBy } = useTickerDrag(75)
+
   return (
     <section className={`experts-section${className ? ` ${className}` : ''}`}>
       <div className="experts-header">
@@ -39,8 +43,14 @@ export default function ExpertsSection({ heading, subtitle, className, cta }) {
         {cta}
       </div>
 
-      <div className="experts-ticker">
-        <div className="experts-track">
+      <div className="experts-ticker" ref={tickerRef} {...handlers}>
+        <button className="bae-ticker-arrow bae-ticker-arrow-left" onClick={() => scrollBy(300)} aria-label="Scroll left">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button className="bae-ticker-arrow bae-ticker-arrow-right" onClick={() => scrollBy(-300)} aria-label="Scroll right">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div className="experts-track" ref={trackRef}>
           {[...experts, ...experts].map((expert, i) => (
             <div className="expert-card" key={i}>
               <img src={expert.img} alt={expert.name} className="expert-photo" />
