@@ -2582,7 +2582,8 @@ button.nav-link {
 .admin-panel {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  /* bottom-left: the Inflight feedback widget owns the bottom-right corner */
+  left: 24px;
   z-index: 999;
 }
 
@@ -2613,7 +2614,7 @@ button.nav-link {
 .admin-menu {
   position: absolute;
   bottom: 52px;
-  right: 0;
+  left: 0;
   background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
