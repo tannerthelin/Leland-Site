@@ -219,7 +219,7 @@ const SOCIAL_PROOF_ITEMS = [
     bottom: {
       type: 'press',
       bg: 'rgba(34, 34, 34, 0.05)',
-      quote: "Coaching isn\u2019t just about expertise. It\u2019s about the belief that a person can grow, change, and achieve\u2014especially when someone else sees that potential first.",
+      quote: "Coaching isn’t just about expertise. It’s about the belief that a person can grow, change, and achieve—especially when someone else sees that potential first.",
       logo: forbesLogo,
     },
   },

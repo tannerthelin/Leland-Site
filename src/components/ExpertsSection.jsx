@@ -1,30 +1,40 @@
-import pic01 from '../assets/img/profile-photos/pic-01.png'
-import pic02 from '../assets/img/profile-photos/pic-02.png'
-import pic03 from '../assets/img/profile-photos/pic-03.png'
-import pic04 from '../assets/img/profile-photos/pic-04.png'
-import pic05 from '../assets/img/profile-photos/pic-05.png'
-import pic06 from '../assets/img/profile-photos/pic-06.png'
-import pic07 from '../assets/img/profile-photos/pic-07.png'
-import pic08 from '../assets/img/profile-photos/pic-08.png'
+import expertKelsey from '../assets/img/expert-headshots/kelsey-kephart.png'
+import expertKerry from '../assets/img/expert-headshots/kerry-patriarca.png'
+import expertAndrew from '../assets/img/expert-headshots/andrew-quillen.png'
+import expertAsha from '../assets/img/expert-headshots/asha-t.png'
+import expertAlbert from '../assets/img/expert-headshots/albert-chan.png'
+import expertConnorO from '../assets/img/expert-headshots/connor-owens.png'
+import expertMachmud from '../assets/img/expert-headshots/machmud-makhmudov.png'
+import expertMatt from '../assets/img/expert-headshots/matt-kilby.png'
+import expertAlison from '../assets/img/expert-headshots/alison-l.png'
+import expertConnorC from '../assets/img/expert-headshots/connor-crandall.png'
+import expertKenny from '../assets/img/expert-headshots/kenny-johnson.png'
+import expertArthur from '../assets/img/expert-headshots/arthur-balagula.png'
+import expertClaire from '../assets/img/expert-headshots/claire-rafson.png'
 
 const experts = [
-  { img: pic01, name: 'Matthew McConaughey', desc: 'Founder of Lyrics of Livin newsletter' },
-  { img: pic02, name: 'Nicole Walters', desc: 'New York Times bestselling author, Emmy nominated producer, and CEO' },
-  { img: pic03, name: 'Ali Abdaal', desc: 'Ex-doctor turned Productivity Expert, YouTuber, bestselling author, and entrepreneur' },
-  { img: pic04, name: 'Susan Cain', desc: '#1 New York Times bestselling author, and speaker' },
-  { img: pic05, name: 'Pat Flynn', desc: 'Entrepreneur, YouTuber, and podcast host' },
-  { img: pic06, name: 'James Clear', desc: 'Author of #1 New York Times bestseller, Atomic Habits' },
-  { img: pic07, name: 'Andrew Huberman', desc: 'Neuroscientist and host of the Huberman Lab podcast' },
-  { img: pic08, name: 'Lisa Nichols', desc: 'Motivational speaker and bestselling author' },
+  { img: expertKelsey, name: 'Kelsey K.', desc: 'Former Columbia Business School admissions officer' },
+  { img: expertAndrew, name: 'Andrew Q.', desc: 'Former OpenAI staffer and Spotify Head of AI' },
+  { img: expertAsha, name: 'Asha T.', desc: 'Harvard MBA and former Apax Partners PE investor' },
+  { img: expertConnorO, name: 'Connor O.', desc: 'Former Google, YouTube, and Meta PM' },
+  { img: expertKerry, name: 'Kerry P.', desc: 'Former Harvard admissions officer' },
+  { img: expertKenny, name: 'Kenny J.', desc: 'Private equity investor at KKR, ex-Blackstone' },
+  { img: expertAlbert, name: 'Albert C.', desc: 'AI professor at UW and former Google and Meta exec' },
+  { img: expertMachmud, name: 'Machmud M.', desc: 'Rhodes Scholar, Stanford Law, and White House alum' },
+  { img: expertConnorC, name: 'Connor C.', desc: 'Vice President at H.I.G. Capital, ex-Warburg Pincus' },
+  { img: expertClaire, name: 'Claire R.', desc: 'Knight-Hennessy Scholar, former Nike and Bain' },
+  { img: expertArthur, name: 'Arthur B.', desc: 'Google AI marketing lead and MIT Sloan MBA' },
+  { img: expertAlison, name: 'Alison L.', desc: 'Former Bain and McKinsey hiring manager' },
+  { img: expertMatt, name: 'Matt K.', desc: 'SpaceX engineer, former BCG project lead, and MIT Sloan MBA' },
 ]
 
 export default function ExpertsSection({ heading, subtitle, className, cta }) {
   return (
     <section className={`experts-section${className ? ` ${className}` : ''}`}>
       <div className="experts-header">
-        <h2 className="experts-heading">{heading || "Experts who\u2019ve done the work."}</h2>
+        <h2 className="experts-heading">{heading || "Experts who've done the work."}</h2>
         <p className="experts-sub">
-          {subtitle || "Now they\u2019re here to help you do the same\u2014with clear, honest advice from lived experience."}
+          {subtitle || "Now they're here to help you do the same—with clear, honest advice from lived experience."}
         </p>
         {cta}
       </div>
