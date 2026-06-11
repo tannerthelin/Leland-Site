@@ -16,7 +16,6 @@ import googleLogo from '../assets/logos/google.svg'
 import bcgLogo from '../assets/logos/bcg.svg'
 import linkedinLogo from '../assets/logos/linkedin.svg'
 import mckinseyLogo from '../assets/logos/mckinsey.svg'
-import forbesLogo from '../assets/logos/Forbes_logo.svg'
 import stanfordLogo from '../assets/logos/stanford-wordmark.svg'
 import goldmanLogo from '../assets/logos/goldman-sachs.svg'
 import spotifyLogo from '../assets/logos/spotify.svg'
@@ -170,8 +169,8 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#E8D5F5',
-    quote: "I replaced my consulting income in 6 months coaching part-time on Leland.",
-    logo: 'Forbes',
+    quote: "I've learned how to build a multi-six-figure business betting on myself.",
+    logo: 'Ben L.',
     img: coach1,
   },
   {
@@ -188,8 +187,8 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#D5E8D4',
-    quote: "The scheduling and payment tools alone save me 5 hours a week. I just focus on coaching.",
-    logo: 'Yahoo!',
+    quote: "What I got was a second income stream more significant than I could have imagined.",
+    logo: 'Krysta F.',
     img: coach5,
   },
   {
@@ -206,8 +205,8 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#FFD6E0',
-    quote: "My clients find me through Leland. I don't spend a dollar on marketing anymore.",
-    logo: 'TechCrunch',
+    quote: "It encourages experts to focus on delivering results rather than marketing themselves.",
+    logo: 'Saad A.',
     img: coach8,
   },
   {
@@ -222,8 +221,8 @@ const SOCIAL_PROOF_ITEMS = [
     bottom: {
       type: 'press',
       bg: 'rgba(34, 34, 34, 0.05)',
-      quote: "Coaching isn't just about expertise. It's about the belief that a person can grow, change, and achieve—especially when someone else sees that potential first.",
-      logo: forbesLogo,
+      quote: "Leland is one of the few platforms that has earned my complete trust.",
+      name: 'Saad A.',
     },
   },
   {
@@ -308,7 +307,7 @@ function SocialProofTicker() {
         </h2>
       </div>
       <div className="bae-social-proof-ticker">
-        <div className={`bae-social-proof-track${activeVideo ? ' bae-sp-paused' : ''}`}
+        <div className={`bae-social-proof-track${activeVideo ? ' bae-sp-paused' : ''}`}>
           {items.map((item, i) => {
             if (item.type === 'wide') {
               return (
@@ -400,7 +399,10 @@ function SocialProofTicker() {
                 {item.bottom.type === 'press' ? (
                   <div className="bae-sp-split-card bae-sp-split-press" style={{ background: item.bottom.bg }}>
                     <p className="bae-sp-press-quote">&ldquo;{item.bottom.quote}&rdquo;</p>
-                    <img src={item.bottom.logo} alt="" className="bae-sp-press-logo" />
+                    {item.bottom.name
+                      ? <span className="bae-sp-press-name">{item.bottom.name}</span>
+                      : <img src={item.bottom.logo} alt="" className="bae-sp-press-logo" />
+                    }
                   </div>
                 ) : (
                   <div
