@@ -297,7 +297,7 @@ export default function TestimonialsSection() {
           </div>
           <div className="tboard-fade" />
           <div className="tboard-cta">
-            <Link to="/reviews" className="tboard-show-more">See all 22,264 reviews</Link>
+            <Link to="/reviews" className="tboard-show-more">See all 30,147 reviews</Link>
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ export default function Hero({ heroVersion }) {
   return (
     <section className={`hero${versionClass}`}>
       <div className="hero-bg">
-        <video src={cloudsVideo} autoPlay loop muted playsInline />
+        <video src={cloudsVideo} autoPlay loop muted playsInline onCanPlayThrough={(e) => e.target.setAttribute('data-loaded', '')} />
       </div>
       <div className="hero-overlay" />
 

@@ -145,8 +145,8 @@ export default function Reviews() {
   const [activeGoal, setActiveGoal] = useState(null)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setCount(22264), 250)
-    const t2 = setTimeout(() => setCount(22265), 2000)
+    const t1 = setTimeout(() => setCount(30147), 250)
+    const t2 = setTimeout(() => setCount(30148), 2000)
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 

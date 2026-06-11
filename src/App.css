@@ -61,6 +61,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  background: #111111;
 }
 
 .hero-bg video {
@@ -68,6 +69,12 @@
   height: 100%;
   object-fit: cover;
   object-position: bottom center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero-bg video[data-loaded] {
+  opacity: 1;
 }
 
 .hero-overlay {

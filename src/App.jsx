@@ -52,7 +52,7 @@ function HomePage() {
   const [bannerHeight, setBannerHeight] = useState(0)
   const [featureFlags, setFeatureFlags] = useState({
     experts: false,
-    banner: true,
+    banner: false,
     loggedIn: false,
     heroVersion: 'v1',
     hiwVersion: 'tabs',
