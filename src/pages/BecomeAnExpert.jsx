@@ -121,18 +121,18 @@ const FAQ_ITEMS = [
 ]
 
 const FEATURES = [
-  { icon: iconScheduling, title: 'Scheduling', desc: 'Let clients book time with you directly. No back-and-forth emails.', link: true },
-  { icon: iconPayments, title: 'Payments', desc: 'Get paid automatically after every session. We handle invoicing and payouts.', link: true },
-  { icon: iconVideoCalls, title: 'Video Calls', desc: 'Built-in video conferencing so you can coach from anywhere.' },
-  { icon: iconAnalytics, title: 'Analytics', desc: 'Track your earnings, session history, and client engagement over time.', link: true },
-  { icon: iconSessionNotes, title: 'Session Notes', desc: 'Keep notes for each client so you never lose context between sessions.' },
-  { icon: iconProfilePage, title: 'Profile Page', desc: 'A dedicated page that showcases your expertise and lets clients find you.', link: true },
-  { icon: iconClientAcquisition, title: 'Client Acquisition', desc: 'We drive clients to the platform so you can focus on coaching.' },
-  { icon: iconDigitalProducts, title: 'Digital Products', desc: 'Sell guides, templates, and resources alongside your coaching sessions.', link: true },
-  { icon: iconGroupSessions, title: 'Group Sessions', desc: 'Host group classes and workshops to scale your impact and income.' },
-  { icon: iconReviews, title: 'Reviews & Ratings', desc: 'Build social proof with verified reviews from your clients.' },
-  { icon: iconMessaging, title: 'Messaging', desc: 'Chat with clients between sessions to answer quick questions.' },
-  { icon: iconGoalTracking, title: 'Goal Tracking', desc: 'Help clients set and track goals to measure their progress.' },
+  { icon: iconClientAcquisition, title: 'Get leads', desc: 'Plug into a vibrant ecosystem of potential customers.' },
+  { icon: iconPayments, title: 'Payments', desc: 'Get paid automatically after every session. We handle invoicing and payouts.' },
+  { icon: iconScheduling, title: 'Scheduling', desc: 'Let customers book time with you directly. No back-and-forth emails.' },
+  { icon: iconMessaging, title: 'Messaging', desc: 'Chat with customers between sessions to answer quick questions.' },
+  { icon: iconAnalytics, title: 'Analytics', desc: 'Track your earnings, session history, and customer engagement over time.' },
+  { icon: iconProfilePage, title: 'Profile Page', desc: 'A dedicated page that showcases your expertise and helps customers find you.' },
+  { icon: iconReviews, title: 'Reviews', desc: 'Build social proof with verified reviews from your customers.' },
+  { icon: iconGoalTracking, title: 'Packages', desc: 'Package your expertise into the offerings that best monetize your business.' },
+  { icon: iconDigitalProducts, title: 'Content Library', desc: 'Sell guides, templates, and recorded content.' },
+  { icon: iconGroupSessions, title: 'Livestreams', desc: 'Run live events to demonstrate your expertise and attract new customers.' },
+  { icon: iconVideoCalls, title: 'Video Calls', desc: 'Built-in video conferencing so you can work from anywhere.' },
+  { icon: iconSessionNotes, title: 'Session Notes', desc: 'AI-generated summaries of sessions, so you never lose context between meetings.' },
 ]
 
 const TESTIMONIALS = [
@@ -408,14 +408,14 @@ export default function BecomeAnExpert() {
               </p>
             </div>
             <div className="bae-who-logos" aria-hidden="true">
-              <img src={googleLogo}   className="bae-who-logo" style={{ transform: 'translateY(-10px)' }} alt="" />
-              <img src={stanfordLogo} className="bae-who-logo" style={{ transform: 'translateY(8px)' }} alt="" />
-              <img src={mckinseyLogo} className="bae-who-logo" style={{ transform: 'translateY(-6px)' }} alt="" />
-              <img src={goldmanLogo}  className="bae-who-logo" style={{ transform: 'translateY(12px)' }} alt="" />
-              <img src={openaiLogo}   className="bae-who-logo" style={{ transform: 'translateY(-12px)' }} alt="" />
-              <img src={bcgLogo}      className="bae-who-logo" style={{ transform: 'translateY(6px)' }} alt="" />
-              <img src={spotifyLogo}  className="bae-who-logo" style={{ transform: 'translateY(-8px)' }} alt="" />
-              <img src={nikeLogo}     className="bae-who-logo" style={{ transform: 'translateY(10px)' }} alt="" />
+              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 12,  left: 108, opacity: 0.44, filter: 'invert(1)' }} alt="" />
+              <img src={goldmanLogo}  className="bae-who-logo" style={{ width: 64,  top: 120, left: 215, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
+              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 88,  top: 42,  left: 195, opacity: 0.30, filter: 'invert(1)' }} alt="" />
+              <img src={openaiLogo}   className="bae-who-logo" style={{ width: 58,  top: 14,  left: 318, opacity: 0.30, filter: 'grayscale(1)' }} alt="" />
+              <img src={bcgLogo}      className="bae-who-logo" style={{ width: 50,  top: 118, left: 112, opacity: 0.28, filter: 'invert(1)' }} alt="" />
+              <img src={spotifyLogo}  className="bae-who-logo" style={{ width: 58,  top: 114, left: 330, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
+              <img src={stanfordLogo} className="bae-who-logo" style={{ width: 64,  top: 68,  left: 60,  opacity: 0.36, filter: 'grayscale(1)' }} alt="" />
+              <img src={nikeLogo}     className="bae-who-logo" style={{ width: 48,  top: 72,  left: 400, opacity: 0.22, filter: 'grayscale(1)' }} alt="" />
             </div>
           </div>
           <div className="bae-who-bottom">
@@ -474,7 +474,7 @@ export default function BecomeAnExpert() {
           <div className="bae-features-header">
             <p className="testimonials-label">
               <span className="testimonials-dot" />
-              Features
+              Tools
             </p>
             <h2 className="testimonials-heading">Your business in a box</h2>
           </div>

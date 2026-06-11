@@ -1183,6 +1183,10 @@ button.nav-link {
 }
 
 @media (max-width: 768px) {
+  .section-container {
+    padding: 0 20px;
+  }
+
   .experts-heading {
     font-size: 32px;
   }
@@ -1198,6 +1202,14 @@ button.nav-link {
   .expert-photo {
     width: 200px;
     height: 200px;
+  }
+}
+
+@media (max-width: 390px) {
+  .nav-logo {
+    overflow: hidden;
+    width: 24px;
+    margin-right: 12px;
   }
 }
 

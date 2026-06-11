@@ -173,19 +173,13 @@
 
 .bae-who-logos {
   flex: 1;
-  max-width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 20px 28px;
-  align-content: center;
+  position: relative;
+  height: 200px;
 }
 
 .bae-who-logo {
-  height: 22px;
-  width: auto;
-  filter: brightness(0) opacity(0.32);
+  position: absolute;
+  height: auto;
 }
 
 .bae-who-heading {
