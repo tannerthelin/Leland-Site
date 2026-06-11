@@ -19,7 +19,6 @@ import mckinseyLogo from '../assets/logos/mckinsey.svg'
 import forbesLogo from '../assets/logos/Forbes_logo.svg'
 import stanfordLogo from '../assets/logos/stanford-wordmark.svg'
 import goldmanLogo from '../assets/logos/goldman-sachs.svg'
-import bainLogo from '../assets/logos/org-logos/bain.svg'
 import spotifyLogo from '../assets/logos/spotify.svg'
 import nikeLogo from '../assets/logos/nike.svg'
 import openaiLogo from '../assets/logos/openai.svg'
@@ -389,7 +388,7 @@ export default function BecomeAnExpert() {
       {/* 0 · Hero — Experts carousel */}
       <ExpertsSection
         heading="Turn your experience into your business"
-        subtitle="Join thousands of experts already coaching on Leland."
+        subtitle="Join thousands of experts already on Leland."
         className="bae-experts-hero"
         cta={<a href="#" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
       />
@@ -409,15 +408,14 @@ export default function BecomeAnExpert() {
               </p>
             </div>
             <div className="bae-who-logos" aria-hidden="true">
-              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 25,  left: 222, opacity: 0.36, filter: 'invert(1)' }} alt="" />
-              <img src={goldmanLogo}  className="bae-who-logo" style={{ width: 64,  top: 120, left: 232, opacity: 0.26, filter: 'grayscale(1)' }} alt="" />
-              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 58,  top: 12,  left: 132, opacity: 0.22, filter: 'invert(1)' }} alt="" />
-              <img src={openaiLogo}   className="bae-who-logo" style={{ width: 58,  top: 14,  left: 352, opacity: 0.22, filter: 'grayscale(1)' }} alt="" />
-              <img src={bcgLogo}      className="bae-who-logo" style={{ width: 50,  top: 118, left: 114, opacity: 0.20, filter: 'invert(1)' }} alt="" />
-              <img src={spotifyLogo}  className="bae-who-logo" style={{ width: 58,  top: 114, left: 366, opacity: 0.18, filter: 'grayscale(1)' }} alt="" />
-              <img src={stanfordLogo} className="bae-who-logo" style={{ width: 64,  top: 68,  left: 44,  opacity: 0.28, filter: 'grayscale(1)' }} alt="" />
-              <img src={nikeLogo}     className="bae-who-logo" style={{ width: 48,  top: 72,  left: 448, opacity: 0.14, filter: 'grayscale(1)' }} alt="" />
-              <img src={bainLogo}     className="bae-who-logo" style={{ width: 40,  top: 152, left: 22,  opacity: 0.12, filter: 'invert(1)' }} alt="" />
+              <img src={googleLogo}   className="bae-who-logo" style={{ transform: 'translateY(-10px)' }} alt="" />
+              <img src={stanfordLogo} className="bae-who-logo" style={{ transform: 'translateY(8px)' }} alt="" />
+              <img src={mckinseyLogo} className="bae-who-logo" style={{ transform: 'translateY(-6px)' }} alt="" />
+              <img src={goldmanLogo}  className="bae-who-logo" style={{ transform: 'translateY(12px)' }} alt="" />
+              <img src={openaiLogo}   className="bae-who-logo" style={{ transform: 'translateY(-12px)' }} alt="" />
+              <img src={bcgLogo}      className="bae-who-logo" style={{ transform: 'translateY(6px)' }} alt="" />
+              <img src={spotifyLogo}  className="bae-who-logo" style={{ transform: 'translateY(-8px)' }} alt="" />
+              <img src={nikeLogo}     className="bae-who-logo" style={{ transform: 'translateY(10px)' }} alt="" />
             </div>
           </div>
           <div className="bae-who-bottom">
