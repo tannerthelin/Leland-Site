@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Navbar from '../components/Navbar'
 import ExpertsSection from '../components/ExpertsSection'
@@ -175,11 +175,10 @@ const SOCIAL_PROOF_ITEMS = [
     img: coach1,
   },
   {
-    type: 'thin',
-    bg: '#D4E5F7',
-    label: '@jess.mba',
-    sublabel: '12.4k followers',
-    img: coach7,
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Andrew%20C%20-%20Career%20Coach%20on%20Leland.mp4',
+    name: 'Andrew C.',
+    role: 'Career Expert',
   },
   {
     type: 'split',
@@ -194,10 +193,10 @@ const SOCIAL_PROOF_ITEMS = [
     img: coach5,
   },
   {
-    type: 'thin',
-    bg: 'rgba(34, 34, 34, 0.05)',
-    img: phoneMockup,
-    imgOnly: true,
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Joy%20P%20-%20Admissions%20Coach.mp4',
+    name: 'Joy P.',
+    role: 'Admissions Expert',
   },
   {
     type: 'split',
@@ -212,12 +211,10 @@ const SOCIAL_PROOF_ITEMS = [
     img: coach8,
   },
   {
-    type: 'thin',
-    bg: '#E8D5F5',
-    label: '@admissions.pro',
-    sublabel: '22k followers',
-    video: true,
-    img: coach2,
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Machmud%20M%20-%20Law%20School%20Coach.mp4',
+    name: 'Machmud M.',
+    role: 'Law School Expert',
   },
   {
     type: 'split',
@@ -225,9 +222,21 @@ const SOCIAL_PROOF_ITEMS = [
     bottom: {
       type: 'press',
       bg: 'rgba(34, 34, 34, 0.05)',
-      quote: "Coaching isn’t just about expertise. It’s about the belief that a person can grow, change, and achieve—especially when someone else sees that potential first.",
+      quote: "Coaching isn't just about expertise. It's about the belief that a person can grow, change, and achieve—especially when someone else sees that potential first.",
       logo: forbesLogo,
     },
+  },
+  {
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Eric%20Z%20-%20Management%20Consulting%20Coach.mov',
+    name: 'Eric Z.',
+    role: 'Management Consulting Expert',
+  },
+  {
+    type: 'thin',
+    bg: 'rgba(34, 34, 34, 0.05)',
+    img: phoneMockup,
+    imgOnly: true,
   },
 ]
 
@@ -282,6 +291,14 @@ function TestimonialCard({ testimonial, isActive, onClick }) {
 
 function SocialProofTicker() {
   const items = [...SOCIAL_PROOF_ITEMS, ...SOCIAL_PROOF_ITEMS]
+  const [activeVideo, setActiveVideo] = useState(null)
+
+  useEffect(() => {
+    if (!activeVideo) return
+    const handleKey = (e) => { if (e.key === 'Escape') setActiveVideo(null) }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [activeVideo])
 
   return (
     <section className="bae-social-proof">
@@ -291,7 +308,7 @@ function SocialProofTicker() {
         </h2>
       </div>
       <div className="bae-social-proof-ticker">
-        <div className="bae-social-proof-track">
+        <div className={`bae-social-proof-track${activeVideo ? ' bae-sp-paused' : ''}`}
           {items.map((item, i) => {
             if (item.type === 'wide') {
               return (
@@ -301,6 +318,32 @@ function SocialProofTicker() {
                     <div className="bae-sp-wide-bottom">
                       <p className="bae-sp-wide-quote">&ldquo;{item.quote}&rdquo;</p>
                       <span className="bae-sp-wide-logo">{item.logo}</span>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+            if (item.type === 'video') {
+              return (
+                <div className="bae-sp-col bae-sp-thin" key={i} onClick={() => setActiveVideo(item.src)} style={{ cursor: 'pointer' }}>
+                  <div className="bae-sp-thin-card bae-sp-thin-card-has-img" style={{ background: '#111' }}>
+                    <video
+                      src={item.src}
+                      className="bae-sp-bg-img"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{ pointerEvents: 'none' }}
+                    />
+                    <span className="bae-sp-play">
+                      <svg width="40" height="40" viewBox="0 0 20 20" fill="none">
+                        <path d="M6.5 4.5L15.5 10L6.5 15.5V4.5Z" fill="white" />
+                      </svg>
+                    </span>
+                    <div className="bae-sp-thin-bottom">
+                      <span className="bae-sp-thin-label">{item.name}</span>
+                      <span className="bae-sp-thin-sublabel">{item.role}</span>
                     </div>
                   </div>
                 </div>
@@ -373,6 +416,15 @@ function SocialProofTicker() {
           })}
         </div>
       </div>
+
+      {activeVideo && (
+        <div className="bae-video-modal" onClick={() => setActiveVideo(null)}>
+          <div className="bae-video-modal-inner" onClick={(e) => e.stopPropagation()}>
+            <button className="bae-video-modal-close" onClick={() => setActiveVideo(null)}>&#x2715;</button>
+            <video src={activeVideo} controls autoPlay className="bae-video-modal-video" />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
@@ -474,7 +526,7 @@ export default function BecomeAnExpert() {
           <div className="bae-features-header">
             <p className="testimonials-label">
               <span className="testimonials-dot" />
-              Tools
+              Tools for Experts
             </p>
             <h2 className="testimonials-heading">Your business in a box</h2>
           </div>

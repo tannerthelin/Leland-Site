@@ -1139,7 +1139,7 @@ button.nav-link {
   display: flex;
   gap: 32px;
   width: max-content;
-  animation: experts-scroll 40s linear infinite;
+  animation: experts-scroll 50s linear infinite;
 }
 
 @keyframes experts-scroll {
