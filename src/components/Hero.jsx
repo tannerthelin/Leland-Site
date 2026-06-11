@@ -18,8 +18,8 @@ import wreathRight from '../assets/img/wreath-right.svg'
 const AVATARS = [pic01, pic02, pic03, pic04]
 
 const PILLS = [
-  { label: 'Learn AI', icon: aiIcon },
-  { label: 'Build your career', icon: careerIcon },
+  { label: 'Build with AI', icon: aiIcon },
+  { label: 'Grow your career', icon: careerIcon },
   { label: 'Get into school', icon: schoolIcon },
 ]
 
@@ -29,6 +29,32 @@ function Star() {
     <svg viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
     </svg>
+  )
+}
+
+function TrustRow() {
+  return (
+    <div className="trust-row">
+      <div className="trust-avatars">
+        {AVATARS.map((src, i) => (
+          <img className="avatar" key={i} src={src} alt="" />
+        ))}
+      </div>
+      <div className="trust-info">
+        <div className="trust-stars">
+          <div className="stars">
+            {[...Array(5)].map((_, i) => <Star key={i} />)}
+          </div>
+          <span className="trust-count">22,264 reviews</span>
+          <span className="trust-divider" />
+          <span className="trust-rating">4.99 avg</span>
+        </div>
+        <span className="trust-activity">
+          <span className="activity-dot" />
+          2,025 submitted last month
+        </span>
+      </div>
+    </div>
   )
 }
 
@@ -53,7 +79,7 @@ export default function Hero({ heroVersion }) {
             <SoftBlurText text="Own your future" delay={0.25} />
           </h1>
           <p className="hero-sub">
-            Millions of people are reaching ambitious goals, building with AI, and leveling up their teams.
+            Join millions of people reaching ambitious goals, building with AI, and leveling up their teams.
           </p>
         </div>
 
@@ -80,29 +106,7 @@ export default function Hero({ heroVersion }) {
           </div>
         </div>
 
-        {heroVersion === 'v1' && (
-          <div className="trust-row">
-            <div className="trust-avatars">
-              {AVATARS.map((src, i) => (
-                <img className="avatar" key={i} src={src} alt="" />
-              ))}
-            </div>
-            <div className="trust-info">
-              <div className="trust-stars">
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => <Star key={i} />)}
-                </div>
-                <span className="trust-count">22,264 reviews</span>
-                <span className="trust-divider" />
-                <span className="trust-rating">Avg. 4.99</span>
-              </div>
-              <span className="trust-activity">
-                <span className="activity-dot" />
-                2,025 submitted last month
-              </span>
-            </div>
-          </div>
-        )}
+        {heroVersion === 'v1' && <TrustRow />}
       </motion.div>
 
       {heroVersion === 'v2' && <HeroBottomStrip />}

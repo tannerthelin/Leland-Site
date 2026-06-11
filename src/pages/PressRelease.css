@@ -1,0 +1,258 @@
+/* ── Press Release / Blog Article ── */
+
+.pr-page {
+  background: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pr-main {
+  flex: 1;
+}
+
+/* ── Cover image ── */
+
+.pr-cover {
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+}
+
+.pr-cover img {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 42vw, 480px);
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.pr-article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 72px 24px 128px;
+}
+
+/* ── Header ── */
+
+.pr-header {
+  margin-bottom: 24px;
+}
+
+.pr-kicker {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  margin-bottom: 28px;
+}
+
+.pr-kicker-dot {
+  color: var(--yellow);
+  font-weight: 600;
+  margin: 0 6px;
+}
+
+.pr-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 54px;
+  line-height: 1.12;
+  color: var(--gray-dark);
+  margin-bottom: 32px;
+  text-wrap: balance;
+}
+
+.pr-lede {
+  font-family: var(--font-body);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--gray-dark);
+}
+
+.pr-rule {
+  width: 56px;
+  height: 3px;
+  background: var(--yellow);
+  margin-top: 44px;
+}
+
+/* ── Sections ── */
+
+.pr-heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.25;
+  color: var(--gray-dark);
+  margin: 72px 0 24px;
+}
+
+.pr-section p {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--gray-dark);
+  margin-bottom: 24px;
+}
+
+.pr-section p:last-child {
+  margin-bottom: 0;
+}
+
+.pr-section strong {
+  font-weight: 600;
+}
+
+.pr-section em {
+  font-style: italic;
+}
+
+/* ── Lists ── */
+
+.pr-list {
+  margin: 0 0 24px;
+  padding-left: 26px;
+  list-style: disc;
+}
+
+.pr-list li {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--gray-dark);
+  margin-bottom: 10px;
+}
+
+/* ── Pull-quote & key line ── */
+
+.pr-section .pr-pullquote {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.35;
+  color: var(--gray-dark);
+  border-left: 3px solid var(--yellow);
+  padding-left: 28px;
+  margin: 48px 0 8px;
+}
+
+/* ── Inline details ── */
+
+.pr-link {
+  color: var(--gray-dark);
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: opacity 0.15s;
+}
+
+.pr-link:hover {
+  opacity: 0.6;
+}
+
+/* ── Author ── */
+
+.pr-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 72px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pr-author-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--cream);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  flex-shrink: 0;
+}
+
+.pr-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pr-author-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gray-dark);
+}
+
+.pr-author-role {
+  font-size: 15px;
+  color: var(--gray-light);
+}
+
+.pr-here {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.pr-section .pr-closing {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 768px) {
+  .pr-article {
+    padding: 56px 20px 80px;
+  }
+
+  .pr-kicker {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .pr-title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .pr-lede {
+    font-size: 20px;
+  }
+
+  .pr-rule {
+    margin-top: 32px;
+  }
+
+  .pr-heading {
+    font-size: 25px;
+    margin: 52px 0 18px;
+  }
+
+  .pr-section p,
+  .pr-list li {
+    font-size: 17px;
+  }
+
+  .pr-section .pr-pullquote {
+    font-size: 23px;
+    padding-left: 20px;
+    margin: 36px 0 8px;
+  }
+
+  .pr-section .pr-closing {
+    font-size: 20px;
+    margin-top: 32px;
+  }
+}

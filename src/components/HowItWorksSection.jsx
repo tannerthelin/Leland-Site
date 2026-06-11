@@ -35,19 +35,22 @@ const STEPS = [
   {
     title: 'Work 1-on-1 with an expert',
     desc: "Get matched with a world-class coach who's already done what you're trying to do.",
-    cta: 'Find an expert',
+    links: [{ label: 'Find an expert', href: '#' }], // typeform later
     visual: 'coaches',
   },
   {
     title: 'Work together in a group',
     desc: 'Join programs and bootcamps led by industry experts alongside a cohort of peers.',
-    ctas: ['Browse upcoming Livestreams', 'Browse Programs'],
+    links: [
+      { label: 'Browse upcoming Livestreams', href: 'https://www.joinleland.com/events' },
+      { label: 'Browse Programs', href: 'https://www.joinleland.com/bootcamps' },
+    ],
     visual: 'group-call',
   },
   {
     title: 'Learn on your own',
     desc: 'Access free livestreams, a content library, and AI-powered tools to level up at your own pace.',
-    cta: 'Explore resources',
+    links: [{ label: 'Explore resources', href: 'https://www.joinleland.com/plus' }],
     img: imgFolder,
   },
 ]
@@ -165,9 +168,9 @@ export default function HowItWorksSection() {
                 <h3 className="hiw-step-title">{step.title}</h3>
                 <p className="hiw-step-desc">{step.desc}</p>
                 <div className="hiw-step-ctas">
-                  {(step.ctas || [step.cta]).map((label, j) => (
-                    <a key={j} href="#" className="hiw-step-cta">
-                      {label}
+                  {step.links.map((link, j) => (
+                    <a key={j} href={link.href} className="hiw-step-cta">
+                      {link.label}
                     </a>
                   ))}
                 </div>

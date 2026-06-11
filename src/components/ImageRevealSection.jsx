@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import bgImage from '../assets/img/background-textures/quote-bg.png'
+import bgImage from '../assets/img/ambition-city.png'
 
 export default function ImageRevealSection() {
   const sectionRef = useRef(null)

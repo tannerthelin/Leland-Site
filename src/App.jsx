@@ -5,6 +5,7 @@ import Banner from './components/Banner'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogosBar from './components/LogosBar'
+import NarrativeSection from './components/NarrativeSection'
 import GoalsSection from './components/GoalsSection'
 import ExpertsSection from './components/ExpertsSection'
 import ImageRevealSection from './components/ImageRevealSection'
@@ -14,6 +15,10 @@ import TestimonialsSection from './components/TestimonialsSection'
 import AdminPanel from './components/AdminPanel'
 import PlatformSection from './components/PlatformSection'
 import B2BBanner from './components/B2BBanner'
+import B2BLedgerV2 from './components/B2BLedgerV2'
+import B2BLedgerV2Classic from './components/B2BLedgerV2Classic'
+import B2BMomentumV3 from './components/B2BMomentumV3'
+import B2BMomentumV3Classic from './components/B2BMomentumV3Classic'
 import PreFooterCTA from './components/PreFooterCTA'
 import Footer from './components/Footer'
 import BecomeAnExpert from './pages/BecomeAnExpert'
@@ -22,6 +27,7 @@ import Careers from './pages/Careers'
 import Login from './pages/Login'
 import AIBuilderProgram from './pages/AIBuilderProgram'
 import AI from './pages/AI'
+import PressRelease from './pages/PressRelease'
 import CareerCenters from './pages/CareerCenters'
 import Organizations from './pages/Organizations'
 import './App.css'
@@ -50,6 +56,12 @@ function HomePage() {
     loggedIn: false,
     heroVersion: 'v1',
     hiwVersion: 'tabs',
+    pathwayStyle: 'image',
+    buildAiImg: '3',
+    b2bHatch: 'strip',
+    narrative: true,
+    b2bVersion: 'v2',
+    emphasisStyle: 'line',
   })
 
   const handleToggle = (key, value) => {
@@ -65,6 +77,12 @@ function HomePage() {
     { key: 'loggedIn', label: 'Logged In', enabled: featureFlags.loggedIn },
     { key: 'heroVersion', label: 'Hero Version', type: 'tabs', options: ['V1', 'V2', 'V3'], value: featureFlags.heroVersion },
     { key: 'hiwVersion', label: 'How It Works', type: 'tabs', options: ['Scroll', 'Tabs'], value: featureFlags.hiwVersion },
+    { key: 'pathwayStyle', label: 'Pathway Cards', type: 'tabs', options: ['Classic', 'Image'], value: featureFlags.pathwayStyle },
+    { key: 'buildAiImg', label: 'Build AI Image', type: 'tabs', options: ['1', '2', '3', '4', '5'], value: featureFlags.buildAiImg },
+    { key: 'b2bHatch', label: 'B2B Hatch', type: 'tabs', options: ['None', 'Strip', 'Label', 'Intro'], value: featureFlags.b2bHatch },
+    { key: 'narrative', label: 'Narrative Statement', enabled: featureFlags.narrative },
+    { key: 'emphasisStyle', label: '"Fast" Emphasis', type: 'tabs', options: ['None', 'Line', 'Color', 'Highlight'], value: featureFlags.emphasisStyle },
+    { key: 'b2bVersion', label: 'B2B Section', type: 'tabs', options: ['Current', 'V2', 'V2+', 'V3', 'V3+'], value: featureFlags.b2bVersion },
   ]
 
   useEffect(() => {
@@ -85,7 +103,8 @@ function HomePage() {
       <Navbar variant="sticky-transparent" showSubNav subNavOnScroll loggedIn={featureFlags.loggedIn} />
       <Hero heroVersion={featureFlags.heroVersion} />
       <LogosBar heroVersion={featureFlags.heroVersion} />
-      <GoalsSection />
+      {featureFlags.narrative && <NarrativeSection emphasisStyle={featureFlags.emphasisStyle} />}
+      <GoalsSection pathwayStyle={featureFlags.pathwayStyle} buildAiImg={featureFlags.buildAiImg} b2bHatch={featureFlags.b2bHatch} />
       <AnimatePresence>
         {featureFlags.experts && (
           <motion.div
@@ -103,7 +122,11 @@ function HomePage() {
       <ImageRevealSection />
       {featureFlags.hiwVersion === 'scroll' ? <HowItWorksSection /> : <HowItWorksTabs />}
       <TestimonialsSection />
-      <B2BBanner />
+      {featureFlags.b2bVersion === 'v2' ? <B2BLedgerV2Classic />
+        : featureFlags.b2bVersion === 'v2+' ? <B2BLedgerV2 />
+        : featureFlags.b2bVersion === 'v3' ? <B2BMomentumV3Classic />
+        : featureFlags.b2bVersion === 'v3+' ? <B2BMomentumV3 />
+        : <B2BBanner />}
       {!featureFlags.loggedIn && <PreFooterCTA />}
       <Footer />
       <AdminPanel flags={adminFlags} onToggle={handleToggle} />
@@ -136,6 +159,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/ai-builder-program" element={<AIBuilderProgram />} />
       <Route path="/ai" element={<AI />} />
+      <Route path="/blog/leland-relaunch" element={<PressRelease />} />
       <Route path="/career-centers" element={<CareerCenters />} />
       <Route path="/organizations" element={<Organizations />} />
     </Routes>
