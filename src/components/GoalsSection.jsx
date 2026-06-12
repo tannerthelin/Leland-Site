@@ -158,20 +158,18 @@ export default function GoalsSection({ pathwayStyle = 'classic', buildAiImg = '1
       <div className="section-container">
         {/* ── Intro ── */}
         <div className="goals-intro">
-          <h2 className="goals-intro-heading">Reach your most ambitious goals.</h2>
-          <div className="goals-intro-right">
-            <p className="goals-intro-body">
-              Leland connects you with world-class coaches and experts who have already done what you're trying to do.
-            </p>
-            {b2bHatch === 'intro' && (
-              <Link to="/ai" className="b2b-hatch-introlink">
-                <span className="b2b-hatch-eyebrow">For organizations</span>
-                <span>
-                  Make your team AI-native <span className="pathways-b2b-arrow" aria-hidden="true">&rarr;</span>
-                </span>
-              </Link>
-            )}
-          </div>
+          <h2 className="goals-intro-heading">The world is changing fast.<br />Leland helps you change with it.</h2>
+          <p className="goals-intro-body">
+            From expert-led programs to personalized guidance, Leland gives you everything you need to get where you're going.
+          </p>
+          {b2bHatch === 'intro' && (
+            <Link to="/ai" className="b2b-hatch-introlink">
+              <span className="b2b-hatch-eyebrow">For organizations</span>
+              <span>
+                Make your team AI-native <span className="pathways-b2b-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+            </Link>
+          )}
         </div>
 
         {/* ── Pathways ── */}

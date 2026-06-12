@@ -59,7 +59,7 @@ function HomePage() {
     pathwayStyle: 'image',
     buildAiImg: '3',
     b2bHatch: 'strip',
-    narrative: true,
+    narrative: false,
     b2bVersion: 'v2',
     emphasisStyle: 'line',
   })
