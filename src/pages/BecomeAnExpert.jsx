@@ -89,8 +89,8 @@ const WHO_BELONGS = [
   },
   {
     emoji: '💼',
-    title: 'Freelancers & Career Specialists',
-    desc: 'Recruiting, pivots, negotiation, PE, VC. Career expertise at every level is in high demand.',
+    title: 'Specialists in Any Field',
+    desc: "Finance, healthcare, law, real estate, design — if you've mastered your corner of the world and people come to you for advice, Leland is for you.",
   },
 ]
 
