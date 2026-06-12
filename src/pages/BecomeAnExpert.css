@@ -1003,7 +1003,14 @@
 .bae-hiw-title {
   font-size: 48px;
   color: var(--gray-dark);
-  margin-bottom: 24px;
+  margin-bottom: 12px;
+}
+
+.bae-hiw-sub {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 .bae-hiw-cta {

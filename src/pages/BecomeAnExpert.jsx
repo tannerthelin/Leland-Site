@@ -633,6 +633,7 @@ export default function BecomeAnExpert() {
       <section className="bae-hiw">
         <div className="section-container">
           <h2 className="bae-section-title bae-hiw-title">Apply in just 5 minutes.</h2>
+          <p className="bae-hiw-sub">Monetize your expertise and build connections with tomorrow&rsquo;s leaders.</p>
           <div className="bae-hiw-cta">
             <a href="#" className="bae-hero-cta">Apply now</a>
           </div>
@@ -643,6 +644,7 @@ export default function BecomeAnExpert() {
                   {s.img && <img src={s.img} alt="" className="bae-hiw-mockup-img" />}
                 </div>
                 <div className="bae-hiw-step-label">
+                  <span className="bae-hiw-number">{s.step}</span>
                   <p className="bae-hiw-step-desc">
                     <span className="bae-hiw-step-bold">{s.bold}</span>
                     <span className="bae-hiw-step-rest">{s.rest}</span>
