@@ -47,6 +47,10 @@ import Footer from '../components/Footer'
 import PreFooterCTA from '../components/PreFooterCTA'
 import './BecomeAnExpert.css'
 
+function getInitials(name) {
+  return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+}
+
 const ArrowRight = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14" />
@@ -171,8 +175,7 @@ const SOCIAL_PROOF_ITEMS = [
   {
     type: 'wide',
     bg: '#E8D5F5',
-    quote: "I've learned how to build a multi-six-figure business betting on myself.",
-    logo: 'Ben L.',
+    headline: "Join experts across hundreds of categories and industries",
     img: coach1,
   },
   {
@@ -186,6 +189,8 @@ const SOCIAL_PROOF_ITEMS = [
     bg: 'rgba(34, 34, 34, 0.05)',
     quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
     name: 'Krysta F.',
+    role: 'Medical & Graduate School Expert',
+    avatar: 'https://design.joinleland.com/coach_images/Krysta%20F.png',
   },
   {
     type: 'video',
@@ -202,24 +207,7 @@ const SOCIAL_PROOF_ITEMS = [
     type: 'wide',
     bg: '#FFD6E0',
     quote: "Leland encourages experts to focus on delivering results rather than marketing themselves.",
-    logo: 'Saad A.',
     img: coach8,
-  },
-  {
-    type: 'video',
-    src: 'https://design.joinleland.com/video/testimonials/Machmud%20M%20-%20Law%20School%20Coach.mp4',
-    name: 'Machmud M.',
-    role: 'Law School Expert',
-  },
-  {
-    type: 'split',
-    top: { bg: 'rgba(34, 34, 34, 0.05)', stat: '94%', label: 'Client satisfaction' },
-    bottom: {
-      type: 'press',
-      bg: 'rgba(34, 34, 34, 0.05)',
-      quote: "Leland is one of the few platforms that has earned my complete trust.",
-      name: 'Saad A.',
-    },
   },
   {
     type: 'video',
@@ -228,10 +216,28 @@ const SOCIAL_PROOF_ITEMS = [
     role: 'Management Consulting Expert',
   },
   {
+    type: 'split',
+    top: { type: 'quote', bg: 'rgba(34, 34, 34, 0.05)', quote: "Leland is one of the few platforms that has earned my complete trust.", name: 'Saad A.', role: 'GRE Expert', avatar: 'https://design.joinleland.com/coach_images/Saad%20A.png' },
+    bottom: {
+      type: 'press',
+      bg: 'rgba(34, 34, 34, 0.05)',
+      quote: "I've learned how to build a multi-six-figure business betting on myself.",
+      name: 'Ben L.',
+      role: 'MBA Coach & AI Expert',
+      avatar: 'https://design.joinleland.com/coach_images/Ben%20L.png',
+    },
+  },
+  {
     type: 'thin',
     bg: 'rgba(34, 34, 34, 0.05)',
     img: phoneMockup,
     imgOnly: true,
+  },
+  {
+    type: 'video',
+    src: 'https://design.joinleland.com/video/testimonials/Machmud%20M%20-%20Law%20School%20Coach.mp4',
+    name: 'Machmud M.',
+    role: 'Law School Expert',
   },
 ]
 
@@ -303,22 +309,25 @@ function SocialProofTicker() {
   return (
     <section className="bae-social-proof">
       <div className="bae-social-proof-ticker" ref={tickerRef} {...handlers}>
-        <button className="bae-ticker-arrow bae-ticker-arrow-left" onClick={() => scrollBy(300)} aria-label="Scroll left">
+        <button className="bae-ticker-arrow bae-ticker-arrow-left" onClick={() => scrollBy(500)} aria-label="Scroll left">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         </button>
-        <button className="bae-ticker-arrow bae-ticker-arrow-right" onClick={() => scrollBy(-300)} aria-label="Scroll right">
+        <button className="bae-ticker-arrow bae-ticker-arrow-right" onClick={() => scrollBy(-500)} aria-label="Scroll right">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </button>
         <div ref={trackRef} className="bae-social-proof-track">
           {items.map((item, i) => {
             if (item.type === 'wide') {
               return (
-                <div className="bae-sp-col bae-sp-wide" key={i}>
+                <div className={`bae-sp-col bae-sp-wide${item.headline ? ' bae-sp-wide-narrow' : ''}`} key={i}>
                   <div className="bae-sp-wide-card" style={{ background: item.bg }}>
                     {item.img && <img src={item.img} alt="" className="bae-sp-bg-img" />}
                     <div className="bae-sp-wide-bottom">
-                      <p className="bae-sp-wide-quote">&ldquo;{item.quote}&rdquo;</p>
-                      <span className="bae-sp-wide-logo">{item.logo}</span>
+                      {item.headline
+                        ? <p className="bae-sp-wide-headline">{item.headline}</p>
+                        : <><p className="bae-sp-wide-quote">{item.quote}</p>
+                           <span className="bae-sp-press-name bae-sp-wide-name">{item.logo}</span></>
+                      }
                     </div>
                   </div>
                 </div>
@@ -330,7 +339,13 @@ function SocialProofTicker() {
                   <div className="bae-sp-quote-long-card" style={{ background: item.bg }}>
                     <span className="bae-sp-quote-long-mark">&ldquo;</span>
                     <p className="bae-sp-quote-long-text">{item.quote}</p>
-                    <span className="bae-sp-press-name">{item.name}</span>
+                    <div className="bae-sp-byline bae-sp-byline-spread">
+                      <div className="bae-sp-attribution">
+                        <span className="bae-sp-press-name">{item.name}</span>
+                        {item.role && <span className="bae-sp-press-role">{item.role}</span>}
+                      </div>
+                      <span className="bae-sp-avatar">{item.avatar ? <img src={item.avatar} alt={item.name} /> : getInitials(item.name)}</span>
+                    </div>
                   </div>
                 </div>
               )
@@ -348,11 +363,6 @@ function SocialProofTicker() {
                       playsInline
                       style={{ pointerEvents: 'none' }}
                     />
-                    <span className="bae-sp-play">
-                      <svg width="40" height="40" viewBox="0 0 20 20" fill="none">
-                        <path d="M6.5 4.5L15.5 10L6.5 15.5V4.5Z" fill="white" />
-                      </svg>
-                    </span>
                     <div className="bae-sp-thin-bottom">
                       <span className="bae-sp-thin-label">{item.name}</span>
                       <span className="bae-sp-thin-sublabel">{item.role}</span>
@@ -400,22 +410,42 @@ function SocialProofTicker() {
                   <div className="bae-sp-split-card bae-sp-split-img">
                     <img src={item.top.img} alt="" className="bae-sp-bg-img" />
                   </div>
+                ) : item.top.type === 'quote' ? (
+                  <div className="bae-sp-split-card bae-sp-split-press bae-sp-split-quote-style" style={{ background: item.top.bg }}>
+                    <span className="bae-sp-quote-long-mark bae-sp-split-quote-mark">&ldquo;</span>
+                    <p className="bae-sp-press-quote">{item.top.quote}</p>
+                    <div className="bae-sp-byline bae-sp-byline-spread">
+                      <div className="bae-sp-attribution">
+                        <span className="bae-sp-press-name">{item.top.name}</span>
+                        {item.top.role && <span className="bae-sp-press-role">{item.top.role}</span>}
+                      </div>
+                      <span className="bae-sp-avatar">{item.top.avatar ? <img src={item.top.avatar} alt={item.top.name} /> : getInitials(item.top.name)}</span>
+                    </div>
+                  </div>
                 ) : (
                   <div
                     className="bae-sp-split-card"
                     style={{ background: item.top.bg, color: item.top.color === 'light' ? 'var(--white)' : 'var(--gray-dark)' }}
                   >
+                    {item.top.prefix && <span className="bae-sp-split-label">{item.top.prefix}</span>}
                     <span className="bae-sp-split-stat">{item.top.stat}</span>
                     <span className="bae-sp-split-label">{item.top.label}</span>
                   </div>
                 )}
                 {item.bottom.type === 'press' ? (
-                  <div className="bae-sp-split-card bae-sp-split-press" style={{ background: item.bottom.bg }}>
-                    <p className="bae-sp-press-quote">&ldquo;{item.bottom.quote}&rdquo;</p>
-                    {item.bottom.name
-                      ? <span className="bae-sp-press-name">{item.bottom.name}</span>
-                      : <img src={item.bottom.logo} alt="" className="bae-sp-press-logo" />
-                    }
+                  <div className="bae-sp-split-card bae-sp-split-press bae-sp-split-quote-style" style={{ background: item.bottom.bg }}>
+                    <span className="bae-sp-quote-long-mark bae-sp-split-quote-mark">&ldquo;</span>
+                    <p className="bae-sp-press-quote">{item.bottom.quote}</p>
+                    <div className="bae-sp-byline bae-sp-byline-spread">
+                      {item.bottom.name
+                        ? <div className="bae-sp-attribution">
+                            <span className="bae-sp-press-name">{item.bottom.name}</span>
+                            {item.bottom.role && <span className="bae-sp-press-role">{item.bottom.role}</span>}
+                          </div>
+                        : <img src={item.bottom.logo} alt="" className="bae-sp-press-logo" />
+                      }
+                      <span className="bae-sp-avatar">{item.bottom.avatar ? <img src={item.bottom.avatar} alt={item.bottom.name} /> : getInitials(item.bottom.name)}</span>
+                    </div>
                   </div>
                 ) : (
                   <div

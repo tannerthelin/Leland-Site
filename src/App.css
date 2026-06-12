@@ -1367,13 +1367,7 @@ button.nav-link {
 
 .experts-ticker {
   width: 100%;
-  cursor: grab;
-  user-select: none;
   position: relative;
-}
-
-.experts-ticker:active {
-  cursor: grabbing;
 }
 
 .experts-track {

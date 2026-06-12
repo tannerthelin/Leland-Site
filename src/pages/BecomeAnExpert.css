@@ -623,13 +623,7 @@
 
 .bae-social-proof-ticker {
   width: 100%;
-  cursor: grab;
-  user-select: none;
   position: relative;
-}
-
-.bae-social-proof-ticker:active {
-  cursor: grabbing;
 }
 
 .bae-social-proof-track {
@@ -684,6 +678,7 @@
 }
 
 .bae-sp-wide { width: 460px; }
+.bae-sp-wide-narrow { width: 420px; }
 .bae-sp-thin { width: 300px; }
 .bae-sp-quote-long { width: 420px; }
 .bae-sp-split {
@@ -715,6 +710,7 @@
   overflow: hidden;
 }
 
+
 .bae-sp-wide-card::after {
   content: '';
   position: absolute;
@@ -738,18 +734,23 @@
 
 .bae-sp-wide-quote {
   font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.45;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--white);
 }
 
-.bae-sp-wide-logo {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 500;
+.bae-sp-wide-headline {
+  font-family: var(--font-body);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--white);
-  opacity: 0.7;
+}
+
+.bae-sp-wide-name {
+  color: var(--white) !important;
+  opacity: 0.9;
 }
 
 /* ── Long quote card ── */
@@ -774,7 +775,7 @@
 
 .bae-sp-quote-long-text {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--gray-dark);
@@ -870,6 +871,7 @@
   font-size: 44px;
   font-weight: 500;
   line-height: 1;
+  word-break: break-word;
 }
 
 .bae-sp-split-suffix {
@@ -880,7 +882,7 @@
 .bae-sp-split-label {
   font-size: 14px;
   font-weight: 500;
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
 /* ── Image split card ── */
@@ -898,9 +900,31 @@
   gap: 12px;
 }
 
+.bae-sp-split-quote-style {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.bae-sp-byline-spread {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.bae-sp-split-quote-mark {
+  font-size: 48px !important;
+}
+
+.bae-sp-split-quote-style .bae-sp-press-quote {
+  font-size: 17px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
 .bae-sp-press-quote {
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.45;
   color: var(--gray-dark);
@@ -911,12 +935,58 @@
   width: auto;
 }
 
+.bae-sp-attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bae-sp-press-role {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: #666666;
+}
+
 .bae-sp-press-name {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
-  color: var(--gray-light);
-  opacity: 0.6;
+  color: #555555;
+}
+
+.bae-sp-byline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bae-sp-byline-right {
+  align-self: flex-end;
+}
+
+.bae-sp-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(34, 34, 34, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(34, 34, 34, 0.45);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bae-sp-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* ── 7 · How It Works ── */
@@ -1070,11 +1140,12 @@
   }
 
   .bae-sp-wide { width: 345px; }
+  .bae-sp-wide-narrow { width: 315px; }
   .bae-sp-thin { width: 225px; }
   .bae-sp-quote-long { width: 315px; }
   .bae-sp-split { width: 275px; }
 
-  .bae-sp-wide-quote { font-size: 14px; }
+  .bae-sp-wide-quote { font-size: 17px; }
   .bae-sp-quote-long-text { font-size: 13px; }
   .bae-sp-wide-bottom { padding: 20px 20px 18px; }
   .bae-sp-quote-long-card { padding: 22px 22px 20px; }
@@ -1098,8 +1169,7 @@
   }
 
   .bae-who {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 40px 0;
   }
 
   .bae-social-proof .section-container {
@@ -1178,13 +1248,18 @@
     font-size: 28px;
   }
 
+  .bae-category-chip {
+    font-size: 13px;
+    padding: 9px 16px;
+  }
+
   .bae-categories,
   .bae-features,
   .bae-testimonials,
   .bae-hiw,
   .bae-faq {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
 }

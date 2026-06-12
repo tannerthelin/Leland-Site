@@ -7,8 +7,11 @@ export default function useTickerDrag(duration) {
   const rafRef = useRef(null)
   const lastTimeRef = useRef(null)
   const drag = useRef({ active: false, startX: 0 })
-  const hovering = useRef(false)
   const externalPause = useRef(false)
+  const hoverRef = useRef(false)
+  // Speed multiplier: 1 = full auto-scroll, 0 = stopped. Smoothly tweened.
+  const speedRef = useRef(1)
+  const targetSpeedRef = useRef(1)
 
   function getHalfWidth() {
     return trackRef.current ? trackRef.current.scrollWidth / 2 : 0
@@ -37,31 +40,40 @@ export default function useTickerDrag(duration) {
     const elapsed = Math.min(timestamp - lastTimeRef.current, 64)
     lastTimeRef.current = timestamp
 
-    posRef.current -= (hw / (duration * 1000)) * elapsed
-    posRef.current = wrap(posRef.current)
-    applyPos()
-    rafRef.current = requestAnimationFrame(tick)
-  }
+    // Smoothly tween speed toward target (ease factor per ms)
+    const ease = 1 - Math.pow(0.985, elapsed)
+    speedRef.current += (targetSpeedRef.current - speedRef.current) * ease
 
-  function start() {
-    if (rafRef.current || drag.current.active || hovering.current || externalPause.current) return
-    lastTimeRef.current = null
-    rafRef.current = requestAnimationFrame(tick)
-  }
+    if (speedRef.current > 0.001) {
+      posRef.current -= (hw / (duration * 1000)) * elapsed * speedRef.current
+      posRef.current = wrap(posRef.current)
+      applyPos()
+    }
 
-  function stop() {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current)
+    // Keep ticking while speed is non-zero or still decelerating
+    if (speedRef.current > 0.001 || targetSpeedRef.current > 0) {
+      rafRef.current = requestAnimationFrame(tick)
+    } else {
       rafRef.current = null
     }
-    lastTimeRef.current = null
   }
 
-  // Start on mount
+  function startTick() {
+    if (rafRef.current) return
+    lastTimeRef.current = null
+    rafRef.current = requestAnimationFrame(tick)
+  }
+
+  function setSpeed(target) {
+    targetSpeedRef.current = target
+    if (target > 0) startTick()
+  }
+
   useEffect(() => {
-    // Wait a frame so scrollWidth is available
-    const id = requestAnimationFrame(() => start())
-    return () => { cancelAnimationFrame(id); stop() }
+    const id = requestAnimationFrame(() => {
+      if (!externalPause.current) startTick()
+    })
+    return () => { cancelAnimationFrame(id); if (rafRef.current) cancelAnimationFrame(rafRef.current) }
   }, [])
 
   // Non-passive touch move
@@ -81,7 +93,9 @@ export default function useTickerDrag(duration) {
   }, [])
 
   function dragStart(clientX) {
-    stop()
+    targetSpeedRef.current = 0
+    speedRef.current = 0
+    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null }
     drag.current = { active: true, startX: clientX }
   }
 
@@ -96,27 +110,53 @@ export default function useTickerDrag(duration) {
   function dragEnd() {
     if (!drag.current.active) return
     drag.current.active = false
-    if (!hovering.current && !externalPause.current) start()
+    if (!externalPause.current) setSpeed(1)
   }
 
-  function scrollBy(delta) {
-    posRef.current = wrap(posRef.current + delta)
-    applyPos()
+  function smoothScrollBy(delta) {
+    // Cancel any running animation
+    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null }
+    targetSpeedRef.current = 0
+    speedRef.current = 0
+
+    const startPos = posRef.current
+    const startTime = performance.now()
+    const animDuration = 600
+
+    function easeOut(t) { return 1 - (1 - t) ** 4 }
+
+    function animate(now) {
+      const elapsed = Math.min(now - startTime, animDuration)
+      const t = elapsed / animDuration
+      posRef.current = startPos + delta * easeOut(t)
+      // Soft wrap: keep in bounds without a visual jump
+      const hw = getHalfWidth()
+      if (hw) {
+        if (posRef.current > 0) posRef.current -= hw
+        else if (posRef.current < -hw) posRef.current += hw
+      }
+      applyPos()
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(animate)
+      } else {
+        posRef.current = wrap(startPos + delta)
+        applyPos()
+        rafRef.current = null
+        if (!externalPause.current && !hoverRef.current) setSpeed(1)
+      }
+    }
+    rafRef.current = requestAnimationFrame(animate)
   }
 
-  // Exposed for external pause control (e.g. video modal)
-  function pause() { externalPause.current = true; stop() }
-  function resume() { externalPause.current = false; start() }
+  function pause() { externalPause.current = true; setSpeed(0) }
+  function resume() { externalPause.current = false; setSpeed(1) }
 
   const handlers = {
-    onMouseEnter: () => { hovering.current = true; stop() },
-    onMouseLeave: () => { hovering.current = false; if (!drag.current.active) start() },
-    onMouseDown: (e) => dragStart(e.clientX),
-    onMouseMove: (e) => dragMove(e.clientX),
-    onMouseUp: () => dragEnd(),
+    onMouseEnter: () => { hoverRef.current = true; setSpeed(0) },
+    onMouseLeave: () => { hoverRef.current = false; if (!drag.current.active && !externalPause.current) setSpeed(1) },
     onTouchStart: (e) => dragStart(e.touches[0].clientX),
     onTouchEnd: () => dragEnd(),
   }
 
-  return { tickerRef, trackRef, drag, handlers, pause, resume, scrollBy }
+  return { tickerRef, trackRef, drag, handlers, pause, resume, scrollBy: smoothScrollBy }
 }
