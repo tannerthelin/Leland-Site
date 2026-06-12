@@ -35,24 +35,41 @@ export default function SoftBlurText({ text, delay = 0, className }) {
     return () => controls.forEach((c) => { c.stop?.(); c.cancel?.() })
   }, [delay, text])
 
-  const chars = Array.from(text)
+  const words = text.split(' ')
+  let charIndex = 0
 
   return (
     <span ref={containerRef} className={className}>
-      {chars.map((char, i) => (
-        <span
-          key={i}
-          className="soft-blur-char"
-          data-space={char === ' ' ? true : undefined}
-          style={{
-            display: 'inline-block',
-            whiteSpace: 'pre',
-            willChange: 'transform, opacity, filter',
-            backfaceVisibility: 'hidden',
-            ...(char !== ' ' ? { opacity: 0 } : {}),
-          }}
-        >
-          {char}
+      {words.map((word, wi) => (
+        <span key={wi}>
+          <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+            {Array.from(word).map((char) => {
+              const i = charIndex++
+              return (
+                <span
+                  key={i}
+                  className="soft-blur-char"
+                  style={{
+                    display: 'inline-block',
+                    willChange: 'transform, opacity, filter',
+                    backfaceVisibility: 'hidden',
+                    opacity: 0,
+                  }}
+                >
+                  {char}
+                </span>
+              )
+            })}
+          </span>
+          {wi < words.length - 1 && (
+            <span
+              className="soft-blur-char"
+              data-space="true"
+              style={{ display: 'inline-block', whiteSpace: 'pre' }}
+            >
+              {' '}
+            </span>
+          )}
         </span>
       ))}
     </span>

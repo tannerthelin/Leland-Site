@@ -41,6 +41,9 @@ import coach7 from '../assets/img/coach-testimonials/coach-7.jpg'
 import coach8 from '../assets/img/coach-testimonials/coach-8.jpg'
 import coach4 from '../assets/img/coach-testimonials/coach-4.jpg'
 import phoneMockup from '../assets/img/coach-testimonials/phone-mockup.png'
+import hiwApplication from '../assets/img/how-it-works/Application.png'
+import hiwProfile from '../assets/img/how-it-works/Profile setup.png'
+import hiwSearch from '../assets/img/how-it-works/Search Results.png'
 import bg1 from '../assets/img/background-textures/bg-1.png'
 import bg2 from '../assets/img/background-textures/bg-2.png'
 import Footer from '../components/Footer'
@@ -246,9 +249,9 @@ const FEATURES_PER_ROW = 3
 const INITIAL_VISIBLE = VISIBLE_FEATURE_ROWS * FEATURES_PER_ROW
 
 const HOW_IT_WORKS = [
-  { step: '1', bold: 'Submit a short application', rest: ' telling us about your background and expertise.', color: 'var(--blue)', img: 'https://static.joinleland.com/become-an-expert/Application.png' },
-  { step: '2', bold: 'Build your expert profile', rest: ', set your pricing, and define your availability.', color: '#F3F1E6', img: 'https://static.joinleland.com/become-an-expert/Profile%20setup.png' },
-  { step: '3', bold: 'Clients discover you', rest: ' through Leland and book sessions directly.', color: '#9F5B34', img: 'https://static.joinleland.com/become-an-expert/Search%20Results.png' },
+  { step: '1', bold: 'Submit a short application', rest: ' telling us about your background and expertise.', color: 'var(--blue)', img: hiwApplication },
+  { step: '2', bold: 'Build your expert profile', rest: ', set your pricing, and define your availability.', color: '#F3F1E6', img: hiwProfile },
+  { step: '3', bold: 'Clients discover you', rest: ' through Leland and book sessions directly.', color: '#9F5B34', img: hiwSearch },
 ]
 
 function FeatureCard({ icon, title, desc, link }) {
@@ -476,6 +479,7 @@ function SocialProofTicker() {
 
 export default function BecomeAnExpert() {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
+  const [showAllFaq, setShowAllFaq] = useState(false)
   const [openWho, setOpenWho] = useState(null)
 
   return (
@@ -505,9 +509,9 @@ export default function BecomeAnExpert() {
               </p>
             </div>
             <div className="bae-who-logos" aria-hidden="true">
-              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 12,  left: 108, opacity: 0.44, filter: 'invert(1)' }} alt="" />
+              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 42,  left: 195, opacity: 0.44, filter: 'invert(1)' }} alt="" />
               <img src={goldmanLogo}  className="bae-who-logo" style={{ width: 64,  top: 120, left: 215, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
-              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 88,  top: 42,  left: 195, opacity: 0.30, filter: 'invert(1)' }} alt="" />
+              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 88,  top: 12,  left: 108, opacity: 0.30, filter: 'invert(1)' }} alt="" />
               <img src={openaiLogo}   className="bae-who-logo" style={{ width: 58,  top: 14,  left: 318, opacity: 0.30, filter: 'grayscale(1)' }} alt="" />
               <img src={bcgLogo}      className="bae-who-logo" style={{ width: 50,  top: 118, left: 112, opacity: 0.28, filter: 'invert(1)' }} alt="" />
               <img src={spotifyLogo}  className="bae-who-logo" style={{ width: 58,  top: 114, left: 330, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
@@ -628,7 +632,7 @@ export default function BecomeAnExpert() {
       {/* 7 · How It Works */}
       <section className="bae-hiw">
         <div className="section-container">
-          <h2 className="bae-section-title bae-hiw-title">Apply in less than five minutes</h2>
+          <h2 className="bae-section-title bae-hiw-title">Apply in just 5 minutes.</h2>
           <div className="bae-hiw-cta">
             <a href="#" className="bae-hero-cta">Apply now</a>
           </div>
@@ -639,7 +643,6 @@ export default function BecomeAnExpert() {
                   {s.img && <img src={s.img} alt="" className="bae-hiw-mockup-img" />}
                 </div>
                 <div className="bae-hiw-step-label">
-                  <span className="bae-hiw-number">{s.step}</span>
                   <p className="bae-hiw-step-desc">
                     <span className="bae-hiw-step-bold">{s.bold}</span>
                     <span className="bae-hiw-step-rest">{s.rest}</span>
@@ -655,13 +658,27 @@ export default function BecomeAnExpert() {
       <section className="bae-faq">
         <div className="section-container">
           <h2 className="bae-section-title">Frequently asked questions</h2>
-          <div className="bae-faq-list">
-            {FAQ_ITEMS.map((item) => (
-              <details className="bae-faq-item" key={item.q}>
-                <summary className="bae-faq-question">{item.q}</summary>
-                <p className="bae-faq-answer">{item.a}</p>
-              </details>
-            ))}
+          <div className={`bae-faq-wrap${showAllFaq ? ' bae-faq-expanded' : ''}`}>
+            <div className="bae-faq-list">
+              {FAQ_ITEMS.map((item) => (
+                <details className="bae-faq-item" key={item.q}>
+                  <summary className="bae-faq-question">{item.q}</summary>
+                  <p className="bae-faq-answer">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+          <div className="bae-faq-toggle">
+            <button className="bae-features-show-more" onClick={() => setShowAllFaq(!showAllFaq)}>
+              {showAllFaq ? 'Show less' : 'View all'}
+              <svg
+                className={`bae-features-chevron${showAllFaq ? ' bae-features-chevron-up' : ''}`}
+                width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import useTickerDrag from '../hooks/useTickerDrag'
+import SoftBlurText from './SoftBlurText'
 import expertKelsey from '../assets/img/expert-headshots/kelsey-kephart.png'
 import expertKerry from '../assets/img/expert-headshots/kerry-patriarca.png'
 import expertAndrew from '../assets/img/expert-headshots/andrew-quillen.png'
@@ -36,7 +37,9 @@ export default function ExpertsSection({ heading, subtitle, className, cta }) {
   return (
     <section className={`experts-section${className ? ` ${className}` : ''}`}>
       <div className="experts-header">
-        <h2 className="experts-heading">{heading || "Experts who've done the work."}</h2>
+        <h2 className="experts-heading">
+          <SoftBlurText text={heading || "Experts who've done the work."} delay={0.1} />
+        </h2>
         <p className="experts-sub">
           {subtitle || "Now they're here to help you do the same—with clear, honest advice from lived experience."}
         </p>

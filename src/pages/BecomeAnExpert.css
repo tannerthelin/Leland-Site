@@ -1009,7 +1009,24 @@
 .bae-hiw-cta {
   text-align: center;
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 48px;
+}
+
+.bae-hiw-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  transition: opacity 0.15s ease;
+}
+
+.bae-hiw-text-link:hover {
+  opacity: 0.6;
 }
 
 .bae-hiw-steps {
@@ -1050,7 +1067,8 @@
   height: 28px;
   min-width: 28px;
   border-radius: 50%;
-  background: var(--yellow);
+  background: var(--white);
+  border: 1.5px solid #D8D8D8;
   font-size: 14px;
   font-weight: 700;
   color: var(--gray-dark);
@@ -1081,6 +1099,34 @@
 .bae-faq .section-container {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.bae-faq-wrap {
+  position: relative;
+}
+
+.bae-faq-wrap:not(.bae-faq-expanded) .bae-faq-list {
+  max-height: 320px;
+  overflow: hidden;
+}
+
+.bae-faq-wrap:not(.bae-faq-expanded) .bae-faq-list::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #F9F9F9);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bae-faq-toggle {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 24px;
 }
 
 .bae-faq-list {
