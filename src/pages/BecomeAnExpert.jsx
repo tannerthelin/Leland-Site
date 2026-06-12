@@ -246,9 +246,9 @@ const FEATURES_PER_ROW = 3
 const INITIAL_VISIBLE = VISIBLE_FEATURE_ROWS * FEATURES_PER_ROW
 
 const HOW_IT_WORKS = [
-  { step: '1', bold: 'Submit a short application', rest: ' telling us about your background and expertise.', color: 'var(--blue)' },
-  { step: '2', bold: 'Build your expert profile', rest: ', set your pricing, and define your availability.', color: '#F3F1E6' },
-  { step: '3', bold: 'Clients discover you', rest: ' through Leland and book sessions directly.', color: '#9F5B34' },
+  { step: '1', bold: 'Submit a short application', rest: ' telling us about your background and expertise.', color: 'var(--blue)', img: 'https://static.joinleland.com/become-an-expert/Application.png' },
+  { step: '2', bold: 'Build your expert profile', rest: ', set your pricing, and define your availability.', color: '#F3F1E6', img: 'https://static.joinleland.com/become-an-expert/Profile%20setup.png' },
+  { step: '3', bold: 'Clients discover you', rest: ' through Leland and book sessions directly.', color: '#9F5B34', img: 'https://static.joinleland.com/become-an-expert/Search%20Results.png' },
 ]
 
 function FeatureCard({ icon, title, desc, link }) {
@@ -635,7 +635,9 @@ export default function BecomeAnExpert() {
           <div className="bae-hiw-steps">
             {HOW_IT_WORKS.map((s) => (
               <div className="bae-hiw-step" key={s.step}>
-                <div className="bae-hiw-mockup-area" style={{ background: s.color }} />
+                <div className="bae-hiw-mockup-area" style={{ background: s.color }}>
+                  {s.img && <img src={s.img} alt="" className="bae-hiw-mockup-img" />}
+                </div>
                 <div className="bae-hiw-step-label">
                   <span className="bae-hiw-number">{s.step}</span>
                   <p className="bae-hiw-step-desc">

@@ -1025,12 +1025,15 @@
 }
 
 .bae-hiw-mockup-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 32px;
-  min-height: 320px;
   overflow: hidden;
+  border-radius: 16px;
+  line-height: 0;
+}
+
+.bae-hiw-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .bae-hiw-step-label {
