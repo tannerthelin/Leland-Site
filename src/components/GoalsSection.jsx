@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import buildingIcon from '../assets/icons/modern-building-4.svg'
 // TODO(imagery — CEO feedback): swap for OUTCOME, not process. Show what an AI-native
 // person can DO, not "a person at a computer learning." Chandler to supply final asset.
 import imgLearnAI from '../assets/img/homepage-cards/learn-ai.png'
@@ -160,7 +161,7 @@ export default function GoalsSection({ pathwayStyle = 'classic', buildAiImg = '1
         <div className="goals-intro">
           <h2 className="goals-intro-heading">The world is changing fast.<br />Leland helps you change with it.</h2>
           <p className="goals-intro-body">
-            From expert-led programs to personalized guidance, Leland gives you everything you need to get where you're going.
+            AI is rapidly changing how careers and businesses are built. No matter what your goals are, Leland is here to help.
           </p>
           {b2bHatch === 'intro' && (
             <Link to="/ai" className="b2b-hatch-introlink">
@@ -214,11 +215,13 @@ export default function GoalsSection({ pathwayStyle = 'classic', buildAiImg = '1
             Treatment toggled via AdminPanel "B2B Hatch": none | pill | label | intro */}
         {b2bHatch === 'strip' && (
           <Link to="/ai" className="b2b-hatch-strip">
-            <span className="b2b-hatch-strip-left">
-              <span className="b2b-hatch-strip-label">For organizations</span>
-              <span className="b2b-hatch-strip-title">Make your team AI-native</span>
+            <img src={buildingIcon} alt="" className="b2b-hatch-strip-icon" />
+            <span className="b2b-hatch-strip-text"><strong>Leland for teams:</strong> train your people, deploy AI in your organization, and hire AI-native talent.</span>
+            <span className="b2b-hatch-strip-arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </span>
-            <span className="pathways-b2b-arrow" aria-hidden="true">&rarr;</span>
           </Link>
         )}
         {b2bHatch === 'label' && (

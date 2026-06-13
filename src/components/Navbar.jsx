@@ -4,6 +4,10 @@ import { motion, AnimatePresence } from 'motion/react'
 import logoWhite from '../assets/logos/logo-white.svg'
 import logoBlack from '../assets/logos/logo-black.svg'
 import profilePic from '../assets/img/profile-photos/pic-15.png'
+import iconUpskill from '../assets/icons/upskill.svg'
+import iconAiSphere from '../assets/icons/ai-sphere.svg'
+import iconAddCircle from '../assets/icons/add-circle.svg'
+import iconGlobeSearch from '../assets/icons/globe-search.svg'
 
 const NotificationsIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ vectorEffect: 'non-scaling-stroke' }}>
@@ -47,24 +51,86 @@ const TeamsIcon = () => (
   </svg>
 )
 
-const ORG_NAV_ITEMS = [
-  { label: 'For universities', to: '/career-centers', icon: <UniversityIcon /> },
-  { label: 'For teams',        to: '/organizations',  icon: <TeamsIcon /> },
+const AiIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+  </svg>
+)
+
+const OutplacementIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <polyline points="16 11 18 13 22 9"/>
+  </svg>
+)
+
+const StudentIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+    <path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/>
+  </svg>
+)
+
+const PartnerIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </svg>
+)
+
+const CareerCenterIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </svg>
+)
+
+const HrIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>
+)
+
+const OtherPartnersIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="7" height="7" rx="1"/>
+    <rect x="14" y="3" width="7" height="7" rx="1"/>
+    <rect x="3" y="14" width="7" height="7" rx="1"/>
+    <rect x="14" y="14" width="7" height="7" rx="1"/>
+  </svg>
+)
+
+const SOLUTIONS = [
+  { label: 'Upskill your people', desc: 'Train your team to build and ship with AI', href: 'https://leland.ai/program', icon: iconUpskill },
+  { label: 'Deploy agentic workflows', desc: 'Scope, build, and run AI-native systems', href: 'https://joinleland.typeform.com/to/nXD9kytE', icon: iconAiSphere },
+  { label: 'Hire AI-native talent', desc: 'Proven builders, ready to join your team', href: 'https://leland.ai/recruit', icon: iconAddCircle },
+  { label: 'Outplacement', desc: 'Support employees through career transitions', href: 'https://partner.joinleland.com/outplacement', icon: iconGlobeSearch },
+]
+
+const TEAMS = [
+  { label: 'Universities', href: 'https://partner.joinleland.com/universities' },
+  { label: 'HR & People Teams', href: 'https://leland.ai' },
+  { label: 'Other Partners', href: 'https://leland.ai' },
 ]
 
 function NavLinks({ loggedIn }) {
   const [orgOpen, setOrgOpen] = useState(false)
-  const wrapperRef = useRef(null)
+  const closeTimer = useRef(null)
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        setOrgOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+  const handleEnter = () => {
+    clearTimeout(closeTimer.current)
+    setOrgOpen(true)
+  }
+
+  const handleLeave = () => {
+    closeTimer.current = setTimeout(() => setOrgOpen(false), 150)
+  }
+
+  useEffect(() => () => clearTimeout(closeTimer.current), [])
 
   return (
     <div className="nav-links">
@@ -82,35 +148,44 @@ function NavLinks({ loggedIn }) {
         <>
           <Link to="/reviews" className="nav-link">Reviews</Link>
           <Link to="/become-an-expert" className="nav-link">Become an expert</Link>
-          <div className="nav-dropdown-wrapper" ref={wrapperRef}>
-            <button className={`nav-link${orgOpen ? ' nav-link-active' : ''}`} onClick={() => setOrgOpen(o => !o)}>
+          <div className="nav-dropdown-wrapper" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+            <button className={`nav-link${orgOpen ? ' nav-link-active' : ''}`}>
               For organizations <ChevronDown />
             </button>
             <AnimatePresence>
               {orgOpen && (
                 <motion.div
-                  className="nav-dropdown"
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
+                  className="nav-mega"
+                  initial={{ opacity: 0, y: -6, x: '-50%' }}
+                  animate={{ opacity: 1, y: 0, x: '-50%' }}
+                  exit={{ opacity: 0, y: -6, x: '-50%' }}
                   transition={{ duration: 0.15, ease: 'easeOut' }}
                 >
-                  {ORG_NAV_ITEMS.map(item => (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      className="nav-dropdown-item"
-                      onClick={() => setOrgOpen(false)}
-                    >
-                      {item.icon}
-                      {item.label}
-                    </Link>
-                  ))}
-                  <div className="nav-dropdown-divider" />
-                  <a href="#" className="nav-dropdown-cta" onClick={() => setOrgOpen(false)}>
-                    Talk to a team member
-                    <ChevronRight />
-                  </a>
+                  <div className="nav-mega-body">
+                    <div className="nav-mega-columns">
+                      <div className="nav-mega-col">
+                        <span className="nav-mega-label">Use Cases</span>
+                        {SOLUTIONS.map(item => (
+                          <a key={item.label} href={item.href} className="nav-mega-link" onClick={() => setOrgOpen(false)}>
+                            <img src={item.icon} alt="" className="nav-mega-link-icon" />
+                            <span className="nav-mega-link-text">
+                              <span className="nav-mega-link-title">{item.label}</span>
+                              <span className="nav-mega-link-desc">{item.desc}</span>
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                      <div className="nav-mega-col">
+                        <span className="nav-mega-label">By Team</span>
+                        {TEAMS.map(item => (
+                          <a key={item.label} href={item.href} className="nav-mega-textlink" onClick={() => setOrgOpen(false)}>
+                            {item.label}
+                          </a>
+                        ))}
+                        <a href="https://joinleland.typeform.com/to/nXD9kytE" className="nav-mega-book-btn" onClick={() => setOrgOpen(false)}>Book a call</a>
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

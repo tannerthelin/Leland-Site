@@ -36,16 +36,16 @@ const PARTICIPANTS = [
 
 const STEPS = [
   {
-    title: 'Work 1-on-1 with an expert',
-    desc: "Get matched with a world-class coach who's already done what you're trying to do.",
-    cta: 'Find an expert',
-    href: '#', // typeform later
-  },
-  {
     title: 'Join a free livestream',
     desc: 'Watch live sessions with industry experts, ask questions in real-time, and connect with peers.',
     cta: 'Browse upcoming livestreams',
     href: 'https://www.joinleland.com/events',
+  },
+  {
+    title: 'Work 1-on-1 with an expert',
+    desc: "Get matched with a world-class coach who's already done what you're trying to do.",
+    cta: 'Find an expert',
+    href: '#', // typeform later
   },
   {
     title: 'Enroll in a program',
@@ -183,7 +183,7 @@ function bgStyle(img) {
 }
 
 function SharedVisual({ activeTab }) {
-  const showMid = activeTab === 1
+  const showMid = activeTab === 0
   const showBottom = activeTab === 2
 
   return (
@@ -203,7 +203,7 @@ function SharedVisual({ activeTab }) {
         >
           <video src={expertVideo} autoPlay loop muted playsInline />
           <AnimatePresence>
-            {activeTab === 1 && (
+            {activeTab === 0 && (
               <motion.div
                 className="hwt-sv-live-tag"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -219,10 +219,10 @@ function SharedVisual({ activeTab }) {
         <motion.div
           className="hwt-sv-rect hwt-sv-video"
           animate={{
-            flex: activeTab === 0 ? 1 : 0,
-            opacity: activeTab === 0 ? 1 : 0,
+            flex: activeTab === 1 ? 1 : 0,
+            opacity: activeTab === 1 ? 1 : 0,
           }}
-          transition={activeTab === 2 ? { duration: 0 } : { ...TRANSITION, delay: activeTab === 0 ? 0.5 : 0 }}
+          transition={activeTab === 2 ? { duration: 0 } : { ...TRANSITION, delay: activeTab === 1 ? 0.5 : 0 }}
         >
           <video src={listenerVideo} autoPlay loop muted playsInline />
         </motion.div>
@@ -288,7 +288,7 @@ function SharedVisual({ activeTab }) {
 }
 
 const PER_TAB_VISUALS = { 3: LibraryVisual }
-const BACKGROUNDS = [bg1, bg2, bg3, bg4]
+const BACKGROUNDS = [bg2, bg1, bg3, bg4]
 
 function PlusMinusIcon({ isOpen }) {
   return (
@@ -342,9 +342,9 @@ export default function HowItWorksTabs() {
     <section className="hwt-section" ref={sectionRef}>
       <div className="hwt-inner">
         {/* Mobile-only heading so the order can be heading → visual → accordion */}
-        <h2 className="hwt-heading hwt-heading-mobile">Expert help that actually gets you there</h2>
+        <h2 className="hwt-heading hwt-heading-mobile">Everything you need to reach your goals</h2>
         <div className="hwt-left">
-          <h2 className="hwt-heading hwt-heading-desktop">Expert help that actually gets you there</h2>
+          <h2 className="hwt-heading hwt-heading-desktop">Everything you need to reach your goals</h2>
           <div className="hwt-accordion">
             {STEPS.map((step, i) => {
               const isActive = i === activeTab
@@ -389,6 +389,7 @@ export default function HowItWorksTabs() {
               )
             })}
           </div>
+          <a href="https://www.joinleland.com/search" className="hwt-cta">Get started</a>
         </div>
 
         <div className="hwt-right">
