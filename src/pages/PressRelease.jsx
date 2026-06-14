@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -9,10 +10,13 @@ import johnPhoto from '../assets/img/press-release-images/1749578708583.jpg'
 import prImage2 from '../assets/img/press-release-images/Image-2.png'
 import calendarIcon from '../assets/icons/calendar.svg'
 import locationIcon from '../assets/icons/location.svg'
+import videoThumb from '../assets/img/thumbnail-2.png'
 import PreFooterCTA from '../components/PreFooterCTA'
 import './PressRelease.css'
 
 function PressRelease() {
+  const [videoPlaying, setVideoPlaying] = useState(false)
+
   return (
     <div className="pr-page">
       <Navbar variant="sticky" />
@@ -33,8 +37,42 @@ function PressRelease() {
             </p>
             <h1 className="pr-title">Leland Becomes the Home for Ambition in a World Rewritten by AI</h1>
             <p className="pr-lede">Today we are reintroducing Leland to the world.</p>
-            <div className="pr-rule" aria-hidden="true" />
+            {/* <div className="pr-rule" aria-hidden="true" /> */}
           </header>
+
+          <div className="pr-video-embed">
+            {videoPlaying ? (
+              <iframe
+                src="https://www.youtube.com/embed/-bUFycZGWQg?si=JXCDOCzDnEZpDOW4&autoplay=1"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            ) : (
+              <button
+                type="button"
+                className="pr-video-thumb"
+                onClick={() => setVideoPlaying(true)}
+                aria-label="Play video"
+              >
+                <img src={videoThumb} alt="Video thumbnail" />
+                <div className="pr-video-overlay" />
+                <div className="pr-video-bar">
+                  <span className="pr-video-play">
+                    <svg width="32" height="32" viewBox="0 0 20 20" fill="none">
+                      <path d="M6.5 4.5L15.5 10L6.5 15.5V4.5Z" fill="white" />
+                    </svg>
+                  </span>
+                  <div className="pr-video-label">
+                    <span className="pr-video-label-title">Watch the video</span>
+                    <span className="pr-video-label-sub">1:33</span>
+                  </div>
+                </div>
+              </button>
+            )}
+          </div>
 
           <section className="pr-section">
             <h2 className="pr-heading">The world is changing fast</h2>
