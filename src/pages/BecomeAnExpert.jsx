@@ -41,9 +41,9 @@ import coach8 from '../assets/img/coach-testimonials/coach-8.jpg'
 import coach4 from '../assets/img/coach-testimonials/coach-4.jpg'
 import phoneMockup from '../assets/img/coach-testimonials/phone-mockup.png'
 const R2 = 'https://pub-ad204fe9e494441088500b2aa6f689b9.r2.dev/become-an-expert'
-const hiwApplication = `${R2}/Application.png`
-const hiwProfile = `${R2}/Profile%20setup.png`
-const hiwSearch = `${R2}/Search%20Results.png`
+const hiwApplication = `${R2}/graphics/Application.png`
+const hiwProfile = `${R2}/graphics/Profile%20setup.png`
+const hiwSearch = `${R2}/graphics/Search%20Results%202.png`
 import bg1 from '../assets/img/background-textures/bg-1.png'
 import bg2 from '../assets/img/background-textures/bg-2.png'
 const coachImg = 'https://static.joinleland.com/become-an-expert/photography/smiling-woman-shaking%20hands-in-office.png'
