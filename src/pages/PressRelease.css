@@ -24,7 +24,7 @@
   width: 100%;
   height: clamp(260px, 42vw, 480px);
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 .pr-article {
@@ -49,16 +49,26 @@
   margin-bottom: 28px;
 }
 
-.pr-kicker-dot {
-  color: var(--yellow);
-  font-weight: 600;
-  margin: 0 6px;
+.pr-kicker-item {
+  margin-right: 24px;
+  letter-spacing: 0.14em;
+}
+
+.pr-kicker-item:last-child {
+  margin-right: 0;
+}
+
+.pr-kicker-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: -5px;
+  margin-right: 2px;
 }
 
 .pr-title {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 54px;
+  font-size: 64px;
   line-height: 1.12;
   color: var(--gray-dark);
   margin-bottom: 32px;
@@ -74,10 +84,18 @@
 }
 
 .pr-rule {
-  width: 56px;
-  height: 3px;
-  background: var(--yellow);
+  width: 100%;
+  height: 0;
+  border: none;
+  border-top: 2px dotted var(--gray-light);
+  opacity: 0.5;
   margin-top: 44px;
+}
+
+.pr-body-image {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: -48px;
 }
 
 /* ── Sections ── */
@@ -85,7 +103,7 @@
 .pr-heading {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 30px;
+  font-size: 40px;
   line-height: 1.25;
   color: var(--gray-dark);
   margin: 72px 0 24px;
@@ -130,15 +148,99 @@
 
 /* ── Pull-quote & key line ── */
 
-.pr-section .pr-pullquote {
+.pr-video-quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  margin: 48px 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pr-video-quote-text {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 28px;
-  line-height: 1.35;
-  color: var(--gray-dark);
-  border-left: 3px solid var(--yellow);
-  padding-left: 28px;
-  margin: 48px 0 8px;
+  font-size: 40px;
+  line-height: 1.25;
+  color: var(--white);
+  text-align: center;
+  max-width: 720px;
+  padding: 60px 80px;
+}
+
+/* ── AI Builder Banner ── */
+
+.pr-ai-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 48px 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pr-ai-banner-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pr-ai-banner-content {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 32px;
+  width: 100%;
+}
+
+.pr-ai-banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 50%;
+}
+
+.pr-ai-banner-logo {
+  height: 32px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.pr-ai-banner-heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.25;
+  color: var(--white);
+  max-width: 560px;
+  text-align: left;
+}
+
+.pr-ai-banner-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 40px;
+  background: transparent;
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 600;
+  border: 1.5px solid var(--white);
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pr-ai-banner-cta:hover {
+  background: var(--white);
+  color: #222222;
 }
 
 /* ── Inline details ── */
@@ -167,17 +269,10 @@
 }
 
 .pr-author-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--cream);
-  font-family: var(--font-serif);
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--gray-dark);
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -245,10 +340,29 @@
     font-size: 17px;
   }
 
-  .pr-section .pr-pullquote {
-    font-size: 23px;
-    padding-left: 20px;
-    margin: 36px 0 8px;
+  .pr-video-quote {
+    min-height: 300px;
+    margin: 36px 0;
+  }
+
+  .pr-video-quote-text {
+    font-size: 28px;
+    padding: 40px 20px;
+  }
+
+  .pr-ai-banner-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .pr-ai-banner-left {
+    max-width: 100%;
+  }
+
+  .pr-ai-banner-heading {
+    font-size: 40px;
   }
 
   .pr-section .pr-closing {

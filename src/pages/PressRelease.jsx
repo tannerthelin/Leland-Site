@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import coverImage from '../assets/img/ambition-city.png'
+import cloudBg from '../assets/img/press-release-images/Cloud-BG.png'
+import gradientVideo from '../assets/img/press-release-images/Animated Gradient - 06.mp4'
+import aibpLogo from '../assets/img/press-release-images/AIBP-Logo-Blue.png'
+import johnPhoto from '../assets/img/press-release-images/1749578708583.jpg'
+import prImage2 from '../assets/img/press-release-images/Image-2.png'
+import calendarIcon from '../assets/icons/calendar.svg'
+import locationIcon from '../assets/icons/location.svg'
+import PreFooterCTA from '../components/PreFooterCTA'
 import './PressRelease.css'
 
 function PressRelease() {
@@ -16,8 +24,12 @@ function PressRelease() {
         <article className="pr-article">
           <header className="pr-header">
             <p className="pr-kicker">
-              Press Release <span className="pr-kicker-dot">·</span> June 8, 2026{' '}
-              <span className="pr-kicker-dot">·</span> Lehi, Utah
+              <span className="pr-kicker-item">
+                <img src={calendarIcon} alt="" className="pr-kicker-icon" /> June 8, 2026
+              </span>
+              <span className="pr-kicker-item">
+                <img src={locationIcon} alt="" className="pr-kicker-icon" /> Lehi, Utah
+              </span>
             </p>
             <h1 className="pr-title">Leland Becomes the Home for Ambition in a World Rewritten by AI</h1>
             <p className="pr-lede">Today we are reintroducing Leland to the world.</p>
@@ -53,7 +65,10 @@ function PressRelease() {
               that mission is more important than ever. This next chapter is the culmination of everything
               we&rsquo;ve built.
             </p>
-            <p className="pr-pullquote">
+          </section>
+
+          <section className="pr-video-quote" style={{ backgroundImage: `url(${cloudBg})` }}>
+            <p className="pr-video-quote-text">
               Leland is the home for ambition in a world that is changing every day.
             </p>
           </section>
@@ -81,7 +96,22 @@ function PressRelease() {
               happens that the whole world has just added one big career and educational goal to the top of
               their list:
             </p>
-            <h2 className="pr-heading">Learn to leverage AI as quickly as possible.</h2>
+          </section>
+
+          <section className="pr-ai-banner">
+            <video className="pr-ai-banner-video" autoPlay muted loop playsInline>
+              <source src={gradientVideo} type="video/mp4" />
+            </video>
+            <div className="pr-ai-banner-content">
+              <div className="pr-ai-banner-left">
+                <img src={aibpLogo} alt="AI Builder Program" className="pr-ai-banner-logo" />
+                <h2 className="pr-ai-banner-heading">Build with AI to 10x your impact</h2>
+              </div>
+              <a href="https://leland.ai/program" className="pr-ai-banner-cta">Enroll</a>
+            </div>
+          </section>
+
+          <section className="pr-section">
             <p>
               We rolled out our AI Builder Program almost three months ago and have been overwhelmed by the
               reception. F100s, startups, individual contributors, and C-suite execs all coming together to
@@ -103,6 +133,8 @@ function PressRelease() {
             </p>
           </section>
 
+          <img src={prImage2} alt="" className="pr-body-image" />
+
           <section className="pr-section">
             <h2 className="pr-heading">What&rsquo;s changing</h2>
             <p>
@@ -112,13 +144,10 @@ function PressRelease() {
             <p>
               Alongside the refresh, we&rsquo;re officially launching{' '}
               <Link to="/ai" className="pr-link">
-                <strong>leland.ai</strong>
-              </Link>
-              , the home for businesses that need to become AI-native fast. On{' '}
-              <Link to="/ai" className="pr-link">
                 leland.ai
-              </Link>{' '}
-              you can access:
+              </Link>
+              , the home for businesses that need to become AI-native fast. Here, you can
+              access:
             </p>
             <ul className="pr-list">
               <li>Training solutions to upskill your people</li>
@@ -170,7 +199,7 @@ function PressRelease() {
           </section>
 
           <div className="pr-author">
-            <div className="pr-author-avatar" aria-hidden="true">JK</div>
+            <img src={johnPhoto} alt="John Koelliker" className="pr-author-avatar" />
             <div className="pr-author-info">
               <span className="pr-author-name">John Koelliker</span>
               <span className="pr-author-role">CEO &amp; Founder, Leland</span>
@@ -179,6 +208,7 @@ function PressRelease() {
         </article>
       </main>
 
+      <PreFooterCTA />
       <Footer />
     </div>
   )
