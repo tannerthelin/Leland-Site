@@ -539,25 +539,6 @@ export default function BecomeAnExpert() {
       </section>
 
 
-      {/* ── Popular categories ticker ── */}
-      <section className="bae-cat-ticker-section">
-        <div className="bae-cat-ticker-row">
-          <div className="bae-cat-ticker-label-wrap">
-            <p className="bae-cat-ticker-label">Popular<br />categories</p>
-          </div>
-          <div className="bae-cat-ticker" ref={catTickerRef} {...catHandlers}>
-            <div className="bae-cat-ticker-track" ref={catTrackRef}>
-              {[...CATEGORIES, ...CATEGORIES].map((cat, i) => (
-                <span key={i} className="bae-cat-ticker-item">
-                  <a href="#" className="bae-cat-ticker-link">{cat}</a>
-                  <span className="bae-cat-ticker-dot" />
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Quote image break ── */}
       {(() => {
         const eased = quoteProgress < 0.5
@@ -583,6 +564,25 @@ export default function BecomeAnExpert() {
           </section>
         )
       })()}
+
+      {/* ── Popular categories ticker ── */}
+      <section className="bae-cat-ticker-section">
+        <div className="bae-cat-ticker-row">
+          <div className="bae-cat-ticker-label-wrap">
+            <p className="bae-cat-ticker-label">Popular<br />categories</p>
+          </div>
+          <div className="bae-cat-ticker" ref={catTickerRef} {...catHandlers}>
+            <div className="bae-cat-ticker-track" ref={catTrackRef}>
+              {[...CATEGORIES, ...CATEGORIES].map((cat, i) => (
+                <span key={i} className="bae-cat-ticker-item">
+                  <a href="#" className="bae-cat-ticker-link">{cat}</a>
+                  <span className="bae-cat-ticker-dot" />
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 5 · Features */}
       <section className="bae-features">

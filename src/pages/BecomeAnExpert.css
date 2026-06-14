@@ -149,7 +149,7 @@
 
 /* ── 3 · Who Belongs Here ── */
 .bae-who {
-  padding: 80px 48px 32px;
+  padding: 80px 48px;
   background: var(--white);
 }
 
@@ -1044,7 +1044,7 @@
 
 /* ── Popular categories ticker ── */
 .bae-cat-ticker-section {
-  padding: 16px 0 48px;
+  padding: 48px 0;
   overflow: hidden;
 }
 
@@ -1195,14 +1195,11 @@
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  text-align: center;
+  align-items: flex-end;
+  justify-content: space-between;
   height: 100%;
   padding: 48px;
   color: var(--white);
-  gap: 16px;
 }
 
 .bae-quote-img-heading {
@@ -1210,7 +1207,7 @@
   font-size: 56px;
   font-weight: 400;
   line-height: 1.1;
-  max-width: 760px;
+  max-width: 640px;
   margin: 0;
 }
 
@@ -1218,8 +1215,26 @@
   font-size: 20px;
   font-weight: 400;
   line-height: 1.6;
-  max-width: 480px;
+  max-width: 320px;
   margin: 0;
+  align-self: flex-end;
+}
+
+@media (max-width: 1024px) {
+  .bae-quote-img-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .bae-quote-img-heading {
+    font-size: 40px;
+  }
+
+  .bae-quote-img-desc {
+    max-width: 480px;
+  }
 }
 
 @media (max-width: 768px) {
