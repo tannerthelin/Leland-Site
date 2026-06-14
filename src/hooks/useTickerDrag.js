@@ -6,7 +6,7 @@ export default function useTickerDrag(duration) {
   const posRef = useRef(0)
   const rafRef = useRef(null)
   const lastTimeRef = useRef(null)
-  const drag = useRef({ active: false, startX: 0 })
+  const drag = useRef({ active: false, startX: 0, startY: 0, direction: null })
   const externalPause = useRef(false)
   const hoverRef = useRef(false)
   // Speed multiplier: 1 = full auto-scroll, 0 = stopped. Smoothly tweened.
@@ -76,15 +76,32 @@ export default function useTickerDrag(duration) {
     return () => { cancelAnimationFrame(id); if (rafRef.current) cancelAnimationFrame(rafRef.current) }
   }, [])
 
-  // Non-passive touch move
+  // Non-passive touch move — only hijacks horizontal swipes
   useEffect(() => {
     const el = tickerRef.current
     if (!el) return
     const onTouchMove = (e) => {
       if (!drag.current.active) return
+      const touch = e.touches[0]
+
+      // On first move, decide direction
+      if (drag.current.direction === null) {
+        const dx = Math.abs(touch.clientX - drag.current.startX)
+        const dy = Math.abs(touch.clientY - drag.current.startY)
+        drag.current.direction = dy > dx ? 'v' : 'h'
+        if (drag.current.direction === 'v') {
+          drag.current.active = false
+          if (!externalPause.current) setSpeed(1)
+          return
+        }
+        drag.current.startX = touch.clientX
+        return
+      }
+
+      if (drag.current.direction !== 'h') return
       e.preventDefault()
-      const delta = e.touches[0].clientX - drag.current.startX
-      drag.current.startX = e.touches[0].clientX
+      const delta = touch.clientX - drag.current.startX
+      drag.current.startX = touch.clientX
       posRef.current = wrap(posRef.current + delta)
       applyPos()
     }
@@ -92,11 +109,11 @@ export default function useTickerDrag(duration) {
     return () => el.removeEventListener('touchmove', onTouchMove)
   }, [])
 
-  function dragStart(clientX) {
+  function dragStart(clientX, clientY) {
     targetSpeedRef.current = 0
     speedRef.current = 0
     if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null }
-    drag.current = { active: true, startX: clientX }
+    drag.current = { active: true, startX: clientX, startY: clientY, direction: null }
   }
 
   function dragMove(clientX) {
@@ -108,8 +125,8 @@ export default function useTickerDrag(duration) {
   }
 
   function dragEnd() {
-    if (!drag.current.active) return
     drag.current.active = false
+    drag.current.direction = null
     if (!externalPause.current) setSpeed(1)
   }
 
@@ -154,7 +171,7 @@ export default function useTickerDrag(duration) {
   const handlers = {
     onMouseEnter: () => { hoverRef.current = true; setSpeed(0) },
     onMouseLeave: () => { hoverRef.current = false; if (!drag.current.active && !externalPause.current) setSpeed(1) },
-    onTouchStart: (e) => dragStart(e.touches[0].clientX),
+    onTouchStart: (e) => dragStart(e.touches[0].clientX, e.touches[0].clientY),
     onTouchEnd: () => dragEnd(),
   }
 
