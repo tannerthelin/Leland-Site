@@ -1416,7 +1416,7 @@
 
 .bae-faq-heading {
   font-family: var(--font-serif);
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 500;
   color: var(--gray-dark);
   margin: 0;
@@ -1679,7 +1679,7 @@
   }
 
   .bae-faq-heading {
-    font-size: 36px;
+    font-size: 28px;
   }
 
 
