@@ -210,7 +210,7 @@ function PressRelease() {
               navigate their most important career decisions surrounded by a community that makes them
               better. That need is becoming more critical by the day.
             </p>
-            <p className="pr-closing">This is the beginning.</p>
+            <h2 className="pr-heading">This is the beginning.</h2>
           </section>
 
           <div className="pr-author">
