@@ -1,18 +1,19 @@
 import { useRef } from 'react'
 import useTickerDrag from '../hooks/useTickerDrag'
 import SoftBlurText from './SoftBlurText'
-import expertKelsey from '../assets/img/expert-headshots/kelsey-kephart.png'
-import expertKerry from '../assets/img/expert-headshots/kerry-patriarca.png'
-import expertAndrew from '../assets/img/expert-headshots/andrew-quillen.png'
-import expertAlbert from '../assets/img/expert-headshots/albert-chan.png'
-import expertConnorO from '../assets/img/expert-headshots/connor-owens.png'
-import expertMachmud from '../assets/img/expert-headshots/machmud-makhmudov.png'
-import expertMatt from '../assets/img/expert-headshots/matt-kilby.png'
-import expertAlison from '../assets/img/expert-headshots/alison-l.png'
-import expertConnorC from '../assets/img/expert-headshots/connor-crandall.png'
-import expertKenny from '../assets/img/expert-headshots/kenny-johnson.png'
-import expertArthur from '../assets/img/expert-headshots/arthur-balagula.png'
-import expertClaire from '../assets/img/expert-headshots/claire-rafson.png'
+const R2 = 'https://pub-ad204fe9e494441088500b2aa6f689b9.r2.dev/become-an-expert/Experts'
+const expertKelsey = `${R2}/Kelsey%20Kephart.png`
+const expertKerry = `${R2}/Kerry%20Patriarca.png`
+const expertAndrew = `${R2}/Andrew%20Quillen.png`
+const expertAlbert = `${R2}/Albert%20Chan.png`
+const expertConnorO = `${R2}/Connor%20Owens.png`
+const expertMachmud = `${R2}/Machmud%20Makhmudov.png`
+const expertMatt = `${R2}/Matt%20Kilby.png`
+const expertAlison = `${R2}/Alison%20L.png`
+const expertConnorC = `${R2}/Connor%20Crandall.png`
+const expertKenny = `${R2}/Kenny%20Johnson.png`
+const expertArthur = `${R2}/Arthur%20Balagula.png`
+const expertClaire = `${R2}/Claire%20Rafson.png`
 
 const experts = [
   { img: expertKelsey, name: 'Kelsey K.', desc: 'Former Columbia Business School admissions officer' },

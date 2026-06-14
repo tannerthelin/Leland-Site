@@ -40,12 +40,13 @@ import coach7 from '../assets/img/coach-testimonials/coach-7.jpg'
 import coach8 from '../assets/img/coach-testimonials/coach-8.jpg'
 import coach4 from '../assets/img/coach-testimonials/coach-4.jpg'
 import phoneMockup from '../assets/img/coach-testimonials/phone-mockup.png'
-import hiwApplication from '../assets/img/how-it-works/Application.png'
-import hiwProfile from '../assets/img/how-it-works/Profile setup.png'
-import hiwSearch from '../assets/img/how-it-works/Search Results.png'
+const R2 = 'https://pub-ad204fe9e494441088500b2aa6f689b9.r2.dev/become-an-expert'
+const hiwApplication = `${R2}/Application.png`
+const hiwProfile = `${R2}/Profile%20setup.png`
+const hiwSearch = `${R2}/Search%20Results.png`
 import bg1 from '../assets/img/background-textures/bg-1.png'
 import bg2 from '../assets/img/background-textures/bg-2.png'
-import coachImg from '../assets/img/become-an-expert-coach.png'
+const coachImg = 'https://static.joinleland.com/become-an-expert/photography/smiling-woman-shaking%20hands-in-office.png'
 import Footer from '../components/Footer'
 import PreFooterCTA from '../components/PreFooterCTA'
 import './BecomeAnExpert.css'
@@ -172,7 +173,7 @@ const SOCIAL_PROOF_ITEMS = [
   },
   {
     type: 'video',
-    src: 'https://design.joinleland.com/video/testimonials/Andrew%20C%20-%20Career%20Coach%20on%20Leland.mp4',
+    src: `${R2}/Andrew%20C%20-%20Testimonial.mp4`,
     name: 'Andrew C.',
     role: 'Career Expert',
   },
@@ -182,11 +183,11 @@ const SOCIAL_PROOF_ITEMS = [
     quote: "When I started on Leland two years ago I saw it simply as an opportunity to make a little bit of extra cash. What I got instead was a second income stream that was more significant than I could have imagined, a reminder of why I got into this work in the first place, and an incredible professional network that has significantly changed the way I'm planning for the next steps in my career.",
     name: 'Krysta F.',
     role: 'Medical & Graduate School Expert',
-    avatar: 'https://design.joinleland.com/coach_images/Krysta%20F.png',
+    avatar: `${R2}/Krysta%20F.png`,
   },
   {
     type: 'video',
-    src: 'https://design.joinleland.com/video/testimonials/Joy%20P%20-%20Admissions%20Coach.mp4',
+    src: `${R2}/Joy%20P%20-%20Testimonial.mp4`,
     name: 'Joy P.',
     role: 'Admissions Expert',
   },
@@ -203,20 +204,20 @@ const SOCIAL_PROOF_ITEMS = [
   },
   {
     type: 'video',
-    src: 'https://design.joinleland.com/video/testimonials/Eric%20Z%20-%20Management%20Consulting%20Coach.mp4',
+    src: `${R2}/Eric%20Z%20-%20Testimonial.mp4`,
     name: 'Eric Z.',
     role: 'Management Consulting Expert',
   },
   {
     type: 'split',
-    top: { type: 'quote', bg: 'rgba(34, 34, 34, 0.05)', quote: "Leland is one of the few platforms that has earned my complete trust.", name: 'Saad A.', role: 'GRE Expert', avatar: 'https://design.joinleland.com/coach_images/Saad%20A.png' },
+    top: { type: 'quote', bg: 'rgba(34, 34, 34, 0.05)', quote: "Leland is one of the few platforms that has earned my complete trust.", name: 'Saad A.', role: 'GRE Expert', avatar: `${R2}/Saad%20A.png` },
     bottom: {
       type: 'press',
       bg: 'rgba(34, 34, 34, 0.05)',
       quote: "I've learned how to build a multi-six-figure business betting on myself.",
       name: 'Ben L.',
       role: 'MBA Coach & AI Expert',
-      avatar: 'https://design.joinleland.com/coach_images/Ben%20L.png',
+      avatar: `${R2}/Ben%20L.png`,
     },
   },
   {
@@ -227,7 +228,7 @@ const SOCIAL_PROOF_ITEMS = [
   },
   {
     type: 'video',
-    src: 'https://design.joinleland.com/video/testimonials/Machmud%20M%20-%20Law%20School%20Coach.mp4',
+    src: `${R2}/Machmud%20M%20-%20Testimonial.mp4`,
     name: 'Machmud M.',
     role: 'Law School Expert',
   },
