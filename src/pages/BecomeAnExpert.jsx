@@ -477,6 +477,26 @@ export default function BecomeAnExpert() {
   const [quoteProgress, setQuoteProgress] = useState(0)
   const quoteRef = useRef(null)
   const { tickerRef: catTickerRef, trackRef: catTrackRef, handlers: catHandlers } = useTickerDrag(40)
+  const dividerRef = useRef(null)
+  const whoRef = useRef(null)
+
+  useEffect(() => {
+    const divEl = dividerRef.current
+    const whoEl = whoRef.current
+    if (!divEl || !whoEl) return
+    const update = () => {
+      const rect = whoEl.getBoundingClientRect()
+      const vh = window.innerHeight
+      // 0 when section top hits bottom of viewport, 1 when section bottom hits bottom of viewport
+      const scrollRange = rect.height
+      const scrolled = vh - rect.top
+      const progress = Math.min(1, Math.max(0, scrolled / scrollRange))
+      divEl.style.transform = `scaleX(${progress})`
+    }
+    window.addEventListener('scroll', update, { passive: true })
+    update()
+    return () => window.removeEventListener('scroll', update)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -504,8 +524,12 @@ export default function BecomeAnExpert() {
         cta={<a href="#" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
       />
 
+      <div className="bae-divider-wrap">
+        <div className="bae-divider" ref={dividerRef} />
+      </div>
+
       {/* 2 · Who Belongs Here */}
-      <section className="bae-who">
+      <section className="bae-who" ref={whoRef}>
         <div className="section-container">
           <div className="bae-who-top">
             <div className="bae-who-text">
@@ -558,7 +582,12 @@ export default function BecomeAnExpert() {
               />
               <div className="bae-quote-img-content">
                 <h2 className="bae-quote-img-heading">There's no better feeling than helping someone accomplish their goals.</h2>
-                <p className="bae-quote-img-desc">Come change lives on Leland.</p>
+                <p className="bae-quote-img-desc">
+                  <a href="#" className="bae-quote-img-link">
+                    Come change lives on Leland.
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </p>
               </div>
             </div>
           </section>
