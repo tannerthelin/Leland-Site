@@ -75,12 +75,12 @@ const WHO_BELONGS = [
   {
     emoji: '🤖',
     title: 'AI & Tech Experts',
-    desc: 'From prompt engineering to full AI automation. The world is hungry for practical AI expertise.',
+    desc: "You've gone deep on AI. The world is hungry for practical expertise like yours.",
   },
   {
     emoji: '💼',
     title: 'Specialists in Any Field',
-    desc: "If you've mastered your corner of the world and people come to you for advice, Leland is for you.",
+    desc: "If you've mastered your niche and people come to you for answers, you belong here.",
   },
 ]
 
@@ -477,26 +477,6 @@ export default function BecomeAnExpert() {
   const [quoteProgress, setQuoteProgress] = useState(0)
   const quoteRef = useRef(null)
   const { tickerRef: catTickerRef, trackRef: catTrackRef, handlers: catHandlers } = useTickerDrag(40)
-  const dividerRef = useRef(null)
-  const whoRef = useRef(null)
-
-  useEffect(() => {
-    const divEl = dividerRef.current
-    const whoEl = whoRef.current
-    if (!divEl || !whoEl) return
-    const update = () => {
-      const rect = whoEl.getBoundingClientRect()
-      const vh = window.innerHeight
-      // 0 when section top hits bottom of viewport, 1 when section bottom hits bottom of viewport
-      const scrollRange = rect.height
-      const scrolled = vh - rect.top
-      const progress = Math.min(1, Math.max(0, scrolled / scrollRange))
-      divEl.style.transform = `scaleX(${progress})`
-    }
-    window.addEventListener('scroll', update, { passive: true })
-    update()
-    return () => window.removeEventListener('scroll', update)
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -524,12 +504,8 @@ export default function BecomeAnExpert() {
         cta={<a href="#" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
       />
 
-      <div className="bae-divider-wrap">
-        <div className="bae-divider" ref={dividerRef} />
-      </div>
-
       {/* 2 · Who Belongs Here */}
-      <section className="bae-who" ref={whoRef}>
+      <section className="bae-who">
         <div className="section-container">
           <div className="bae-who-top">
             <div className="bae-who-text">
@@ -543,25 +519,20 @@ export default function BecomeAnExpert() {
               </p>
             </div>
           </div>
-          <div className="bae-who-bottom">
-            <div className="bae-who-left">
-              <div className="bae-who-grid-wrap">
-                <div className="bae-who-grid-box">
-                  <div className="bae-who-grid">
-                    {WHO_BELONGS.map((item) => (
-                      <div className="bae-who-card" key={item.title}>
-                        <p className="bae-who-card-title">{item.title}</p>
-                        <p className="bae-who-card-desc">{item.desc}</p>
-                      </div>
-                    ))}
+          <div className="bae-who-grid-wrap">
+            <div className="bae-who-grid-box">
+              <div className="bae-who-grid">
+                {WHO_BELONGS.map((item) => (
+                  <div className="bae-who-card" key={item.title}>
+                    <p className="bae-who-card-title">{item.title}</p>
+                    <p className="bae-who-card-desc">{item.desc}</p>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* ── Quote image break ── */}
       {(() => {
@@ -703,7 +674,8 @@ export default function BecomeAnExpert() {
       {/* 8 · FAQ */}
       <section className="bae-faq">
         <div className="section-container">
-          <h2 className="bae-section-title">Frequently asked questions</h2>
+          <div className="bae-faq-inner">
+          <h2 className="bae-faq-heading">Frequently asked questions</h2>
           <div className="bae-faq-list">
             {FAQ_ITEMS.map((item) => (
               <details className="bae-faq-item" key={item.q}>
@@ -711,6 +683,7 @@ export default function BecomeAnExpert() {
                 <p className="bae-faq-answer">{item.a}</p>
               </details>
             ))}
+          </div>
           </div>
         </div>
       </section>

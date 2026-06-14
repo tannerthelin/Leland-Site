@@ -148,26 +148,10 @@
 }
 
 /* ── Animated divider ── */
-.bae-divider-wrap {
-  padding: 0 48px;
-}
-
-.bae-divider {
-  height: 1px;
-  background: rgba(0, 0, 0, 0.12);
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.15s ease-out;
-  will-change: transform;
-}
-
 /* ── 3 · Who Belongs Here ── */
 .bae-who {
   padding: 80px 48px;
-  background: var(--white);
+  background: rgba(240, 235, 224, 0.5);
 }
 
 .bae-who .section-container {
@@ -180,7 +164,7 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
 }
 
 .bae-who-text {
@@ -277,7 +261,8 @@
 
 
 .bae-who-grid-box {
-  background: #F5F5F5;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   padding: 28px;
 }
@@ -1059,6 +1044,17 @@
   border-radius: 50%;
 }
 
+/* ── Personas grid ── */
+.bae-personas {
+  padding: 0 48px;
+  background: var(--white);
+}
+
+.bae-personas .section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 /* ── Popular categories ticker ── */
 .bae-cat-ticker-section {
   padding: 48px 0;
@@ -1158,6 +1154,7 @@
 /* ── Quote image break ── */
 .bae-quote-img-section {
   padding: 0 48px;
+  background: linear-gradient(to bottom, rgba(240, 235, 224, 0.5), var(--white));
 }
 
 .bae-quote-img-container {
@@ -1406,8 +1403,26 @@
 }
 
 .bae-faq .section-container {
-  max-width: 800px;
+  max-width: 1280px;
   margin: 0 auto;
+}
+
+.bae-faq-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+
+.bae-faq-heading {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
 }
 
 .bae-faq-wrap {
@@ -1441,6 +1456,8 @@
 .bae-faq-list {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 800px;
 }
 
 .bae-faq-item {
@@ -1552,7 +1569,7 @@
   }
 
   .bae-who {
-    padding: 40px 0;
+    padding: 40px 0 20px;
   }
 
   .bae-social-proof .section-container {
@@ -1662,6 +1679,11 @@
     padding-left: 0;
     padding-right: 0;
   }
+
+  .bae-faq-heading {
+    font-size: 36px;
+  }
+
 
   .bae-features,
   .bae-testimonials,
