@@ -4,7 +4,6 @@ import SoftBlurText from './SoftBlurText'
 import expertKelsey from '../assets/img/expert-headshots/kelsey-kephart.png'
 import expertKerry from '../assets/img/expert-headshots/kerry-patriarca.png'
 import expertAndrew from '../assets/img/expert-headshots/andrew-quillen.png'
-import expertAsha from '../assets/img/expert-headshots/asha-t.png'
 import expertAlbert from '../assets/img/expert-headshots/albert-chan.png'
 import expertConnorO from '../assets/img/expert-headshots/connor-owens.png'
 import expertMachmud from '../assets/img/expert-headshots/machmud-makhmudov.png'
@@ -28,7 +27,6 @@ const experts = [
   { img: expertArthur, name: 'Arthur B.', desc: 'Google AI marketing lead and MIT Sloan MBA' },
   { img: expertAlison, name: 'Alison L.', desc: 'Former Bain and McKinsey hiring manager' },
   { img: expertMatt, name: 'Matt K.', desc: 'SpaceX engineer, former BCG project lead, and MIT Sloan MBA' },
-  { img: expertAsha, name: 'Asha T.', desc: 'Harvard MBA and former Apax Partners PE investor' },
 ]
 
 export default function ExpertsSection({ heading, subtitle, className, cta }) {

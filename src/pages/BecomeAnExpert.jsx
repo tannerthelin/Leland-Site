@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import useTickerDrag from '../hooks/useTickerDrag'
 import { motion, AnimatePresence } from 'motion/react'
 import Navbar from '../components/Navbar'
 import ExpertsSection from '../components/ExpertsSection'
 import heroBg from '../assets/img/become-an-expert-bg.png'
-import coachImg from '../assets/img/become-an-expert-coach.png'
 import pic05 from '../assets/img/profile-photos/pic-05.png'
 import pic08 from '../assets/img/profile-photos/pic-08.png'
 import pic09 from '../assets/img/profile-photos/pic-09.png'
@@ -46,6 +45,7 @@ import hiwProfile from '../assets/img/how-it-works/Profile setup.png'
 import hiwSearch from '../assets/img/how-it-works/Search Results.png'
 import bg1 from '../assets/img/background-textures/bg-1.png'
 import bg2 from '../assets/img/background-textures/bg-2.png'
+import coachImg from '../assets/img/become-an-expert-coach.png'
 import Footer from '../components/Footer'
 import PreFooterCTA from '../components/PreFooterCTA'
 import './BecomeAnExpert.css'
@@ -65,12 +65,7 @@ const WHO_BELONGS = [
   {
     emoji: '🎓',
     title: 'Former Admissions Officers',
-    desc: "You've reviewed thousands of applications. You know exactly what makes one unforgettable.",
-  },
-  {
-    emoji: '🏢',
-    title: 'Executives & Consultants',
-    desc: "You've built a career at the kind of place others spend years trying to break into.",
+    desc: "You've reviewed thousands of applications. You know what makes one unforgettable.",
   },
   {
     emoji: '🚀',
@@ -79,26 +74,20 @@ const WHO_BELONGS = [
   },
   {
     emoji: '🤖',
-    title: 'AI & Tech Specialists',
+    title: 'AI & Tech Experts',
     desc: 'From prompt engineering to full AI automation. The world is hungry for practical AI expertise.',
-  },
-  {
-    emoji: '📝',
-    title: 'Tutors & Test Prep Experts',
-    desc: "GMAT, GRE, LSAT, MCAT. If you've cracked the code, share your test prep strategy.",
   },
   {
     emoji: '💼',
     title: 'Specialists in Any Field',
-    desc: "Finance, healthcare, law, real estate, design — if you've mastered your corner of the world and people come to you for advice, Leland is for you.",
+    desc: "If you've mastered your corner of the world and people come to you for advice, Leland is for you.",
   },
 ]
 
 const CATEGORIES = [
-  'MBA Admissions', 'College Admissions', 'Law School', 'Medical School',
-  'GMAT Prep', 'GRE Prep', 'LSAT Prep', 'Career Coaching',
-  'Executive Coaching', 'Product Management', 'Data Science & AI',
-  'Finance & Accounting',
+  'Build with AI', 'MBA', 'Management Consulting', 'Product Management',
+  'Career Coaching', 'Private Equity', 'Investment Banking', 'Law School',
+  "Master's Programs", 'Medical School', 'GRE', 'LSAT', 'GMAT', 'College',
 ]
 
 const FAQ_ITEMS = [
@@ -366,6 +355,11 @@ function SocialProofTicker() {
                       playsInline
                       style={{ pointerEvents: 'none' }}
                     />
+                    <span className="bae-sp-play-btn">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M6.5 4.5L15.5 10L6.5 15.5V4.5Z" fill="white" />
+                      </svg>
+                    </span>
                     <div className="bae-sp-thin-bottom">
                       <span className="bae-sp-thin-label">{item.name}</span>
                       <span className="bae-sp-thin-sublabel">{item.role}</span>
@@ -481,6 +475,23 @@ export default function BecomeAnExpert() {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
   const [showAllFaq, setShowAllFaq] = useState(false)
   const [openWho, setOpenWho] = useState(null)
+  const [quoteProgress, setQuoteProgress] = useState(0)
+  const quoteRef = useRef(null)
+  const { tickerRef: catTickerRef, trackRef: catTrackRef, handlers: catHandlers } = useTickerDrag(40)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = quoteRef.current
+      if (!section) return
+      const rect = section.getBoundingClientRect()
+      const vh = window.innerHeight
+      const raw = 1 - (rect.top - 0) / (vh - 0)
+      setQuoteProgress(Math.min(1, Math.max(0, raw)))
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
@@ -508,66 +519,71 @@ export default function BecomeAnExpert() {
                 and build your business.
               </p>
             </div>
-            <div className="bae-who-logos" aria-hidden="true">
-              <img src={googleLogo}   className="bae-who-logo" style={{ width: 76,  top: 42,  left: 195, opacity: 0.44, filter: 'invert(1)' }} alt="" />
-              <img src={goldmanLogo}  className="bae-who-logo" style={{ width: 64,  top: 120, left: 215, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
-              <img src={mckinseyLogo} className="bae-who-logo" style={{ width: 88,  top: 12,  left: 108, opacity: 0.30, filter: 'invert(1)' }} alt="" />
-              <img src={openaiLogo}   className="bae-who-logo" style={{ width: 58,  top: 14,  left: 318, opacity: 0.30, filter: 'grayscale(1)' }} alt="" />
-              <img src={bcgLogo}      className="bae-who-logo" style={{ width: 50,  top: 118, left: 112, opacity: 0.28, filter: 'invert(1)' }} alt="" />
-              <img src={spotifyLogo}  className="bae-who-logo" style={{ width: 58,  top: 114, left: 330, opacity: 0.34, filter: 'grayscale(1)' }} alt="" />
-              <img src={stanfordLogo} className="bae-who-logo" style={{ width: 64,  top: 68,  left: 60,  opacity: 0.36, filter: 'grayscale(1)' }} alt="" />
-              <img src={nikeLogo}     className="bae-who-logo" style={{ width: 48,  top: 72,  left: 400, opacity: 0.22, filter: 'grayscale(1)' }} alt="" />
-            </div>
           </div>
           <div className="bae-who-bottom">
-            <div className="bae-faq-list bae-who-faq">
-              {WHO_BELONGS.map((item, i) => {
-                const isOpen = openWho === i
-                return (
-                  <div className="bae-faq-item" key={item.title}>
-                    <button
-                      className="bae-faq-question"
-                      onClick={() => setOpenWho(isOpen ? null : i)}
-                      aria-expanded={isOpen}
-                    >
-                      {item.title}
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25, ease: 'easeInOut' }}
-                          style={{ overflow: 'hidden' }}
-                        >
-                          <p className="bae-faq-answer">{item.desc}</p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+            <div className="bae-who-left">
+              <div className="bae-who-grid-wrap">
+                <div className="bae-who-grid-box">
+                  <div className="bae-who-grid">
+                    {WHO_BELONGS.map((item) => (
+                      <div className="bae-who-card" key={item.title}>
+                        <p className="bae-who-card-title">{item.title}</p>
+                        <p className="bae-who-card-desc">{item.desc}</p>
+                      </div>
+                    ))}
                   </div>
-                )
-              })}
-            </div>
-            <div className="bae-who-img-wrap">
-              <img src={coachImg} alt="" className="bae-who-img" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
 
-      {/* 4 · Categories */}
-      <section className="bae-categories">
-        <div className="section-container">
-          <h2 className="bae-categories-heading">Popular coaching categories</h2>
-          <div className="bae-categories-grid">
-            {CATEGORIES.map((cat) => (
-              <a href="#" className="bae-category-chip" key={cat}>{cat}</a>
-            ))}
+      {/* ── Popular categories ticker ── */}
+      <section className="bae-cat-ticker-section">
+        <div className="bae-cat-ticker-row">
+          <div className="bae-cat-ticker-label-wrap">
+            <p className="bae-cat-ticker-label">Popular<br />categories</p>
+          </div>
+          <div className="bae-cat-ticker" ref={catTickerRef} {...catHandlers}>
+            <div className="bae-cat-ticker-track" ref={catTrackRef}>
+              {[...CATEGORIES, ...CATEGORIES].map((cat, i) => (
+                <span key={i} className="bae-cat-ticker-item">
+                  <a href="#" className="bae-cat-ticker-link">{cat}</a>
+                  <span className="bae-cat-ticker-dot" />
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* ── Quote image break ── */}
+      {(() => {
+        const eased = quoteProgress < 0.5
+          ? 2 * quoteProgress * quoteProgress
+          : 1 - Math.pow(-2 * quoteProgress + 2, 2) / 2
+        const containerScale = 0.8 + eased * 0.2
+        const imageScale = 1 / containerScale
+        return (
+          <section className="bae-quote-img-section" ref={quoteRef}>
+            <div className="bae-quote-img-container" style={{ transform: `scale(${containerScale})` }}>
+              <div
+                className="bae-quote-img-bg"
+                style={{
+                  backgroundImage: `url(${coachImg})`,
+                  transform: `scale(${imageScale})`,
+                }}
+              />
+              <div className="bae-quote-img-content">
+                <h2 className="bae-quote-img-heading">There's no better feeling than helping someone accomplish their goals.</h2>
+                <p className="bae-quote-img-desc">Come change lives on Leland.</p>
+              </div>
+            </div>
+          </section>
+        )
+      })()}
 
       {/* 5 · Features */}
       <section className="bae-features">

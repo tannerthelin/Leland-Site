@@ -84,7 +84,7 @@
   gap: 8px;
   background: var(--yellow);
   color: var(--gray-dark);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   padding: 16px 32px;
   border-radius: 999px;
@@ -121,7 +121,7 @@
 }
 
 .bae-logos-label {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gray-light);
   white-space: nowrap;
 }
@@ -149,7 +149,7 @@
 
 /* ── 3 · Who Belongs Here ── */
 .bae-who {
-  padding: 80px 48px;
+  padding: 80px 48px 32px;
   background: var(--white);
 }
 
@@ -160,15 +160,18 @@
 
 .bae-who-top {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 40px;
   margin-bottom: 48px;
 }
 
 .bae-who-text {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bae-who-logos {
@@ -177,9 +180,17 @@
   height: 200px;
 }
 
-.bae-who-logo {
-  position: absolute;
-  height: auto;
+.bae-who-top-img {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 320px;
+}
+
+.bae-who-top-img .bae-who-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .bae-who-heading {
@@ -193,7 +204,7 @@
 }
 
 .bae-who-sub {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gray-light);
   line-height: 1.6;
   max-width: 640px;
@@ -219,7 +230,11 @@
 .bae-who-img-wrap {
   flex-shrink: 0;
   width: 340px;
-  align-self: stretch;
+  height: 420px;
+  max-height: 420px;
+  align-self: flex-start;
+  position: sticky;
+  top: 24px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -231,18 +246,37 @@
   object-position: top center;
 }
 
-.bae-who-card {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  padding: 32px;
+.bae-who-left {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  transition: box-shadow 0.2s;
+  gap: 32px;
+  min-width: 0;
 }
 
-.bae-who-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+.bae-who-grid-wrap {
+  position: relative;
+}
+
+
+.bae-who-grid-box {
+  background: #F5F5F5;
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.bae-who-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 32px;
+  align-content: start;
+}
+
+
+.bae-who-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .bae-who-emoji {
@@ -259,13 +293,14 @@
 
 .bae-who-card-title {
   font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--gray-dark);
 }
 
 .bae-who-card-desc {
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 300;
   color: var(--gray-light);
   line-height: 1.55;
 }
@@ -313,16 +348,16 @@
 .bae-categories-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 8px;
 }
 
 .bae-category-chip {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--gray-dark);
   background: var(--white);
-  padding: 12px 24px;
+  padding: 9px 14px;
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -408,7 +443,7 @@
 
 .bae-feature-card-title {
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--gray-dark);
 }
@@ -581,7 +616,7 @@
 }
 
 .bae-testi-label-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--gray-dark);
 }
@@ -833,6 +868,24 @@
   cursor: pointer;
 }
 
+.bae-sp-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 .bae-sp-thin-bottom {
   position: relative;
   z-index: 1;
@@ -924,7 +977,7 @@
 
 .bae-sp-press-quote {
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.45;
   color: var(--gray-dark);
@@ -989,6 +1042,224 @@
   border-radius: 50%;
 }
 
+/* ── Popular categories ticker ── */
+.bae-cat-ticker-section {
+  padding: 16px 0 48px;
+  overflow: hidden;
+}
+
+.bae-cat-ticker-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.bae-cat-ticker-label-wrap {
+  flex-shrink: 0;
+  padding: 0 24px 0 48px;
+}
+
+.bae-cat-ticker-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  line-height: 1.5;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.bae-cat-ticker {
+  flex: 1;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  min-width: 0;
+  position: relative;
+}
+
+.bae-cat-ticker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, var(--white), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bae-cat-ticker:active {
+  cursor: grabbing;
+}
+
+.bae-cat-ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.bae-cat-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.bae-cat-ticker-link {
+  font-size: 17px;
+  font-weight: 500;
+  color: #767676;
+  text-decoration: none;
+  padding: 0 4px;
+  transition: color 0.15s;
+}
+
+.bae-cat-ticker-link:hover {
+  color: var(--gray-dark);
+}
+
+.bae-cat-ticker-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0 20px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .bae-cat-ticker-label-wrap {
+    padding: 0 20px 0 20px;
+  }
+}
+
+/* ── Quote image break ── */
+.bae-quote-img-section {
+  padding: 0 48px;
+  background: linear-gradient(to bottom, var(--white) 20%, #F3F1E6 80%);
+}
+
+.bae-quote-img-container {
+  width: 100%;
+  height: 80vh;
+  min-height: 500px;
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+  transform-origin: center center;
+  border-radius: 16px;
+}
+
+.bae-quote-img-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.bae-quote-img-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.bae-quote-img-container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 60%);
+  mask-image: linear-gradient(to bottom, transparent, black 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bae-quote-img-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+  padding: 48px;
+  color: var(--white);
+}
+
+.bae-quote-img-heading {
+  font-family: var(--font-serif);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.1;
+  max-width: 640px;
+  margin: 0;
+}
+
+.bae-quote-img-desc {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0;
+  align-self: flex-end;
+}
+
+@media (max-width: 1024px) {
+  .bae-quote-img-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .bae-quote-img-heading {
+    font-size: 40px;
+  }
+
+  .bae-quote-img-desc {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bae-quote-img-section {
+    padding: 0 16px;
+  }
+
+  .bae-quote-img-container {
+    height: 60vh;
+    min-height: 360px;
+  }
+
+  .bae-quote-img-content {
+    padding: 32px 28px;
+  }
+
+  .bae-quote-img-heading {
+    font-size: 32px;
+  }
+
+  .bae-quote-img-desc {
+    font-size: 15px;
+  }
+}
+
 /* ── 7 · How It Works ── */
 .bae-hiw {
   padding: 80px 48px;
@@ -1007,7 +1278,7 @@
 }
 
 .bae-hiw-sub {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--gray-light);
   margin-bottom: 32px;
   text-align: center;
@@ -1023,7 +1294,7 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--gray-dark);
   text-decoration: underline;
@@ -1083,7 +1354,7 @@
 }
 
 .bae-hiw-step-desc {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.45;
 }
 
@@ -1190,6 +1461,18 @@
 
 
 /* ── Responsive ── */
+@media (max-width: 1280px) {
+  .bae-who-img-inline {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bae-who-logos {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .bae-sp-col {
     height: 360px;
@@ -1200,6 +1483,14 @@
   .bae-sp-thin { width: 225px; }
   .bae-sp-quote-long { width: 315px; }
   .bae-sp-split { width: 275px; }
+
+  .bae-sp-split .bae-sp-split-card:last-child {
+    display: none;
+  }
+
+  .bae-sp-split .bae-sp-split-card:first-child {
+    flex: 1;
+  }
 
   .bae-sp-wide-quote { font-size: 17px; }
   .bae-sp-quote-long-text { font-size: 13px; }
@@ -1222,6 +1513,11 @@
 
   .bae-hero-title {
     font-size: 36px;
+  }
+
+  .bae-experts-hero .experts-heading {
+    font-size: 40px;
+    line-height: 1.15;
   }
 
   .bae-who {
@@ -1259,6 +1555,21 @@
     flex-direction: column;
   }
 
+  .bae-who-grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 428px) {
+    .bae-who-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .bae-who-left {
+    align-items: center;
+  }
+
+
   .bae-who-img-wrap {
     width: 100%;
     height: 280px;
@@ -1268,7 +1579,10 @@
     font-size: 28px;
   }
 
-  .bae-who-grid,
+  .bae-who-left {
+    width: 100%;
+  }
+
   .bae-hiw-steps,
   .bae-features-grid {
     grid-template-columns: 1fr;
@@ -1316,6 +1630,19 @@
   .bae-faq {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .bae-features,
+  .bae-testimonials,
+  .bae-hiw,
+  .bae-faq {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .bae-logos {
+    padding-top: 28px;
+    padding-bottom: 28px;
   }
 
 }
