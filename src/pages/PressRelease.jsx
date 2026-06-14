@@ -107,7 +107,22 @@ function PressRelease() {
                 <img src={aibpLogo} alt="AI Builder Program" className="pr-ai-banner-logo" />
                 <h2 className="pr-ai-banner-heading">Build with AI to 10x your impact</h2>
               </div>
-              <a href="https://leland.ai/program" className="pr-ai-banner-cta">Enroll</a>
+              <div className="pr-ai-banner-right">
+                <a href="https://leland.ai/program" className="pr-cohort-widget">
+                  <div className="pr-cohort-cal">
+                    <div className="pr-cohort-cal-month">JUN</div>
+                    <div className="pr-cohort-cal-day">22</div>
+                  </div>
+                  <div className="pr-cohort-text">
+                    <span className="pr-cohort-title">Next cohort</span>
+                    <span className="pr-cohort-date">Starts June 22</span>
+                  </div>
+                </a>
+                <a href="https://leland.ai/program" className="pr-ai-banner-cta">
+                  <span className="pr-ai-banner-cta-full">Enroll now</span>
+                  <span className="pr-ai-banner-cta-short">Enroll</span>
+                </a>
+              </div>
             </div>
           </section>
 

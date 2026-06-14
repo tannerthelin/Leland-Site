@@ -197,14 +197,17 @@
   justify-content: space-between;
   gap: 48px;
   padding: 32px;
+  min-height: 300px;
   width: 100%;
 }
 
 .pr-ai-banner-left {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 16px;
   max-width: 50%;
+  align-self: stretch;
 }
 
 .pr-ai-banner-logo {
@@ -223,24 +226,111 @@
   text-align: left;
 }
 
+.pr-ai-banner-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: stretch;
+  gap: 24px;
+}
+
 .pr-ai-banner-cta {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 40px;
-  background: transparent;
-  color: var(--white);
+  padding: 14px 32px;
+  background: var(--yellow);
+  color: #222222;
   font-size: 17px;
-  font-weight: 600;
-  border: 1.5px solid var(--white);
+  font-weight: 500;
+  border: none;
   border-radius: 999px;
-  transition: background 0.15s, color 0.15s;
+  transition: opacity 0.15s;
 }
 
 .pr-ai-banner-cta:hover {
-  background: var(--white);
+  opacity: 0.85;
+}
+
+.pr-ai-banner-cta-short {
+  display: none;
+}
+
+/* ── Next cohort widget ── */
+
+.pr-cohort-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.pr-cohort-cal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 44px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transform: rotate(-5deg) scale(0.9);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pr-cohort-widget:hover .pr-cohort-cal {
+  transform: rotate(-1deg) scale(0.97);
+}
+
+.pr-cohort-cal-month {
+  width: 100%;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: #222222;
+  background: #80ACED;
+  padding: 3px 0 2px;
+  line-height: 1.2;
+}
+
+.pr-cohort-cal-day {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #222222;
+  padding: 2px 0 3px;
+  line-height: 1.2;
+}
+
+.pr-cohort-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pr-cohort-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.pr-cohort-date {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.3;
+  transition: color 0.15s ease-in-out;
+}
+
+.pr-cohort-widget:hover .pr-cohort-date {
+  color: #ffffff;
 }
 
 /* ── Inline details ── */
@@ -354,11 +444,27 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 40px 20px;
-    gap: 24px;
+    gap: 64px;
   }
 
   .pr-ai-banner-left {
     max-width: 100%;
+  }
+
+  .pr-ai-banner-right {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    align-self: auto;
+    width: 100%;
+  }
+
+  .pr-ai-banner-cta-full {
+    display: none;
+  }
+
+  .pr-ai-banner-cta-short {
+    display: inline;
   }
 
   .pr-ai-banner-heading {
