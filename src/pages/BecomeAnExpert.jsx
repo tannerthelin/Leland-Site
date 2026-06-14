@@ -170,7 +170,7 @@ const SOCIAL_PROOF_ITEMS = [
   },
   {
     type: 'video',
-    src: `${R2}/Andrew%20C%20-%20Testimonial.mp4`,
+    src: 'https://static.joinleland.com/become-an-expert/Andrew%20C%20-%20Testimional.mp4',
     name: 'Andrew C.',
     role: 'Career Expert',
   },
