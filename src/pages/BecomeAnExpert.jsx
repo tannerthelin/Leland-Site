@@ -500,7 +500,7 @@ export default function BecomeAnExpert() {
         heading="Turn your experience into your business"
         subtitle="Join thousands of experts already on Leland."
         className="bae-experts-hero"
-        cta={<a href="#" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
+        cta={<a href="https://www.joinleland.com/signup?coach=true" className="bae-hero-cta" style={{ marginTop: '20px' }}>Apply to be an expert</a>}
       />
 
       {/* 2 · Who Belongs Here */}
@@ -649,7 +649,7 @@ export default function BecomeAnExpert() {
           <h2 className="bae-section-title bae-hiw-title">Apply in just 5 minutes.</h2>
           <p className="bae-hiw-sub">Monetize your expertise and build connections with tomorrow&rsquo;s leaders.</p>
           <div className="bae-hiw-cta">
-            <a href="#" className="bae-hero-cta">Apply now</a>
+            <a href="https://www.joinleland.com/signup?coach=true" className="bae-hero-cta">Apply now</a>
           </div>
           <div className="bae-hiw-steps">
             {HOW_IT_WORKS.map((s) => (
@@ -691,6 +691,7 @@ export default function BecomeAnExpert() {
       <PreFooterCTA
         heading="Turn your experience into a side hustle."
         ctaText="Apply to be an expert"
+        ctaHref="https://www.joinleland.com/signup?coach=true"
       />
 
       <Footer />
