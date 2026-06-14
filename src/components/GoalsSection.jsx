@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import buildingIcon from '../assets/icons/modern-building-4.svg'
+import buildingIcon from '../assets/icons/career.svg'
 // TODO(imagery — CEO feedback): swap for OUTCOME, not process. Show what an AI-native
 // person can DO, not "a person at a computer learning." Chandler to supply final asset.
 import imgLearnAI from '../assets/img/homepage-cards/learn-ai.png'

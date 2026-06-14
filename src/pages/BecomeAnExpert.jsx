@@ -473,7 +473,6 @@ function SocialProofTicker() {
 
 export default function BecomeAnExpert() {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
-  const [showAllFaq, setShowAllFaq] = useState(false)
   const [openWho, setOpenWho] = useState(null)
   const [quoteProgress, setQuoteProgress] = useState(0)
   const quoteRef = useRef(null)
@@ -676,27 +675,13 @@ export default function BecomeAnExpert() {
       <section className="bae-faq">
         <div className="section-container">
           <h2 className="bae-section-title">Frequently asked questions</h2>
-          <div className={`bae-faq-wrap${showAllFaq ? ' bae-faq-expanded' : ''}`}>
-            <div className="bae-faq-list">
-              {FAQ_ITEMS.map((item) => (
-                <details className="bae-faq-item" key={item.q}>
-                  <summary className="bae-faq-question">{item.q}</summary>
-                  <p className="bae-faq-answer">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-          <div className="bae-faq-toggle">
-            <button className="bae-features-show-more" onClick={() => setShowAllFaq(!showAllFaq)}>
-              {showAllFaq ? 'Show less' : 'View all'}
-              <svg
-                className={`bae-features-chevron${showAllFaq ? ' bae-features-chevron-up' : ''}`}
-                width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
+          <div className="bae-faq-list">
+            {FAQ_ITEMS.map((item) => (
+              <details className="bae-faq-item" key={item.q}>
+                <summary className="bae-faq-question">{item.q}</summary>
+                <p className="bae-faq-answer">{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
