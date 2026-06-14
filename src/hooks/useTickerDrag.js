@@ -76,7 +76,12 @@ export default function useTickerDrag(duration) {
     return () => { cancelAnimationFrame(id); if (rafRef.current) cancelAnimationFrame(rafRef.current) }
   }, [])
 
-  // Non-passive touch move — only hijacks horizontal swipes
+  // Set touch-action so the browser handles vertical scroll natively without waiting for JS
+  useEffect(() => {
+    if (tickerRef.current) tickerRef.current.style.touchAction = 'pan-y'
+  }, [])
+
+  // Passive touch move — direction detection only, no preventDefault needed
   useEffect(() => {
     const el = tickerRef.current
     if (!el) return
@@ -84,7 +89,6 @@ export default function useTickerDrag(duration) {
       if (!drag.current.active) return
       const touch = e.touches[0]
 
-      // On first move, decide direction
       if (drag.current.direction === null) {
         const dx = Math.abs(touch.clientX - drag.current.startX)
         const dy = Math.abs(touch.clientY - drag.current.startY)
@@ -99,13 +103,12 @@ export default function useTickerDrag(duration) {
       }
 
       if (drag.current.direction !== 'h') return
-      e.preventDefault()
       const delta = touch.clientX - drag.current.startX
       drag.current.startX = touch.clientX
       posRef.current = wrap(posRef.current + delta)
       applyPos()
     }
-    el.addEventListener('touchmove', onTouchMove, { passive: false })
+    el.addEventListener('touchmove', onTouchMove, { passive: true })
     return () => el.removeEventListener('touchmove', onTouchMove)
   }, [])
 
