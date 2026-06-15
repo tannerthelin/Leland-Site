@@ -475,6 +475,65 @@
   font-weight: 500;
 }
 
+/* ── Bottom banner ── */
+
+.pr-bottom-banner {
+  margin-top: 64px;
+  padding: 48px 40px;
+  background-color: var(--gray-dark, #1a1a1a);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+.pr-bottom-banner-text {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.3;
+  color: #ffffff;
+  margin: 0;
+}
+
+.pr-bottom-banner-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.pr-bottom-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.pr-bottom-banner-cta:hover {
+  opacity: 0.85;
+}
+
+.pr-bottom-banner-cta--primary {
+  background: var(--yellow, #FFD644);
+  color: #222222;
+}
+
+.pr-bottom-banner-cta--secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .pr-section .pr-closing {
   font-family: var(--font-serif);
   font-size: 22px;
@@ -561,5 +620,26 @@
   .pr-section .pr-closing {
     font-size: 20px;
     margin-top: 32px;
+  }
+
+  .pr-bottom-banner {
+    margin-top: 48px;
+    padding: 36px 24px;
+    gap: 24px;
+  }
+
+  .pr-bottom-banner-text {
+    font-size: 22px;
+  }
+
+  .pr-bottom-banner-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .pr-bottom-banner-cta {
+    width: 100%;
+    padding: 14px 24px;
   }
 }

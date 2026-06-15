@@ -11,6 +11,7 @@ import prImage2 from '../assets/img/press-release-images/Image-2.png'
 import calendarIcon from '../assets/icons/calendar.svg'
 import locationIcon from '../assets/icons/location.svg'
 import videoThumb from '../assets/img/thumbnail-2.png'
+import bannerBg from '../assets/img/banner-bg.png'
 import PreFooterCTA from '../components/PreFooterCTA'
 import './PressRelease.css'
 
@@ -256,6 +257,20 @@ function PressRelease() {
             <div className="pr-author-info">
               <span className="pr-author-name">John Koelliker</span>
               <span className="pr-author-role">CEO &amp; Founder, Leland</span>
+            </div>
+          </div>
+
+          <div className="pr-bottom-banner" style={{ backgroundImage: `url(${bannerBg})` }}>
+            <p className="pr-bottom-banner-text">
+              Your next chapter starts here.
+            </p>
+            <div className="pr-bottom-banner-actions">
+              <a href="https://www.leland.com" className="pr-bottom-banner-cta pr-bottom-banner-cta--primary">
+                For individuals
+              </a>
+              <a href="/ai" className="pr-bottom-banner-cta pr-bottom-banner-cta--secondary">
+                For teams
+              </a>
             </div>
           </div>
         </article>
